@@ -6,7 +6,7 @@ import {
 
 const initialState = {
   loading: false,
-  user: {},
+  response: {},
   error: '',
 };
 
@@ -16,7 +16,7 @@ const signUpUserReducer = (state = initialState, action) => {
       return {
         ...state,
         loading: true,
-        user: {},
+        status: {},
         error: '',
       };
     }
@@ -24,7 +24,7 @@ const signUpUserReducer = (state = initialState, action) => {
       return {
         ...state,
         loading: false,
-        user: action.payload,
+        response: action.payload,
         error: '',
       };
     }
@@ -32,7 +32,7 @@ const signUpUserReducer = (state = initialState, action) => {
       return {
         ...state,
         loading: false,
-        user: {},
+        response: {},
         error: action.payload,
       };
     }

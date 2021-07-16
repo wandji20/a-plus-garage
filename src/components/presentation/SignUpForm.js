@@ -1,16 +1,31 @@
-import React from 'react';
+/* eslint-disable */
+import React, { useState } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import signUpUserAction from '../../redux/actions/signUpAction';
+import FormError from './FormError';
 
 const SignUpForm = (props) => {
-  const { handleSignUpUser } = props;
+  const { handleSignUpUser, response } = props;
+  console.log(response);
+  const [name, setName] = useState('');
+  const [userID, setUserID] = useState('');
 
-  console.log(props);
+  const handleNameChange = (e) => {
+    setName(e.target.value);
+  };
+
+  const handleUserIDChange = (e) => {
+    setUserID(e.target.value);
+  };
 
   const handleFormSubmit = (e) => {
-    const data = {};
+    const data = { name, userID };
     e.preventDefault();
+    console.log(handleSignUpUser);
+    console.log(data);
+    setName('');
+    setUserID('');
     handleSignUpUser(data);
   };
 
@@ -23,20 +38,44 @@ const SignUpForm = (props) => {
         <div className="form-group my-3">
           <label htmlFor="name">
             User Name
-            <input type="text" id="name" className="form-control" placeholder="...name" />
+            <input
+              type="text"
+              id="name"
+              value={name}
+              className="form-control"
+              placeholder="...name"
+              onChange={handleNameChange}
+            />
           </label>
+          {
+            (!response.status && response.errors && response.errors.name) && <FormError column="User name" errors={response.errors.name} />
+          }
+
         </div>
         <div className="form-group my-3">
           <label htmlFor="formGroupExampleInput2">
             UserID
-            <input type="text" className="form-control" placeholder="@username" />
+            <input
+              type="text"
+              value={userID}
+              className="form-control"
+              placeholder="@username"
+              onChange={handleUserIDChange}
+            />
           </label>
+          {
+            (!response.status && response.errors && response.errors.userID) && <FormError column="UserID" errors={response.errors.userID} />
+          }
         </div>
         <button type="submit" className="btn btn-primary mb-2">Sign Up</button>
       </form>
     </section>
   );
 };
+
+const mapStateToProps = (state) => ({
+  response: state.signUpUser.response,
+});
 
 const mapDispatchToProps = (dispatch) => ({
   handleSignUpUser: (data) => {
@@ -52,4 +91,4 @@ SignUpForm.defaultProps = {
   handleSignUpUser: () => {},
 };
 
-export default connect(null, mapDispatchToProps)(SignUpForm);
+export default connect(mapStateToProps, mapDispatchToProps)(SignUpForm);

@@ -1,10 +1,11 @@
+/* eslint-disable */
 import React from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 
 const Nav = (props) => {
-  const { name } = props;
-  console.log(name);
+  const { response  } = props;
+  // console.log(response);
   return (
     <header className="container bg-info">
       <nav className="nav d-flex justify-content-between">
@@ -20,15 +21,15 @@ const Nav = (props) => {
 };
 
 Nav.propTypes = {
-  name: PropTypes.string,
+  response: PropTypes.object,
 };
 
 Nav.defaultProps = {
-  name: '',
+  response: {},
 };
 
 const mapStateToProps = (state) => ({
-  name: state.signUpUser.user.name,
+  data: state.signUpUser.response
 });
 
 export default connect(mapStateToProps)(Nav);
