@@ -6,7 +6,7 @@ const Nav = (props) => {
   const { name } = props;
   console.log(name);
   return (
-    <header className="container-fluid">
+    <header className="container-fluid bg-info">
       <nav className="nav d-flex justify-content-between">
         <div className="">
           A+ Automobile
