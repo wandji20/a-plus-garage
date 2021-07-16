@@ -1,3 +1,6 @@
+#root {
+  max-width: 100%;
+}
 .remove-padding {
   padding-right: 0;
   padding-left: 0;
