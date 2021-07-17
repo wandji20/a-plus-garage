@@ -1,5 +1,6 @@
 /* eslint-disable */
 import React from 'react';
+import { Link } from 'react-router-dom';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 
@@ -10,10 +11,20 @@ const Nav = (props) => {
     <header className="container bg-info">
       <nav className="nav d-flex justify-content-between">
         <div className="">
-          A+ Automobile
+          <Link to='/'>
+            A+ Automobile
+          </Link>
         </div>
-        <div className="">
-          user icon
+        <div className="w-50 d-flex justify-content-between">
+          <Link to='/log_in'>
+            log in
+          </Link>
+          <Link to='/sign_up'>
+            sign up
+          </Link>
+          <Link to='/log_out'>
+            log out
+          </Link>
         </div>
       </nav>
     </header>
