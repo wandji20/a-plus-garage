@@ -7,7 +7,7 @@ import FormError from './FormError';
 
 const SignUpForm = (props) => {
   const { handleSignUpUser, response } = props;
-  console.log(response);
+  // console.log(response);
   const [name, setName] = useState('');
   const [userID, setUserID] = useState('');
 
@@ -74,7 +74,7 @@ const SignUpForm = (props) => {
 };
 
 const mapStateToProps = (state) => ({
-  response: state.signUpUser.response,
+  response: state.userReducer.response,
 });
 
 const mapDispatchToProps = (dispatch) => ({

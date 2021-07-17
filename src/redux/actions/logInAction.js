@@ -18,7 +18,7 @@ const logInUserFailure = (error) => ({
   payload: error,
 });
 
-const url = 'http://localhost:3001/api/v1/login';
+const url = 'http://localhost:3001/login';
 
 const getLogInDetails = (details) => async (dispatch) => {
   dispatch(logInUser());
@@ -34,8 +34,10 @@ const getLogInDetails = (details) => async (dispatch) => {
       },
     );
     const data = await response.json();
+    console.log(data);
     dispatch(logInUserSuccess(data));
   } catch (error) {
+    console.log('yooo', error);
     dispatch(logInUserFailure(error));
   }
 };

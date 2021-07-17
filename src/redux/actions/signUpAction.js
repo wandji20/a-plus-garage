@@ -18,7 +18,7 @@ const signUpUserRequestFailure = (status) => ({
   payload: status,
 });
 
-const url = 'http://localhost:3001/api/v1/users';
+const url = 'http://localhost:3001/users';
 
 const signUpUserAction = (data) => async (dispatch) => {
   dispatch(signUpUserRequest());

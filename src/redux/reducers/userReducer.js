@@ -2,15 +2,19 @@ import {
   SIGN_UP_USER_REQUEST,
   SIGN_UP_USER_REQUEST_SUCCESS,
   SIGN_UP_USER_REQUEST_FAILURE,
+  // LOGIN_USER,
+  // LOGIN_USER_SUCCESS,
+  // LOGIN_USER_FAILURE,
 } from '../constants';
 
 const initialState = {
   loading: false,
+  loggedIn: false,
   response: {},
   error: '',
 };
 
-const signUpUserReducer = (state = initialState, action) => {
+const userReducer = (state = initialState, action) => {
   switch (action.type) {
     case SIGN_UP_USER_REQUEST: {
       return {
@@ -43,4 +47,4 @@ const signUpUserReducer = (state = initialState, action) => {
   }
 };
 
-export default signUpUserReducer;
+export default userReducer;

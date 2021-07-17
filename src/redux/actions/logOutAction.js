@@ -18,7 +18,7 @@ const logOutUserFailure = (error) => ({
   payload: error,
 });
 
-const url = 'http://localhost:3001/api/v1/logout';
+const url = 'http://localhost:3001/logout';
 
 const logOutUserAction = (details) => async (dispatch) => {
   dispatch(logOutUser());

@@ -1,6 +1,10 @@
 import React, { useState } from 'react';
+import PropTypes from 'prop-types';
+import { connect } from 'react-redux';
+import getLogInDetails from '../../redux/actions/logInAction';
 
-const LogInForm = () => {
+const LogInForm = (props) => {
+  const { handleLogIn } = props;
   const [userID, setUserID] = useState('');
 
   const handleUserIDChange = (e) => {
@@ -9,9 +13,10 @@ const LogInForm = () => {
 
   const handleFormSubmit = (e) => {
     e.preventDefault();
-    const data = { userID };
-    console.log(data);
+    const details = { userID };
+    console.log(details);
     setUserID('');
+    handleLogIn(details);
   };
   return (
     <section className="container d-flex justify-content-center align-items-center">
@@ -42,4 +47,14 @@ const LogInForm = () => {
   );
 };
 
-export default LogInForm;
+const mapDispatchToProps = (dispatch) => ({
+  handleLogIn: (details) => {
+    dispatch(getLogInDetails(details));
+  },
+});
+
+LogInForm.propTypes = {
+  handleLogIn: PropTypes.func.isRequired,
+};
+
+export default connect(null, mapDispatchToProps)(LogInForm);

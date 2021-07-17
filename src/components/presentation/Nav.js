@@ -40,7 +40,7 @@ Nav.defaultProps = {
 };
 
 const mapStateToProps = (state) => ({
-  data: state.signUpUser.response
+  data: state.userReducer.response
 });
 
 export default connect(mapStateToProps)(Nav);
