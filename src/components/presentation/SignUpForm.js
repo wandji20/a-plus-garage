@@ -30,7 +30,7 @@ const SignUpForm = (props) => {
   };
 
   return (
-    <section className="container d-flex justify-content-center align-items-center">
+    <div className="container d-flex justify-content-center align-items-center">
       <form
         className=" d-flex flex-column align-items-center col-sm-8 col-md-6"
         onSubmit={handleFormSubmit}
@@ -69,7 +69,7 @@ const SignUpForm = (props) => {
         </div>
         <button type="submit" className="btn btn-primary mb-2">Sign Up</button>
       </form>
-    </section>
+    </div>
   );
 };
 

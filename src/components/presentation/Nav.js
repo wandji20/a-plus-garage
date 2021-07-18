@@ -8,7 +8,7 @@ const Nav = (props) => {
   const { response  } = props;
   // console.log(response);
   return (
-    <header className="container bg-info">
+    <header className="container bg-info remove-padding header">
       <nav className="nav d-flex justify-content-between">
         <div className="">
           <Link to='/'>

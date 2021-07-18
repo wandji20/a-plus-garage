@@ -19,7 +19,7 @@ const LogInForm = (props) => {
     handleLogIn(details);
   };
   return (
-    <section className="container d-flex justify-content-center align-items-center">
+    <div className="container d-flex justify-content-center align-items-center">
       <form
         className=" d-flex flex-column col-sm-8 col-md-6"
         onSubmit={handleFormSubmit}
@@ -43,7 +43,7 @@ const LogInForm = (props) => {
         </div>
         <button type="submit" className="btn btn-primary mb-2 w-25">log in</button>
       </form>
-    </section>
+    </div>
   );
 };
 
