@@ -55,3 +55,7 @@ body {
 .nav-controls .btn:hover {
   font-size: 1.2rem;
 }
+
+.footer .row * {
+  /* height: 100%; */
+}
