@@ -19,9 +19,9 @@ const LogInForm = (props) => {
     handleLogIn(details);
   };
   return (
-    <div className="container d-flex justify-content-center align-items-center">
+    <div className="container d-flex justify-content-center align-items-left">
       <form
-        className=" d-flex flex-column col-sm-8 col-md-6"
+        className=" d-flex flex-column align-content-start col-sm-8 col-md-6"
         onSubmit={handleFormSubmit}
       >
 

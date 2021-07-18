@@ -32,7 +32,7 @@ const SignUpForm = (props) => {
   return (
     <div className="container d-flex justify-content-center align-items-center">
       <form
-        className=" d-flex flex-column align-items-center col-sm-8 col-md-6"
+        className=" d-flex flex-column align-items-start col-sm-8 col-md-6"
         onSubmit={handleFormSubmit}
       >
         <div className="form-group my-3">
@@ -48,7 +48,7 @@ const SignUpForm = (props) => {
             />
           </label>
           {
-            (!response.status && response.errors && response.errors.name) && <FormError column="User name" errors={response.errors.name} />
+            (!response.success && response.errors && response.errors.name) && <FormError column="User name" errors={response.errors.name} />
           }
 
         </div>
@@ -64,7 +64,7 @@ const SignUpForm = (props) => {
             />
           </label>
           {
-            (!response.status && response.errors && response.errors.userID) && <FormError column="UserID" errors={response.errors.userID} />
+            (!response.success && response.errors && response.errors.userID) && <FormError column="UserID" errors={response.errors.userID} />
           }
         </div>
         <button type="submit" className="btn btn-primary mb-2">Sign Up</button>

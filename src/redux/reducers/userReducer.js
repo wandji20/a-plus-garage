@@ -2,9 +2,10 @@ import {
   SIGN_UP_USER_REQUEST,
   SIGN_UP_USER_REQUEST_SUCCESS,
   SIGN_UP_USER_REQUEST_FAILURE,
-  // LOGIN_USER,
-  // LOGIN_USER_SUCCESS,
-  // LOGIN_USER_FAILURE,
+  LOGIN_USER,
+  LOGIN_USER_SUCCESS,
+  LOGIN_USER_FAILURE,
+  LOGOUT_USER,
 } from '../constants';
 
 const initialState = {
@@ -20,15 +21,27 @@ const userReducer = (state = initialState, action) => {
       return {
         ...state,
         loading: true,
-        status: {},
+        response: {},
+        loggedIn: false,
         error: '',
       };
     }
     case SIGN_UP_USER_REQUEST_SUCCESS: {
+      const response = action.payload;
+      if (response.success) {
+        return {
+          ...state,
+          loading: false,
+          loggedIn: true,
+          response,
+          error: '',
+        };
+      }
       return {
         ...state,
         loading: false,
-        response: action.payload,
+        loggedIn: false,
+        response,
         error: '',
       };
     }
@@ -36,8 +49,55 @@ const userReducer = (state = initialState, action) => {
       return {
         ...state,
         loading: false,
+        loggedIn: false,
         response: {},
         error: action.payload,
+      };
+    }
+    case LOGIN_USER: {
+      return {
+        ...state,
+        loading: true,
+        response: {},
+        loggedIn: false,
+        error: '',
+      };
+    }
+    case LOGIN_USER_SUCCESS: {
+      const response = action.payload;
+      if (response.success) {
+        return {
+          ...state,
+          loading: false,
+          loggedIn: true,
+          response,
+          error: '',
+        };
+      }
+      return {
+        ...state,
+        loading: false,
+        loggedIn: false,
+        response,
+        error: '',
+      };
+    }
+    case LOGIN_USER_FAILURE: {
+      return {
+        ...state,
+        loading: false,
+        loggedIn: false,
+        response: {},
+        error: action.payload,
+      };
+    }
+    case LOGOUT_USER: {
+      return {
+        ...state,
+        loading: false,
+        response: {},
+        loggedIn: false,
+        error: '',
       };
     }
     default:

@@ -8,21 +8,21 @@ const Nav = (props) => {
   const { response  } = props;
   // console.log(response);
   return (
-    <header className="container bg-info remove-padding header">
-      <nav className="nav d-flex justify-content-between">
+    <header className="container d-flex flex-column justify-content-center bg-info remove-padding header">
+      <nav className="nav justify-content-between ">
         <div className="">
           <Link to='/'>
             A+ Automobile
           </Link>
         </div>
-        <div className="w-50 d-flex justify-content-between">
+        <div className=" d-flex justify-content-between">
           <Link to='/log_in'>
             log in
           </Link>
           <Link to='/sign_up'>
             sign up
           </Link>
-          <Link to='/log_out'>
+          <Link to='/logout'>
             log out
           </Link>
         </div>
