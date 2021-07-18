@@ -6,5 +6,4 @@ const logOutUser = () => ({
   type: LOGOUT_USER,
 });
 
-
 export default logOutUser;

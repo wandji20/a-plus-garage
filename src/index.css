@@ -34,3 +34,24 @@ body {
   width: 100%;
   height: 10%;
 }
+
+.nav-controls {
+  right: 0;
+  top: 10vh;
+}
+
+.nav-controls a {
+  text-decoration: none;
+  color: black;
+}
+.nav-controls .btn {
+  background-color: #11adcc;
+  width: 100%;
+  border-radius: 0;
+  transition: 0.5s;
+  /* border-bottom: 1px solid #aaaaaa; */
+}
+
+.nav-controls .btn:hover {
+  font-size: 1.2rem;
+}
