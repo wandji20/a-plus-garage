@@ -1,4 +1,5 @@
 import React from 'react';
+import Button from '../presentation/Button';
 import oil from '../../assets/car-oil.png';
 import oilFilter from '../../assets/oil-filter.png';
 import brake from '../../assets/brake.png';
@@ -15,7 +16,6 @@ const Home = () => {
     { id: 5, name: 'Fuel Pump', url: fuelPump },
     { id: 6, name: 'Brakes', url: brake },
   ];
-  console.log(parts);
   return (
     <div className="container-fluid d-flex justify-content-center flex-wrap">
       {/* <div className="row justify-content-center align-items-center"> */}
@@ -28,7 +28,8 @@ const Home = () => {
               <h5 className="">
                 {part.name}
               </h5>
-              <div className="img">
+              <div className="d-flex justify-content-center align-items-center">
+                <Button />
                 <img style={{ borderRadius: '10px' }} src={part.url} alt={part.name} />
               </div>
             </article>

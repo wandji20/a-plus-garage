@@ -15,6 +15,10 @@ const Nav = (props) => {
     setDisplay(!display);
   };
 
+  const removeNavOptions = () => {
+    setDisplay(false);
+  };
+
   const icon = display
     ? <FontAwesomeIcon icon={faCaretDown} />
     : <FontAwesomeIcon icon={faCaretUp} />;
@@ -22,7 +26,12 @@ const Nav = (props) => {
   return (
     <header className="container d-flex flex-column justify-content-center bg-info remove-padding header">
       <nav className="nav justify-content-between mx-2">
-        <div className="">
+        <div
+          aria-hidden="true"
+          className=""
+          onClick={removeNavOptions}
+          onKeyDown={removeNavOptions}
+        >
           <Link to="/">
             <img src={logo} alt="logo" />
           </Link>

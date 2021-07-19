@@ -59,3 +59,11 @@ body {
 .footer .row * {
   /* height: 100%; */
 }
+
+#track-part-btn {
+  transition: 0.75s;
+}
+
+#track-part-btn:hover {
+  background-color: #11adcc;
+}
