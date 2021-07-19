@@ -16,6 +16,10 @@ const Home = () => {
     { id: 5, name: 'Fuel Pump', url: fuelPump },
     { id: 6, name: 'Brakes', url: brake },
   ];
+  const style = {
+    position: 'absolute',
+    fontSize: '30px',
+  };
   return (
     <div className="container-fluid d-flex justify-content-center flex-wrap">
       {/* <div className="row justify-content-center align-items-center"> */}
@@ -29,7 +33,7 @@ const Home = () => {
                 {part.name}
               </h5>
               <div className="d-flex justify-content-center align-items-center">
-                <Button />
+                <Button style={style} />
                 <img style={{ borderRadius: '10px' }} src={part.url} alt={part.name} />
               </div>
             </article>
