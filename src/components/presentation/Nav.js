@@ -2,6 +2,9 @@ import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faCaretUp, faCaretDown } from '@fortawesome/free-solid-svg-icons';
+import logo from '../../assets/logo.png';
 
 const Nav = (props) => {
   const { loggedIn } = props;
@@ -12,12 +15,16 @@ const Nav = (props) => {
     setDisplay(!display);
   };
 
+  const icon = display
+    ? <FontAwesomeIcon icon={faCaretDown} />
+    : <FontAwesomeIcon icon={faCaretUp} />;
+
   return (
     <header className="container d-flex flex-column justify-content-center bg-info remove-padding header">
       <nav className="nav justify-content-between mx-2">
         <div className="">
           <Link to="/">
-            A+ Automobile
+            <img src={logo} alt="logo" />
           </Link>
         </div>
         <div className="">
@@ -26,12 +33,11 @@ const Nav = (props) => {
               ? 'user name'
               : (
                 <button
-                  style={{ border: '1px solid black' }}
                   type="button"
                   className="btn"
                   onClick={handleNavOptions}
                 >
-                  icon
+                  {icon}
                 </button>
               )
 
@@ -42,24 +48,21 @@ const Nav = (props) => {
       {
         display && (
         <div className="nav-controls bg-light position-absolute d-flex flex-column align-items-center">
-          <button type="button" className="btn btn">
+          <button type="button" className="btn" onClick={handleNavOptions}>
             <Link to="/log_in">
               Sign In
             </Link>
           </button>
-          <button type="button" className="btn">
+          <button type="button" className="btn" onClick={handleNavOptions}>
             <Link to="/sign_up">
               Sign Up
             </Link>
           </button>
-          <button type="button" className="btn">
+          <button type="button" className="btn" onClick={handleNavOptions}>
             <Link to="/logout">
               Sign Out
             </Link>
           </button>
-          {/* <button type="button" className="btn">
-            Exit
-          </button> */}
         </div>
         )
       }
