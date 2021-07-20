@@ -18,7 +18,7 @@ const Nav = (props) => {
     setDisplay(false);
   };
 
-  const icon = display
+  const icon = !display
     ? <FontAwesomeIcon icon={faCaretDown} />
     : <FontAwesomeIcon icon={faCaretUp} />;
 

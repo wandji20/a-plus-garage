@@ -1,8 +1,7 @@
 import React from 'react';
 
 const About = () => (
-  <div className="constainer-fluid">
-    Home page
+  <div className="container m-auto py-2">
     Lorem ipsum dolor sit amet, consectetur adipiscing elit.
     Maecenas iaculis faucibus dui porttitor accumsan. Aenean id sem nunc.
     Quisque at nisi a justo porta pulvinar.
