@@ -9,7 +9,6 @@ import logo from '../../assets/logo.png';
 const Nav = (props) => {
   const { loggedIn } = props;
   const [display, setDisplay] = useState(false);
-  console.log(loggedIn);
 
   const handleNavOptions = () => {
     setDisplay(!display);
