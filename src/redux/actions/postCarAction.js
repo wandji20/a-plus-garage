@@ -19,12 +19,12 @@ const postCarRequestFailure = (error) => ({
   payload: error,
 });
 
-const userID = 3;
-const url = `http://localhost:3001/users/${userID}/cars/`;
+const userId = 2;
+const url = `http://localhost:3001/users/${userId}/cars/`;
 
 const postCarAction = (data) => async (dispatch) => {
+  dispatch(postCarRequest());
   try {
-    dispatch(postCarRequest());
     const server = await fetch(
       url,
       {

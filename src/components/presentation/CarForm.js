@@ -28,7 +28,7 @@ const CarForm = (props) => {
     e.preventDefault();
     const data = { make, fuelRate, horsePower };
     const carDetails = getPartsData(data);
-    console.log(carDetails);
+    // console.log(carDetails);
     setHorsePower(0);
     setMake('');
     setFuelRate(0);
