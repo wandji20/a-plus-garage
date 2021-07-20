@@ -6,28 +6,34 @@ const getPartsData = (data) => {
   const life = Math.ceil((6 * horsePower) / fuelRate);
   const parts = [
     {
-      oil: life,
+      name: 'Oil',
+      life,
     },
     {
-      oilFilter: 2 * life,
+      name: 'Oil Filter',
+      life: 2 * life,
     },
     {
-      lights: 1.5 * life,
+      name: 'Rear Lights',
+      life: 1.5 * life,
     },
     {
-      tires: 3 * life,
+      name: 'Tires',
+      life: 3 * life,
     },
     {
-      fuelPump: 9 * life,
+      name: 'Fuel Pump',
+      life: 9 * life,
     },
     {
-      brakes: 3 * life,
+      name: 'Brakes',
+      life: 3 * life,
     },
   ];
   return {
     make,
-    horsePower,
-    fuelRate,
+    power: horsePower,
+    fuel: fuelRate,
     parts,
   };
 };
