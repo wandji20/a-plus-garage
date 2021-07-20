@@ -1,6 +1,11 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
+import PropTypes from 'prop-types';
+import { withRouter } from 'react-router-dom';
+import getPartsData from '../../helpers/carFormHelper';
 
-const CarForm = () => {
+const CarForm = (props) => {
+  const { history } = props;
+  console.log(history);
   const [make, setMake] = useState('');
   const [fuelRate, setFuelRate] = useState(0);
   const [horsePower, setHorsePower] = useState(0);
@@ -8,10 +13,6 @@ const CarForm = () => {
   const handleMakeChange = (e) => {
     setMake(e.target.value);
   };
-
-  useEffect(() => {
-
-  });
 
   const handleFuelRateChange = (e) => {
     setFuelRate(e.target.value);
@@ -24,10 +25,12 @@ const CarForm = () => {
   const handleFormSubmit = (e) => {
     e.preventDefault();
     const data = { make, fuelRate, horsePower };
-    console.log(data);
+    const carDetails = getPartsData(data);
+    console.log(carDetails);
     setHorsePower(0);
     setMake('');
     setFuelRate(0);
+    props.history.push('/details');
   };
 
   return (
@@ -192,4 +195,8 @@ const CarForm = () => {
   );
 };
 
-export default CarForm;
+CarForm.propTypes = {
+  history: PropTypes.objectOf(PropTypes.any).isRequired,
+};
+
+export default withRouter(CarForm);
