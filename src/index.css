@@ -64,10 +64,12 @@ body {
 }
 
 #track-part-btn {
+  border: none;
   transition: 0.75s;
+  box-shadow: none;
 }
 
-#track-part-btn:hover {
+article #track-part-btn:hover {
   background-color: #addc91;
 }
 
@@ -75,3 +77,12 @@ body {
   width: 35px;
   height: 35px;
 }
+
+.current {
+  background-color: #62b5e5;
+  color: #1a4761;
+}
+
+/* .footer .btn{
+
+} */

@@ -1,5 +1,5 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
+import { NavLink } from 'react-router-dom';
 import { CircularProgressbar } from 'react-circular-progressbar';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faEllipsisH } from '@fortawesome/free-solid-svg-icons';
@@ -11,28 +11,33 @@ const Footer = () => {
   const linkStyle = {
     color: 'black',
     textDecoration: 'none',
-    // display: 'inline-block',
+    display: 'inline-block',
     width: '100%',
-    // height: '100%',
+    height: '100%',
     margin: 'auto',
   };
+
   return (
     <footer className=" d-flex justify-content-center align-items-center container remove-padding footer">
 
       <div
         className="w-25 "
       >
-        <Link to="/new_car" style={linkStyle}>
+        <NavLink
+          to="/new_car"
+          style={linkStyle}
+          activeClassName="current"
+        >
           <div className="d-flex justify-content-center flex-column align-items-center">
             <Button />
             <span className="d-block">
               Add Car
             </span>
           </div>
-        </Link>
+        </NavLink>
       </div>
       <div className="w-50">
-        <Link to="/details" style={linkStyle}>
+        <NavLink to="/details" style={linkStyle} activeClassName="current">
           <div className="d-flex justify-content-between align-items-center h-100">
             <div className="w-50 d-flex flex-column justify-content-around align-items-center">
               <div id="circular">
@@ -50,16 +55,16 @@ const Footer = () => {
               </span>
             </div>
           </div>
-        </Link>
+        </NavLink>
       </div>
       <div className="w-25 ">
-        <Link to="/about" style={linkStyle}>
+        <NavLink to="/about" style={linkStyle} activeClassName="current">
           <div className="d-flex justify-content-center align-self-center h-100">
             <span className="m-auto d-inline-block fs-1">
               <FontAwesomeIcon icon={faEllipsisH} />
             </span>
           </div>
-        </Link>
+        </NavLink>
       </div>
     </footer>
   );

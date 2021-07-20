@@ -12,7 +12,7 @@ import About from '../presentation/About';
 function Navigations() {
   return (
     <Switch>
-      <Route exact path="/" component={Home} />
+      <Route path="/" component={Home} exact />
       <Route exact path="/sign_up" component={SignUpForm} />
       <Route exact path="/log_in" component={LogInForm} />
       <Route exact path="/new_car" component={CarForm} />
