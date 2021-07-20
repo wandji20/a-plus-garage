@@ -1,11 +1,13 @@
 import React, { useState } from 'react';
 import PropTypes from 'prop-types';
 import { withRouter } from 'react-router-dom';
+import { connect } from 'react-redux';
 import getPartsData from '../../helpers/carFormHelper';
+import postCarAction from '../../redux/actions/postCarAction';
 
 const CarForm = (props) => {
-  const { history } = props;
-  console.log(history);
+  const { handlePostCarAction } = props;
+
   const [make, setMake] = useState('');
   const [fuelRate, setFuelRate] = useState(0);
   const [horsePower, setHorsePower] = useState(0);
@@ -31,6 +33,7 @@ const CarForm = (props) => {
     setMake('');
     setFuelRate(0);
     props.history.push('/details');
+    handlePostCarAction(carDetails);
   };
 
   return (
@@ -195,8 +198,15 @@ const CarForm = (props) => {
   );
 };
 
+const mapDispatchToProps = (dispatch) => ({
+  handlePostCarAction: (data) => {
+    dispatch(postCarAction(data));
+  },
+});
+
 CarForm.propTypes = {
   history: PropTypes.objectOf(PropTypes.any).isRequired,
+  handlePostCarAction: PropTypes.func.isRequired,
 };
 
-export default withRouter(CarForm);
+export default connect(null, mapDispatchToProps)(withRouter(CarForm));
