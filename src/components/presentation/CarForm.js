@@ -21,18 +21,19 @@ const CarForm = () => {
     setHorsePower(e.target.value);
   };
 
-  const handleFormSubmit = () => {
+  const handleFormSubmit = (e) => {
+    e.preventDefault();
     const data = { make, fuelRate, horsePower };
     console.log(data);
     setHorsePower(0);
-    setMake(0);
+    setMake('');
     setFuelRate(0);
   };
 
   return (
     <div className="container d-flex justify-content-center align-items-center">
       <form
-        className="d-flex flex-column align-items-start col-sm-8 col-md-6"
+        className="d-flex flex-column align-items-start col-sm-8 col-md-6 px-3"
         onSubmit={handleFormSubmit}
       >
         <div className="form-group my-3">
@@ -45,6 +46,7 @@ const CarForm = () => {
               className="form-control"
               placeholder="...make"
               onChange={handleMakeChange}
+              required
             />
           </label>
           {/* {
@@ -53,11 +55,12 @@ const CarForm = () => {
              && <FormError column="User name" errors={response.errors.name} />
           } */}
         </div>
-        <div
-          className="form-group d-flex w-100 my-3"
+        <fieldset
+          className="form-group my-3 container remove-padding d-flex flex-wrap"
           onChange={handleFuelRateChange}
         >
-          <div className="form-check">
+          <p className="col-12">Weekly fuel consumption (in gallons)</p>
+          <div className="form-check col-6 col-md-4">
             <label className="form-check-label" htmlFor="rate1">
               <input
                 className="form-check-input"
@@ -70,7 +73,7 @@ const CarForm = () => {
               1 - 5
             </label>
           </div>
-          <div className="form-check">
+          <div className="form-check col-6 col-md-4">
             <label className="form-check-label" htmlFor="rate2">
               <input
                 className="form-check-input"
@@ -83,7 +86,7 @@ const CarForm = () => {
               6 - 10
             </label>
           </div>
-          <div className="form-check">
+          <div className="form-check col-6 col-md-4">
             <label className="form-check-label" htmlFor="rate3">
               <input
                 className="form-check-input"
@@ -96,7 +99,7 @@ const CarForm = () => {
               11 - 15
             </label>
           </div>
-          {/* <div className="form-check">
+          <div className="form-check col-6 col-md-4">
             <label className="form-check-label" htmlFor="rate4">
               <input
                 className="form-check-input"
@@ -109,7 +112,7 @@ const CarForm = () => {
               16 - 20
             </label>
           </div>
-          <div className="form-check">
+          <div className="form-check col-6 col-md-4">
             <label className="form-check-label" htmlFor="rate5">
               <input
                 className="form-check-input"
@@ -122,7 +125,7 @@ const CarForm = () => {
               20 - 30
             </label>
           </div>
-          <div className="form-check">
+          <div className="form-check col-6 col-md-4">
             <label className="form-check-label" htmlFor="rate6">
               <input
                 className="form-check-input"
@@ -134,11 +137,15 @@ const CarForm = () => {
               />
               Above 30
             </label>
-          </div> */}
-        </div>
+          </div>
+        </fieldset>
 
-        <div className="form-group" onChange={handleHorsePowerChange}>
-          <div className="form-check">
+        <fieldset
+          className="form-group my-3 container remove-padding d-flex flex-wrap"
+          onChange={handleHorsePowerChange}
+        >
+          <p className="col-12">Engine Horse Power</p>
+          <div className="form-check col-6 col-md-4 text-start">
             <label className="form-check-label" htmlFor="power1">
               <input
                 className="form-check-input"
@@ -151,22 +158,35 @@ const CarForm = () => {
               1 - 5
             </label>
           </div>
-          <div className="form-check">
+          <div className="form-check col-6 col-md-4 text-start">
             <label className="form-check-label" htmlFor="power2">
               <input
                 className="form-check-input"
                 type="radio"
-                value={8}
+                value={7}
                 id="power1"
                 required
                 name="horse-power"
               />
-              6 - 10
+              6 - 8
             </label>
           </div>
-        </div>
+          <div className="form-check col-6 col-md-4 text-start">
+            <label className="form-check-label" htmlFor="power3">
+              <input
+                className="form-check-input"
+                type="radio"
+                value={10}
+                id="power3"
+                required
+                name="horse-power"
+              />
+              Above 8
+            </label>
+          </div>
+        </fieldset>
 
-        <button type="submit" className="btn btn-primary mb-2">Sign Up</button>
+        <button type="submit" className="btn btn-info mb-2">Track Car</button>
       </form>
     </div>
   );
