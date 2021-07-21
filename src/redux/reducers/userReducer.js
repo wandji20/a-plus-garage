@@ -12,6 +12,7 @@ const initialState = {
   loading: false,
   loggedIn: false,
   response: {},
+  cars: [],
   error: '',
 };
 
@@ -23,17 +24,20 @@ const userReducer = (state = initialState, action) => {
         loading: true,
         response: {},
         loggedIn: false,
+        cars: [],
         error: '',
       };
     }
     case SIGN_UP_USER_REQUEST_SUCCESS: {
       const response = action.payload;
       if (response.success) {
+        const {cars} = response
         return {
           ...state,
           loading: false,
           loggedIn: true,
           response,
+          cars,
           error: '',
         };
       }
@@ -42,6 +46,7 @@ const userReducer = (state = initialState, action) => {
         loading: false,
         loggedIn: false,
         response,
+        cars: [],
         error: '',
       };
     }
@@ -51,6 +56,7 @@ const userReducer = (state = initialState, action) => {
         loading: false,
         loggedIn: false,
         response: {},
+        cars: [],
         error: action.payload,
       };
     }
@@ -61,6 +67,7 @@ const userReducer = (state = initialState, action) => {
         response: {},
         loggedIn: false,
         error: '',
+        cars: [],
       };
     }
     case LOGIN_USER_SUCCESS: {
@@ -71,6 +78,7 @@ const userReducer = (state = initialState, action) => {
           loading: false,
           loggedIn: true,
           response,
+          cars,
           error: '',
         };
       }
@@ -79,6 +87,7 @@ const userReducer = (state = initialState, action) => {
         loading: false,
         loggedIn: false,
         response,
+        cars: [],
         error: '',
       };
     }
@@ -88,6 +97,7 @@ const userReducer = (state = initialState, action) => {
         loading: false,
         loggedIn: false,
         response: {},
+        cars: [],
         error: action.payload,
       };
     }
@@ -97,6 +107,7 @@ const userReducer = (state = initialState, action) => {
         loading: false,
         response: {},
         loggedIn: false,
+        cars: [],
         error: '',
       };
     }
