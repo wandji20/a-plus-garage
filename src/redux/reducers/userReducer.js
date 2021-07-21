@@ -31,7 +31,7 @@ const userReducer = (state = initialState, action) => {
     case SIGN_UP_USER_REQUEST_SUCCESS: {
       const response = action.payload;
       if (response.success) {
-        const {cars} = response
+        const { cars } = response;
         return {
           ...state,
           loading: false,
@@ -72,6 +72,7 @@ const userReducer = (state = initialState, action) => {
     }
     case LOGIN_USER_SUCCESS: {
       const response = action.payload;
+      const { cars } = response;
       if (response.success) {
         return {
           ...state,

@@ -2,13 +2,15 @@ import {
   POST_CAR,
   POST_CAR_SUCCESS,
   POST_CAR_FAILURE,
+  GET_CAR,
+  GET_CAR_SUCCESS,
+  GET_CAR_FAILURE,
 } from '../constants';
 
 const initialState = {
   loading: false,
   car: {},
   error: '',
-  response: {},
 };
 
 const carReducer = (state = initialState, action) => {
@@ -25,17 +27,17 @@ const carReducer = (state = initialState, action) => {
     case POST_CAR_SUCCESS: {
       const response = action.payload;
       if (response.success && response.car) {
+        const { car } = response;
         return {
           ...state,
           loading: false,
           error: '',
-          response,
+          car,
         };
       }
       return {
         ...state,
         loading: false,
-        response,
       };
     }
     case POST_CAR_FAILURE: {
@@ -44,6 +46,39 @@ const carReducer = (state = initialState, action) => {
         loading: false,
         error: action.payload,
         response: {},
+      };
+    }
+    case GET_CAR: {
+      return {
+        ...state,
+        loading: true,
+        car: {},
+        error: '',
+      };
+    }
+    case GET_CAR_SUCCESS: {
+      const response = action.payload;
+      if (response.success && response.car) {
+        const { car } = response;
+        return {
+          ...state,
+          loading: false,
+          error: '',
+          car,
+        };
+      }
+      return {
+        ...state,
+        loading: false,
+        car: {},
+      };
+    }
+    case GET_CAR_FAILURE: {
+      return {
+        ...state,
+        loading: false,
+        error: action.payload,
+        car: {},
       };
     }
     default:

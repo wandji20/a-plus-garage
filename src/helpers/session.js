@@ -1,12 +1,14 @@
-const saveUserID = (value) => {
+const setToken = (value) => {
   sessionStorage.setItem('token', value);
 };
 
-const getUserID = () => {
+const getToken = () => {
   sessionStorage.getItem('token');
+  const token = { id: 2, userID: '@sugar' };
+  return token;
 };
 
 export {
-  saveUserID,
-  getUserID,
+  setToken,
+  getToken,
 };
