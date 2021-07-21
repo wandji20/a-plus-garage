@@ -63,7 +63,7 @@ const Footer = (props) => {
                   </div>
                 </div>
               )
-              : <div className="d-flex justify-content-between align-items-center h-100" />
+              : <div className="h-100" />
 
           }
         </NavLink>

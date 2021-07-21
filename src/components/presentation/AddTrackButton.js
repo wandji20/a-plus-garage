@@ -1,9 +1,13 @@
 import React from 'react';
-import PropTypes from 'prop-types';
+// import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
 
-const AddTrackButton = (props) => {
-  const { style } = props;
+const AddTrackButton = () => {
+  // const { style } = props;
+  const style = {
+    display: 'block',
+    marginTop: '200px',
+  };
   return (
     <Link to="/new_car" style={style}>
       <button type="button" className="btn btn-info">
@@ -13,12 +17,12 @@ const AddTrackButton = (props) => {
   );
 };
 
-AddTrackButton.propTypes = {
-  style: PropTypes.objectOf(PropTypes.string),
-};
+// AddTrackButton.propTypes = {
+//   style: PropTypes.objectOf(PropTypes.string),
+// };
 
-AddTrackButton.defaultProps = {
-  style: {},
-};
+// AddTrackButton.defaultProps = {
+//   style: {},
+// };
 
 export default AddTrackButton;

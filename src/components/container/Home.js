@@ -13,10 +13,7 @@ import CarDetails from '../presentation/CarDetails';
 
 const Home = (props) => {
   const { loggedIn, car } = props;
-  const style = {
-    display: 'block',
-    marginTop: '200px',
-  };
+
   // const parts = [
   //   { id: 1, name: 'Oil', url: oil },
   //   { id: 2, name: 'Oil Filter', url: oilFilter },
@@ -50,7 +47,7 @@ const Home = (props) => {
       {
         (loggedIn && car.make)
           ? <CarDetails car={car} />
-          : <AddTrackButton style={style} />
+          : <AddTrackButton />
       }
     </div>
   );

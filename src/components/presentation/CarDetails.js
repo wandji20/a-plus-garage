@@ -2,6 +2,7 @@ import React from 'react';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import { CircularProgressbar } from 'react-circular-progressbar';
+import AddTrackButton from './AddTrackButton';
 import 'react-circular-progressbar/dist/styles.css';
 import computeDisplayDetails from '../../helpers/computeDisplayInfo';
 
@@ -24,9 +25,7 @@ const CarDetails = (props) => {
       {
         !car.parts
           ? (
-            <p className="fs-2">
-              Add a car to track and see details
-            </p>
+            <AddTrackButton />
           )
           : (
             <article className="d-flex flex-column justify-content-center align-items-center">
