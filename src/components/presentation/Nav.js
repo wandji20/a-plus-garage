@@ -8,8 +8,8 @@ import logo from '../../assets/logo.png';
 import logOutUser from '../../redux/actions/logOutAction';
 
 const Nav = (props) => {
-  const { loggedIn, logOutUser } = props;
-  console.log(loggedIn);
+  const { logOutUser } = props;
+
   const [display, setDisplay] = useState(false);
 
   const handleNavOptions = () => {
@@ -66,7 +66,7 @@ const Nav = (props) => {
             </Link>
           </button>
           <button type="button" className="btn" onClick={handleLogOutAction}>
-            <Link to="/logout">
+            <Link to="/">
               Sign Out
             </Link>
           </button>
@@ -78,13 +78,13 @@ const Nav = (props) => {
 };
 
 Nav.propTypes = {
-  loggedIn: PropTypes.bool.isRequired,
+  // loggedIn: PropTypes.bool.isRequired,
   logOutUser: PropTypes.func.isRequired,
 };
 
-const mapStateToProps = (state) => ({
-  loggedIn: state.userReducer.loggedIn,
-});
+// const mapStateToProps = (state) => ({
+//   loggedIn: state.userReducer.loggedIn,
+// });
 
 const mapDispatchToProps = (dispatch) => ({
   logOutUser: () => {
@@ -92,4 +92,4 @@ const mapDispatchToProps = (dispatch) => ({
   },
 });
 
-export default connect(mapStateToProps, mapDispatchToProps)(Nav);
+export default connect(null, mapDispatchToProps)(Nav);

@@ -2,7 +2,7 @@ import React, { useEffect } from 'react';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import AddTrackButton from '../presentation/AddTrackButton';
-import CarDetails from '../presentation/CarDetails';
+import Cars from './Cars';
 import getLogInDetails from '../../redux/actions/logInAction';
 import { getToken } from '../../helpers/session';
 // import Button from '../presentation/Button';
@@ -14,7 +14,9 @@ import { getToken } from '../../helpers/session';
 // import fuelPump from '../../assets/fuel-pump.png';
 
 const Home = (props) => {
-  const { loggedIn, car, fetchUserInfo } = props;
+  const {
+    loggedIn, fetchUserInfo,
+  } = props;
 
   // const parts = [
   //   { id: 1, name: 'Oil', url: oil },
@@ -48,7 +50,6 @@ const Home = (props) => {
   useEffect(() => {
     const token = getToken('TOKEN');
     if (!loggedIn && token !== '') {
-      console.log(token);
       fetchUserInfo(token);
     }
   }, [loggedIn]);
@@ -56,8 +57,8 @@ const Home = (props) => {
   return (
     <div className="container-fluid d-flex justify-content-center flex-wrap">
       {
-        (loggedIn && car.make)
-          ? <CarDetails car={car} />
+        loggedIn
+          ? <Cars />
           : <AddTrackButton />
       }
     </div>
@@ -66,7 +67,6 @@ const Home = (props) => {
 
 const mapStateToProps = (state) => ({
   loggedIn: state.userReducer.loggedIn,
-  car: state.carReducer.car,
 });
 
 const mapDispatchToProps = (dispatch) => ({
@@ -77,7 +77,6 @@ const mapDispatchToProps = (dispatch) => ({
 
 Home.propTypes = {
   loggedIn: PropTypes.bool.isRequired,
-  car: PropTypes.objectOf(PropTypes.any).isRequired,
   fetchUserInfo: PropTypes.func.isRequired,
 };
 
