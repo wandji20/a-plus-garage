@@ -107,6 +107,7 @@ const userReducer = (state = initialState, action) => {
       };
     }
     case LOGOUT_USER: {
+      setToken('');
       return {
         ...state,
         loading: false,

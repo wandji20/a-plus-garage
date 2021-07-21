@@ -5,9 +5,10 @@ import { connect } from 'react-redux';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faCaretUp, faCaretDown } from '@fortawesome/free-solid-svg-icons';
 import logo from '../../assets/logo.png';
+import logOutUser from '../../redux/actions/logOutAction';
 
 const Nav = (props) => {
-  const { loggedIn } = props;
+  const { loggedIn, logOutUser } = props;
   console.log(loggedIn);
   const [display, setDisplay] = useState(false);
 
@@ -17,6 +18,11 @@ const Nav = (props) => {
 
   const removeNavOptions = () => {
     setDisplay(false);
+  };
+
+  const handleLogOutAction = () => {
+    handleNavOptions();
+    logOutUser();
   };
 
   const icon = !display
@@ -59,7 +65,7 @@ const Nav = (props) => {
               Sign Up
             </Link>
           </button>
-          <button type="button" className="btn" onClick={handleNavOptions}>
+          <button type="button" className="btn" onClick={handleLogOutAction}>
             <Link to="/logout">
               Sign Out
             </Link>
@@ -73,10 +79,17 @@ const Nav = (props) => {
 
 Nav.propTypes = {
   loggedIn: PropTypes.bool.isRequired,
+  logOutUser: PropTypes.func.isRequired,
 };
 
 const mapStateToProps = (state) => ({
   loggedIn: state.userReducer.loggedIn,
 });
 
-export default connect(mapStateToProps)(Nav);
+const mapDispatchToProps = (dispatch) => ({
+  logOutUser: () => {
+    dispatch(logOutUser());
+  },
+});
+
+export default connect(mapStateToProps, mapDispatchToProps)(Nav);
