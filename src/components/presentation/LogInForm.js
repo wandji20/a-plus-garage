@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
+import { Link } from 'react-router-dom';
 import getLogInDetails from '../../redux/actions/logInAction';
 
 const LogInForm = (props) => {
@@ -19,9 +20,9 @@ const LogInForm = (props) => {
     handleLogIn(details);
   };
   return (
-    <div className="container d-flex justify-content-center align-items-left">
+    <div className="container w-75 d-flex flex-column justify-content-center align-items-start">
       <form
-        className=" d-flex flex-column align-content-start col-sm-8 col-md-6"
+        className=" d-flex flex-column align-items-start col-sm-8 col-md-6"
         onSubmit={handleFormSubmit}
       >
 
@@ -41,8 +42,13 @@ const LogInForm = (props) => {
             <FormError column="UserID" errors={response.errors.userID} />
           } */}
         </div>
-        <button type="submit" className="btn btn-primary mb-2 w-25">log in</button>
+        <button type="submit" className="btn btn-info mb-2">log in</button>
       </form>
+      <p className="align-self-start">
+        <Link to="/sign_up" style={{ color: 'black', textDecoration: 'none' }}>
+          Create Account
+        </Link>
+      </p>
     </div>
   );
 };

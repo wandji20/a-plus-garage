@@ -3,6 +3,7 @@ import React, { useState } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import signUpUserAction from '../../redux/actions/signUpAction';
+import { Link } from 'react-router-dom';
 import FormError from './FormError';
 
 const SignUpForm = (props) => {
@@ -30,7 +31,7 @@ const SignUpForm = (props) => {
   };
 
   return (
-    <div className="container d-flex justify-content-center align-items-center">
+    <div className="container w-75 d-flex flex-column justify-content-center align-items-left">
       <form
         className=" d-flex flex-column align-items-start col-sm-8 col-md-6"
         onSubmit={handleFormSubmit}
@@ -69,6 +70,11 @@ const SignUpForm = (props) => {
         </div>
         <button type="submit" className="btn btn-primary mb-2">Sign Up</button>
       </form>
+      <p className="">
+        <Link to="/log_in" style={{ color: 'black', textDecoration: 'none' }}>
+          Already have an account
+        </Link>
+      </p>
     </div>
   );
 };
