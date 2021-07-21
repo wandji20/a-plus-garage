@@ -76,8 +76,7 @@ const userReducer = (state = initialState, action) => {
     case LOGIN_USER_SUCCESS: {
       const response = action.payload;
       if (response.success) {
-        const { cars } = response;
-        const { id, userID } = response.data.user;
+        const { id, userID, cars } = response.data.user;
         setToken({ id, userID });
         return {
           ...state,

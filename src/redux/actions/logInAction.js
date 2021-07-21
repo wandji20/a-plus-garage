@@ -34,10 +34,8 @@ const getLogInDetails = (details) => async (dispatch) => {
       },
     );
     const data = await response.json();
-    console.log(data);
     dispatch(logInUserSuccess(data));
   } catch (error) {
-    console.log('yooo', error);
     dispatch(logInUserFailure(error));
   }
 };

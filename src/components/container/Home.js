@@ -1,8 +1,10 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import AddTrackButton from '../presentation/AddTrackButton';
 import CarDetails from '../presentation/CarDetails';
+import getLogInDetails from '../../redux/actions/logInAction';
+import { getToken } from '../../helpers/session';
 // import Button from '../presentation/Button';
 // import oil from '../../assets/car-oil.png';
 // import oilFilter from '../../assets/oil-filter.png';
@@ -12,7 +14,7 @@ import CarDetails from '../presentation/CarDetails';
 // import fuelPump from '../../assets/fuel-pump.png';
 
 const Home = (props) => {
-  const { loggedIn, car } = props;
+  const { loggedIn, car, fetchUserInfo } = props;
 
   // const parts = [
   //   { id: 1, name: 'Oil', url: oil },
@@ -42,6 +44,15 @@ const Home = (props) => {
   //             </div>
   //           </article>
   //         ))
+
+  useEffect(() => {
+    const token = getToken('TOKEN');
+    if (!loggedIn && token !== '') {
+      console.log(token);
+      fetchUserInfo(token);
+    }
+  }, [loggedIn]);
+
   return (
     <div className="container-fluid d-flex justify-content-center flex-wrap">
       {
@@ -58,9 +69,16 @@ const mapStateToProps = (state) => ({
   car: state.carReducer.car,
 });
 
+const mapDispatchToProps = (dispatch) => ({
+  fetchUserInfo: (data) => {
+    dispatch(getLogInDetails(data));
+  },
+});
+
 Home.propTypes = {
   loggedIn: PropTypes.bool.isRequired,
   car: PropTypes.objectOf(PropTypes.any).isRequired,
+  fetchUserInfo: PropTypes.func.isRequired,
 };
 
-export default connect(mapStateToProps)(Home);
+export default connect(mapStateToProps, mapDispatchToProps)(Home);
