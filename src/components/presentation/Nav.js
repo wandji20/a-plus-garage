@@ -8,6 +8,7 @@ import logo from '../../assets/logo.png';
 
 const Nav = (props) => {
   const { loggedIn } = props;
+  console.log(loggedIn);
   const [display, setDisplay] = useState(false);
 
   const handleNavOptions = () => {
@@ -36,21 +37,13 @@ const Nav = (props) => {
           </Link>
         </div>
         <div className="">
-          {
-            loggedIn
-              ? 'user name'
-              : (
-                <button
-                  type="button"
-                  className="btn"
-                  onClick={handleNavOptions}
-                >
-                  {icon}
-                </button>
-              )
-
-          }
-
+          <button
+            type="button"
+            className="btn"
+            onClick={handleNavOptions}
+          >
+            {icon}
+          </button>
         </div>
       </nav>
       {

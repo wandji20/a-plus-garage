@@ -1,6 +1,7 @@
 /* eslint-disable */
 import React, { useState } from 'react';
 import PropTypes from 'prop-types';
+import { withRouter } from 'react-router-dom';
 import { connect } from 'react-redux';
 import signUpUserAction from '../../redux/actions/signUpAction';
 import { Link } from 'react-router-dom';
@@ -27,6 +28,7 @@ const SignUpForm = (props) => {
     console.log(data);
     setName('');
     setUserID('');
+    props.history.push('/');
     handleSignUpUser(data);
   };
 
@@ -90,6 +92,7 @@ const mapDispatchToProps = (dispatch) => ({
 });
 
 SignUpForm.propTypes = {
+  history: PropTypes.objectOf(PropTypes.any).isRequired,
   handleSignUpUser: PropTypes.func,
 };
 
@@ -97,4 +100,4 @@ SignUpForm.defaultProps = {
   handleSignUpUser: () => {},
 };
 
-export default connect(mapStateToProps, mapDispatchToProps)(SignUpForm);
+export default connect(mapStateToProps, mapDispatchToProps)(withRouter(SignUpForm));

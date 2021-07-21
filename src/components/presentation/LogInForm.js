@@ -1,7 +1,8 @@
 import React, { useState } from 'react';
 import PropTypes from 'prop-types';
+import { withRouter, Link } from 'react-router-dom';
 import { connect } from 'react-redux';
-import { Link } from 'react-router-dom';
+
 import getLogInDetails from '../../redux/actions/logInAction';
 
 const LogInForm = (props) => {
@@ -17,6 +18,7 @@ const LogInForm = (props) => {
     const details = { userID };
     console.log(details);
     setUserID('');
+    props.history.push('/details');
     handleLogIn(details);
   };
   return (
@@ -60,7 +62,8 @@ const mapDispatchToProps = (dispatch) => ({
 });
 
 LogInForm.propTypes = {
+  history: PropTypes.objectOf(PropTypes.any).isRequired,
   handleLogIn: PropTypes.func.isRequired,
 };
 
-export default connect(null, mapDispatchToProps)(LogInForm);
+export default connect(null, mapDispatchToProps)(withRouter(LogInForm));

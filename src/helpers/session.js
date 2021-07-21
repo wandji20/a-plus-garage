@@ -1,11 +1,13 @@
 const setToken = (value) => {
-  sessionStorage.setItem('token', value);
+  const token = JSON.stringify(value);
+  console.log(token);
+  sessionStorage.setItem('TOKEN', token);
 };
 
 const getToken = () => {
-  sessionStorage.getItem('token');
-  const token = { id: 2, userID: '@sugar' };
-  return token;
+  const token = sessionStorage.getItem('TOKEN');
+
+  return token || '';
 };
 
 export {
