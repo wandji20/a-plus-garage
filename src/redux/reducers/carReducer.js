@@ -58,8 +58,8 @@ const carReducer = (state = initialState, action) => {
     }
     case GET_CAR_SUCCESS: {
       const response = action.payload;
-      if (response.success && response.car) {
-        const { car } = response;
+      if (response.success) {
+        const { car } = response.data;
         return {
           ...state,
           loading: false,

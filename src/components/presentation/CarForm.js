@@ -33,7 +33,7 @@ const CarForm = (props) => {
     setHorsePower(0);
     setMake('');
     setFuelRate(0);
-    props.history.push('/details');
+    props.history.push('/');
     handlePostCarAction(carDetails);
   };
 

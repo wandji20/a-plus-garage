@@ -22,20 +22,11 @@ const getCarRequestFailure = (response) => ({
 const token = getToken;
 const userId = token.id;
 
-const getCarDetailsAction = (dispatch) => async (data, carId) => {
+const getCarDetailsAction = (carId) => async (dispatch) => {
   const url = `http://localhost:3001/users/${userId}/cars/${carId}`;
   dispatch(getCarRequest());
   try {
-    const server = await fetch(
-      url,
-      {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify(data),
-      },
-    );
+    const server = await fetch(url);
     const response = await server.json();
     dispatch(getCarRequestSuccess(response));
   } catch (error) {

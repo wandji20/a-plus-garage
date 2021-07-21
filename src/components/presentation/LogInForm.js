@@ -18,7 +18,7 @@ const LogInForm = (props) => {
     const details = { userID };
     console.log(details);
     setUserID('');
-    props.history.push('/details');
+    props.history.push('/');
     handleLogIn(details);
   };
   return (

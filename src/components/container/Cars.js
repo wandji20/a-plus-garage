@@ -6,14 +6,14 @@ import AddTrackButton from '../presentation/AddTrackButton';
 
 const Cars = (props) => {
   const { cars, loggedIn } = props;
-  const car = cars[cars.length - 1];
-  console.log(car);
+  const carIds = cars.map((car) => (car.id));
+  const carId = carIds[carIds.length - 1];
 
   return (
     <div className="container d-flex justify-content-center align-items-center ">
       {
-        (car && loggedIn)
-          ? <CarDetails car={car} />
+        (carId && loggedIn)
+          ? <CarDetails carId={carId} />
           : <AddTrackButton />
       }
     </div>
