@@ -7,7 +7,6 @@ import deleteCarAction from '../../redux/actions/deleteCarAction';
 
 const Button = (props) => {
   const { handleDeleteCarACtion, id } = props;
-  console.log(id);
   const handleDeleteCar = () => {
     handleDeleteCarACtion(id);
     console.log('in handleDelete');
