@@ -1,35 +1,33 @@
 import React from 'react';
-import PropTypes from 'prop-types';
+// import PropTypes from 'prop-types';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faPlus } from '@fortawesome/free-solid-svg-icons';
+import { faTrashAlt } from '@fortawesome/free-solid-svg-icons';
 
-const Button = (props) => {
-  const { style } = props;
-  const condition = false;
-  const handlePartTrack = () => {
-    if (condition) {
-      console.log(condition);
-    }
+const Button = () => {
+  const handleCarDelete = () => {
+    console.log('in handleDelete');
   };
   return (
     <button
-      style={style}
-      id="track-part-btn"
+      id="remove-car-btn"
       type="button"
-      className="btn text-dark"
-      onClick={handlePartTrack}
+      className="btn bg-danger"
+      onClick={handleCarDelete}
     >
-      <FontAwesomeIcon icon={faPlus} />
+      <span className="d-inline-block mx-1">
+        Untrack
+      </span>
+      <FontAwesomeIcon icon={faTrashAlt} />
     </button>
   );
 };
 
-Button.propTypes = {
-  style: PropTypes.objectOf(PropTypes.string),
-};
+// Button.propTypes = {
+//   style: PropTypes.objectOf(PropTypes.string),
+// };
 
-Button.defaultProps = {
-  style: {},
-};
+// Button.defaultProps = {
+//   style: {},
+// };
 
 export default Button;

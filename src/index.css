@@ -63,15 +63,14 @@ body {
   border-right: 2px solid #1a4761;
 }
 
-#track-part-btn {
+#remove-car-btn {
   border: none;
-  transition: 0.75s;
   box-shadow: none;
 }
 
-article #track-part-btn:hover {
+/* article #track-part-btn:hover {
   background-color: #addc91;
-}
+} */
 
 #circular {
   width: 35px;
@@ -89,7 +88,3 @@ article #track-part-btn:hover {
   margin-right: 10px;
   border-radius: 5px;
 }
-
-/* .footer .btn{
-
-} */

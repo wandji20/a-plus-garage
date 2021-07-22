@@ -5,6 +5,7 @@ import { CircularProgressbar } from 'react-circular-progressbar';
 import 'react-circular-progressbar/dist/styles.css';
 import getCarDetailsAction from '../../redux/actions/getCarDetailsAction';
 import Part from './Part';
+import Button from './Button';
 import computeDisplayDetails from '../../helpers/computeDisplayInfo';
 
 const CarDetails = (props) => {
@@ -80,6 +81,9 @@ const CarDetails = (props) => {
             allPartsInfo.map((part) => <Part part={part} key={part.id} />)
           )
         }
+      </div>
+      <div className="row py-2 justify-content-center">
+        <Button />
       </div>
     </>
   );
