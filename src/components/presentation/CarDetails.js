@@ -1,35 +1,16 @@
-// /* eslint-disable */
-import React, { useEffect } from 'react';
+import React, { useEffect, Fragment } from 'react';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import { CircularProgressbar } from 'react-circular-progressbar';
 // import AddTrackButton from './AddTrackButton';
 import 'react-circular-progressbar/dist/styles.css';
 import getCarDetailsAction from '../../redux/actions/getCarDetailsAction';
-// import computeDisplayDetails from '../../helpers/computeDisplayInfo';
-// import Button from '../presentation/Button';
-// import oil from '../../assets/car-oil.png';
-// import oilFilter from '../../assets/oil-filter.png';
-// import brake from '../../assets/brake.png';
-// import wheel from '../../assets/car-wheel.png';
-// import lights from '../../assets/car.png';
-// import fuelPump from '../../assets/fuel-pump.png';
-
-// const parts = [
-//   { id: 1, name: 'Oil', url: oil },
-//   { id: 2, name: 'Oil Filter', url: oilFilter },
-//   { id: 3, name: 'Tires', url: wheel },
-//   { id: 4, name: 'Rear Lights', url: lights },
-//   { id: 5, name: 'Fuel Pump', url: fuelPump },
-//   { id: 6, name: 'Brakes', url: brake },
-// ];
-// const style = {
-//   position: 'absolute',
-//   fontSize: '30px',
-// };
+import Part from './Part';
+import computeDisplayDetails from '../../helpers/computeDisplayInfo';
 
 const CarDetails = (props) => {
   const {
+
     car, handleGetCarDetails, loggedIn, carId,
   } = props;
   const {
@@ -41,55 +22,68 @@ const CarDetails = (props) => {
       handleGetCarDetails(carId);
     }
   }, [carId]);
-  // const allPartsDetails = computeDisplayDetails(parts);
-  // const { overall } = allPartsDetails;
-  // console.log(overall);
+  console.log(car);
+
+  const allPartsInfo = computeDisplayDetails(car.parts || []);
+  // if (car.parts) {
+  // }
 
   return (
-
-    <div className="container d-flex justify-content-center align-items-center my-5">
-      {
-        car.parts
-        && (
-          <article className="d-flex flex-column justify-content-center align-items-center">
-            <h3>
-              <span>Make :</span>
-              <span>
-                {' '}
-                {make}
-              </span>
-            </h3>
-            <p>
-              <span>Horse Power :</span>
-              <span>
-                {' '}
-                {power}
-              </span>
-            </p>
-            <p>
-              <span>Average Weekly consumption per gallon :</span>
-              <span>
-                {' '}
-                {fuel}
-              </span>
-            </p>
-            <figure className="col-6">
-              <CircularProgressbar
-                value={0}
-                text={`${0}%`}
-              />
-            </figure>
-            <h3>
-              <span>{}</span>
-              <span>
-                {' '}
-                Working Condition
-              </span>
-            </h3>
-          </article>
-        )
-      }
-    </div>
+    <>
+      <div
+        className="container remove-padding d-flex flex-column justify-content-center align-items-center my-2 py-2"
+      >
+        {
+          car.parts
+          && (
+            <article className="d-flex flex-column justify-content-center align-items-center">
+              <h3>
+                <span>Make :</span>
+                <span>
+                  {' '}
+                  {make}
+                </span>
+              </h3>
+              <p>
+                <span>Horse Power :</span>
+                <span>
+                  {' '}
+                  {power}
+                </span>
+              </p>
+              <p>
+                <span>Average Weekly consumption per gallon :</span>
+                <span>
+                  {' '}
+                  {fuel}
+                </span>
+              </p>
+              <figure className="col-6">
+                <CircularProgressbar
+                  value={10}
+                  text={`${10}%`}
+                />
+              </figure>
+              <h3>
+                <span>{}</span>
+                <span>
+                  {' '}
+                  Working Condition
+                </span>
+              </h3>
+            </article>
+          )
+        }
+      </div>
+      <div className="container-fluid d-flex-column align-items-start">
+        {
+          allPartsInfo
+          && (
+            allPartsInfo.map((part) => <Part part={part} key={part.id} />)
+          )
+        }
+      </div>
+    </>
   );
 };
 

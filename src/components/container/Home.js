@@ -21,7 +21,7 @@ const Home = (props) => {
   }, [loggedIn]);
 
   return (
-    <div className="container-fluid d-flex justify-content-center flex-wrap">
+    <div className="container remove-padding d-flex justify-content-center flex-wrap">
       {
         loggedIn
           ? <Cars />

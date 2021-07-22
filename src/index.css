@@ -83,6 +83,13 @@ article #track-part-btn:hover {
   color: #1a4761;
 }
 
+.img {
+  width: 64px;
+  height: 64px;
+  margin-right: 10px;
+  border: 1px solid black;
+}
+
 /* .footer .btn{
 
 } */

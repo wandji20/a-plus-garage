@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { Fragment } from 'react';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import CarDetails from '../presentation/CarDetails';
@@ -10,13 +10,13 @@ const Cars = (props) => {
   const carId = carIds[carIds.length - 1];
 
   return (
-    <div className="container d-flex justify-content-center align-items-center ">
+    <>
       {
         (carId && loggedIn)
           ? <CarDetails carId={carId} />
           : <AddTrackButton />
       }
-    </div>
+    </>
   );
 };
 
@@ -26,8 +26,12 @@ const mapStateToProps = (state) => ({
 });
 
 Cars.propTypes = {
-  cars: PropTypes.arrayOf(PropTypes.any).isRequired,
+  cars: PropTypes.arrayOf(PropTypes.any),
   loggedIn: PropTypes.bool.isRequired,
+};
+
+Cars.defaultProps = {
+  cars: [],
 };
 
 export default connect(mapStateToProps)(Cars);

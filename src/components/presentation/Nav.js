@@ -38,7 +38,7 @@ const Nav = (props) => {
           onClick={removeNavOptions}
           onKeyDown={removeNavOptions}
         >
-          <Link to="/home">
+          <Link to="/">
             <img src={logo} alt="logo" />
           </Link>
         </div>

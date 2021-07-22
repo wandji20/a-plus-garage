@@ -1,3 +1,19 @@
+import oil from '../assets/car-oil.png';
+import oilFilter from '../assets/oil-filter.png';
+import brake from '../assets/brake.png';
+import wheel from '../assets/car-wheel.png';
+import lights from '../assets/car.png';
+import fuelPump from '../assets/fuel-pump.png';
+
+const partsURL = {
+  Oil: oil,
+  'Oil Filter': oilFilter,
+  Tires: wheel,
+  'Rear Lights': lights,
+  'Fuel Pump': fuelPump,
+  Brakes: brake,
+};
+
 const getPartDetails = (part) => {
   const { life } = part;
   const date2 = new Date();
@@ -51,7 +67,14 @@ const getPartDetails = (part) => {
 };
 
 const computeDisplayDetails = (parts) => {
-  const details = parts.map((part) => getPartDetails(part));
+  console.log(parts);
+  const details = parts.map((part) => {
+    const newPart = { ...part };
+    newPart.url = partsURL[part.name];
+    const stats = getPartDetails(part);
+    newPart.stats = stats;
+    return newPart;
+  });
   return details;
 };
 
