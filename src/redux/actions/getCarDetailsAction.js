@@ -19,7 +19,7 @@ const getCarRequestFailure = (response) => ({
   payload: response,
 });
 
-const token = getToken;
+const token = getToken();
 const userId = token.id;
 
 const getCarDetailsAction = (carId) => async (dispatch) => {

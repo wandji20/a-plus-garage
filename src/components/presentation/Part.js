@@ -1,11 +1,19 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import { connect } from 'react-redux';
 import { CircularProgressbar } from 'react-circular-progressbar';
 import 'react-circular-progressbar/dist/styles.css';
+import updatePartAction from '../../redux/actions/updatePartAction';
 
 const Part = (props) => {
-  const { part } = props;
-  console.log(part);
+  const { part, handleUpdateAction } = props;
+  // console.log(part);
+
+  const handleUpdatePart = () => {
+    const { id, count } = part;
+    // console.log([id, count, handleUpdateAction]);
+    handleUpdateAction(part.car_id, id, { count: count + 1 });
+  };
   const { name, url, stats } = part;
   return (
     <article className="part my-3 align-items-center row bg-white mx-1 py-2 ">
@@ -28,7 +36,11 @@ const Part = (props) => {
               {' '}
               days left!
             </span>
-            <button type="submit" className="btn btn-info">
+            <button
+              type="submit"
+              className="btn btn-info"
+              onClick={handleUpdatePart}
+            >
               Track
             </button>
           </p>
@@ -48,8 +60,15 @@ const Part = (props) => {
   );
 };
 
+const mapDispatchToProps = (dispatch) => ({
+  handleUpdateAction: (carId, id, data) => {
+    dispatch(updatePartAction(carId, id, data));
+  },
+});
+
 Part.propTypes = {
   part: PropTypes.objectOf(PropTypes.any).isRequired,
+  handleUpdateAction: PropTypes.func.isRequired,
 };
 
-export default Part;
+export default connect(null, mapDispatchToProps)(Part);

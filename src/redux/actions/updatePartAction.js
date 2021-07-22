@@ -1,3 +1,4 @@
+import axios from 'axios';
 import { getToken } from '../../helpers/session';
 import {
   PART_UPDATE,
@@ -21,14 +22,13 @@ const partUpdateRequestFailure = (response) => ({
 
 const token = getToken();
 const userId = token.id;
+const url = `http://localhost:3001/users/${userId}/`;
 
-const updatePartAction = (carId, partId) => async (dispatch) => {
-  const url = `http://localhost:3001/users/${userId}/cars/${carId}/parts/${partId}`;
+const updatePartAction = (carId, partId, data) => async (dispatch) => {
   dispatch(partUpdateRequest());
   try {
-    const server = await fetch(url);
-    const response = await server.json();
-    dispatch(partUpdateRequestSuccess(response));
+    const server = await axios.put(`${url}cars/${carId}/parts/${partId}`, data);
+    dispatch(partUpdateRequestSuccess(server.data));
   } catch (error) {
     dispatch(partUpdateRequestFailure(error));
   }
