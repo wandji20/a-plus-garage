@@ -8,6 +8,7 @@ const Cars = (props) => {
   const { cars, loggedIn } = props;
   const carIds = cars.map((car) => (car.id));
   const carId = carIds[carIds.length - 1];
+  // const carId = carIds[];
 
   return (
     <>

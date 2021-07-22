@@ -3,8 +3,8 @@ import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { NavLink } from 'react-router-dom';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faEllipsisH, faCar } from '@fortawesome/free-solid-svg-icons';
-import Button from '../presentation/Button';
+import { faEllipsisH, faCar, faPlus } from '@fortawesome/free-solid-svg-icons';
+// import Button from '../presentation/Button';
 
 const Footer = (props) => {
   const { loggedIn } = props;
@@ -29,8 +29,10 @@ const Footer = (props) => {
           style={linkStyle}
           activeClassName="current"
         >
-          <div className="d-flex justify-content-center flex-column align-items-center">
-            <Button />
+          <div className="d-flex justify-content-around h-100 flex-column align-items-center">
+            <span className="d-block">
+              <FontAwesomeIcon icon={faPlus} />
+            </span>
             <span className="d-block">
               Add Car
             </span>

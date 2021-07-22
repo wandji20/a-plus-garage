@@ -2,7 +2,6 @@ import React, { useEffect, Fragment } from 'react';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import { CircularProgressbar } from 'react-circular-progressbar';
-// import AddTrackButton from './AddTrackButton';
 import 'react-circular-progressbar/dist/styles.css';
 import getCarDetailsAction from '../../redux/actions/getCarDetailsAction';
 import Part from './Part';
@@ -17,14 +16,15 @@ const CarDetails = (props) => {
     make, power, fuel,
   } = car;
 
+  const { allPartsInfo, overall } = computeDisplayDetails(car.parts || []);
   useEffect(() => {
     if (loggedIn) {
       handleGetCarDetails(carId);
     }
-  }, [carId]);
-  console.log(car);
+  }, []);
 
-  const { allPartsInfo, overall } = computeDisplayDetails(car.parts || []);
+  useEffect(() => {
+  }, [overall]);
 
   return (
     <>
