@@ -1,4 +1,4 @@
-import React, { Fragment } from 'react';
+import React, { Fragment, useEffect, useState } from 'react';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import CarDetails from '../presentation/CarDetails';
@@ -9,12 +9,18 @@ const Cars = (props) => {
   const carIds = cars.map((car) => (car.id));
   const carId = carIds[carIds.length - 1];
   // const carId = carIds[];
+  const [id, setId] = useState(carId);
+  useEffect(() => {
+    setId(carId);
+    // console.log(carIds);
+    // console.log(carId);
+  }, [cars]);
 
   return (
     <>
       {
         (carId && loggedIn)
-          ? <CarDetails carId={carId} />
+          ? <CarDetails carId={id} />
           : <AddTrackButton />
       }
     </>

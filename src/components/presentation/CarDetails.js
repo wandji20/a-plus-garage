@@ -13,8 +13,9 @@ const CarDetails = (props) => {
 
     car, handleGetCarDetails, loggedIn, carId,
   } = props;
+  console.log(carId);
   const {
-    make, power, fuel,
+    make, power, fuel, id,
   } = car;
 
   const { allPartsInfo, overall } = computeDisplayDetails(car.parts || []);
@@ -22,10 +23,13 @@ const CarDetails = (props) => {
     if (loggedIn) {
       handleGetCarDetails(carId);
     }
-  }, []);
+  }, [carId]);
 
   useEffect(() => {
   }, [overall]);
+  // useEffect(() => {
+  //   handleGetCarDetails(carId);
+  // }, [carId]);
 
   return (
     <>
@@ -83,7 +87,7 @@ const CarDetails = (props) => {
         }
       </div>
       <div className="row py-2 justify-content-center">
-        <Button />
+        <Button id={id} />
       </div>
     </>
   );

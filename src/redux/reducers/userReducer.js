@@ -7,6 +7,7 @@ import {
   LOGIN_USER_SUCCESS,
   LOGIN_USER_FAILURE,
   LOGOUT_USER,
+  DELETE_CAR,
 } from '../constants';
 
 const initialState = {
@@ -115,6 +116,15 @@ const userReducer = (state = initialState, action) => {
         loggedIn: false,
         cars: [],
         error: '',
+      };
+    }
+    case DELETE_CAR: {
+      const { cars } = state;
+      const newCars = cars.filter((car) => (car.id !== action.payload));
+      // console.log(cars, newCars);
+      return {
+        ...state,
+        cars: newCars,
       };
     }
     default:

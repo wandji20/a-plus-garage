@@ -1,10 +1,15 @@
 import React from 'react';
-// import PropTypes from 'prop-types';
+import { connect } from 'react-redux';
+import PropTypes from 'prop-types';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faTrashAlt } from '@fortawesome/free-solid-svg-icons';
+import deleteCarAction from '../../redux/actions/deleteCarAction';
 
-const Button = () => {
-  const handleCarDelete = () => {
+const Button = (props) => {
+  const { handleDeleteCarACtion, id } = props;
+  console.log(id);
+  const handleDeleteCar = () => {
+    handleDeleteCarACtion(id);
     console.log('in handleDelete');
   };
   return (
@@ -12,7 +17,7 @@ const Button = () => {
       id="remove-car-btn"
       type="button"
       className="btn bg-danger"
-      onClick={handleCarDelete}
+      onClick={handleDeleteCar}
     >
       <span className="d-inline-block mx-1">
         Untrack
@@ -22,12 +27,19 @@ const Button = () => {
   );
 };
 
-// Button.propTypes = {
-//   style: PropTypes.objectOf(PropTypes.string),
-// };
+const mapDispatchToProps = (dispatch) => ({
+  handleDeleteCarACtion: (id) => {
+    dispatch(deleteCarAction(id));
+  },
+});
 
-// Button.defaultProps = {
-//   style: {},
-// };
+Button.propTypes = {
+  id: PropTypes.number,
+  handleDeleteCarACtion: PropTypes.func.isRequired,
+};
 
-export default Button;
+Button.defaultProps = {
+  id: 0,
+};
+
+export default connect(null, mapDispatchToProps)(Button);
