@@ -39,7 +39,7 @@ const Footer = (props) => {
       </div>
       <div className="w-50">
 
-        <NavLink to="/cars" style={linkStyle} activeClassName="current">
+        <NavLink to="/" style={linkStyle} activeClassName="current">
           <div className="d-flex justify-content-between align-items-center h-100">
             <div className="w-50 d-flex flex-column justify-content-around align-items-center">
               <FontAwesomeIcon icon={faCar} />

@@ -24,14 +24,12 @@ const CarDetails = (props) => {
   }, [carId]);
   console.log(car);
 
-  const allPartsInfo = computeDisplayDetails(car.parts || []);
-  // if (car.parts) {
-  // }
+  const { allPartsInfo, overall } = computeDisplayDetails(car.parts || []);
 
   return (
     <>
       <div
-        className="container remove-padding d-flex flex-column justify-content-center align-items-center my-2 py-2"
+        className="container remove-padding d-flex flex-column justify-content-center align-items-center py-3 bg-light"
       >
         {
           car.parts
@@ -60,8 +58,8 @@ const CarDetails = (props) => {
               </p>
               <figure className="col-6">
                 <CircularProgressbar
-                  value={10}
-                  text={`${10}%`}
+                  value={overall}
+                  text={`${overall}%`}
                 />
               </figure>
               <h3>
@@ -75,7 +73,7 @@ const CarDetails = (props) => {
           )
         }
       </div>
-      <div className="container-fluid d-flex-column align-items-start">
+      <div className="bg-light container-fluid d-flex-column align-items-start all-parts">
         {
           allPartsInfo
           && (

@@ -87,7 +87,7 @@ article #track-part-btn:hover {
   width: 64px;
   height: 64px;
   margin-right: 10px;
-  border: 1px solid black;
+  border-radius: 5px;
 }
 
 /* .footer .btn{

@@ -18,11 +18,12 @@ const getPartDetails = (part) => {
   const { life } = part;
   const date2 = new Date();
   const date1 = new Date(part.updated_at);
-  const days = Math.ceil((date2 - date1) / (1000 * 3600 * 24));
-  const percentage = Math.ceil((days * 100) / life);
+  const daysPassed = Math.ceil((date2.getTime() - date1.getTime()) / (1000 * 3600 * 24));
+  const daysLeft = (life * 30) - daysPassed;
+  const percentage = Math.round((daysLeft * 1000) / (life * 30)) / 10;
 
   switch (true) {
-    case percentage > 90: {
+    case percentage > 95: {
       return {
         status: 'Excellent',
         color: '',
@@ -67,15 +68,18 @@ const getPartDetails = (part) => {
 };
 
 const computeDisplayDetails = (parts) => {
-  console.log(parts);
-  const details = parts.map((part) => {
+  let overall = 0;
+  const allPartsInfo = parts.map((part) => {
     const newPart = { ...part };
     newPart.url = partsURL[part.name];
     const stats = getPartDetails(part);
     newPart.stats = stats;
+    overall += stats.percentage;
     return newPart;
   });
-  return details;
+  overall = (Math.round((overall / 6) * 10)) / 10;
+  console.log(overall);
+  return { allPartsInfo, overall };
 };
 
 export default computeDisplayDetails;
