@@ -8,6 +8,8 @@ import {
   LOGIN_USER_FAILURE,
   LOGOUT_USER,
   DELETE_CAR,
+  DELETE_CAR_SUCCESS,
+  DELETE_CAR_FAILURE,
 } from '../constants';
 
 const initialState = {
@@ -119,12 +121,25 @@ const userReducer = (state = initialState, action) => {
       };
     }
     case DELETE_CAR: {
+      return {
+        loading: true,
+        ...state,
+      };
+    }
+    case DELETE_CAR_SUCCESS: {
       const { cars } = state;
       const newCars = cars.filter((car) => (car.id !== action.payload));
-      // console.log(cars, newCars);
       return {
         ...state,
         cars: newCars,
+        loading:false,
+      };
+    }
+    case DELETE_CAR_FAILURE: {
+      const { cars } = state;
+      return {
+        ...state,
+        loading:false,
       };
     }
     default:

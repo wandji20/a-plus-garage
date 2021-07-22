@@ -27,9 +27,6 @@ const CarDetails = (props) => {
 
   useEffect(() => {
   }, [overall]);
-  // useEffect(() => {
-  //   handleGetCarDetails(carId);
-  // }, [carId]);
 
   return (
     <>
