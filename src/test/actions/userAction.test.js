@@ -1,8 +1,8 @@
 import configureMockStore from 'redux-mock-store';
 import thunk from 'redux-thunk';
-import signUpUserAction from '../../../redux/actions/signUpAction';
-import getLogInDetails from '../../../redux/actions/logInAction';
-import logOutUser from '../../../redux/actions/logOutAction';
+import signUpUserAction from '../../redux/actions/signUpAction';
+import getLogInDetails from '../../redux/actions/logInAction';
+import logOutUser from '../../redux/actions/logOutAction';
 
 const middlewares = [thunk];
 const mockStore = configureMockStore(middlewares);

@@ -1,9 +1,9 @@
 import configureMockStore from 'redux-mock-store';
 import thunk from 'redux-thunk';
-import deleteCarAction from '../../../redux/actions/deleteCarAction';
-import getCarDetailsAction from '../../../redux/actions/getCarDetailsAction';
-import postCarAction from '../../../redux/actions/postCarAction';
-import updatePartAction from '../../../redux/actions/updatePartAction';
+import deleteCarAction from '../../redux/actions/deleteCarAction';
+import getCarDetailsAction from '../../redux/actions/getCarDetailsAction';
+import postCarAction from '../../redux/actions/postCarAction';
+import updatePartAction from '../../redux/actions/updatePartAction';
 
 const middlewares = [thunk];
 const mockStore = configureMockStore(middlewares);
