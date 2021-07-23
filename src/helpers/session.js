@@ -1,10 +1,10 @@
 const setToken = (value) => {
   const token = JSON.stringify(value);
-  sessionStorage.setItem('TOKEN', token);
+  localStorage.setItem('TOKEN', token);
 };
 
 const getToken = () => {
-  let token = sessionStorage.getItem('TOKEN');
+  let token = localStorage.getItem('TOKEN');
   if (token) {
     token = JSON.parse(token);
   }
