@@ -16,24 +16,23 @@ const Cars = (props) => {
 
   console.log(index);
   const handleNextIdChange = () => {
-    // const newId = carIds[index + 1];
-    if (index + 1 < carIds.length - 1) {
-      console.log(index + 1);
+    if (index < carIds.length - 1) {
       const newIndex = index + 1;
-      // setFilterIndex(newIndex);
       handleSetFilterAction(newIndex);
     }
   };
 
   const handlePrevIdChange = () => {
-    // const newId = carIds[index - 1];
     if (index > 0) {
-      console.log(index - 1);
       const newIndex = index - 1;
       handleSetFilterAction(newIndex);
     }
   };
-  console.log('In cars');
+
+  const nextId = carIds[index + 1] || 0;
+  const id = carIds[index];
+  const prevId = carIds[index - 1] || 0;
+  console.log('In cars', id);
 
   useEffect(() => {
     // const getCarNavs = (carIds) => {
@@ -44,17 +43,13 @@ const Cars = (props) => {
 
     // getCarNavs(carIds);
   }, [carIds]);
-  const nextId = carIds[index + 1] || 0;
-  const id = carIds[0];
-  const prevId = carIds[index - 1] || 0;
-  console.log('index:', index);
 
   return (
     <>
       <div className="d-flex justify-content-between position-absolute car-navs">
         <div className="span d-inline-block">
           {
-            index > 0 && nextId !== 0
+            index > 0 && prevId !== 0
               && (
                 <button
                   type="button"

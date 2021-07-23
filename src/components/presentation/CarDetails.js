@@ -21,7 +21,7 @@ const CarDetails = (props) => {
     if (loggedIn && id !== 0) {
       handleGetCarDetails(id);
     }
-  }, []);
+  }, [id]);
 
   // useEffect(() => {
   // }, [overall]);
