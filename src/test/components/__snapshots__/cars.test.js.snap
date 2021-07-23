@@ -3,7 +3,7 @@
 exports[`renders correctly 1`] = `
 Array [
   <div
-    className="d-flex justify-content-between position-absolute car-navs"
+    className="d-flex justify-content-between position-fixed car-navs"
   >
     <div
       className="span d-inline-block"
