@@ -1,7 +1,9 @@
+import { getToken } from '../../helpers/session';
 import {
   POST_CAR,
   POST_CAR_SUCCESS,
   POST_CAR_FAILURE,
+  UPDATE_CARS_LIST,
 } from '../constants';
 
 const postCarRequest = (data) => ({
@@ -19,8 +21,14 @@ const postCarRequestFailure = (error) => ({
   payload: error,
 });
 
-const userId = 2;
-const url = `http://localhost:3001/users/${userId}/cars/`;
+const updateCarList = (car) => ({
+  type: UPDATE_CARS_LIST,
+  payload: car,
+});
+
+const token = getToken();
+const userId = token.id;
+const url = `http://localhost:3001/users/${userId}/cars`;
 
 const postCarAction = (data) => async (dispatch) => {
   dispatch(postCarRequest());
@@ -37,6 +45,8 @@ const postCarAction = (data) => async (dispatch) => {
     );
     const response = await server.json();
     dispatch(postCarRequestSuccess(response));
+    dispatch(updateCarList(response));
+    // dispatch();
   } catch (error) {
     dispatch(postCarRequestFailure(error));
   }

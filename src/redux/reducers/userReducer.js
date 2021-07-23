@@ -10,6 +10,7 @@ import {
   DELETE_CAR,
   DELETE_CAR_SUCCESS,
   DELETE_CAR_FAILURE,
+  UPDATE_CARS_LIST,
 } from '../constants';
 
 const initialState = {
@@ -144,6 +145,19 @@ const userReducer = (state = initialState, action) => {
         loading: false,
       };
     }
+    case UPDATE_CARS_LIST: {
+      const { car } = action.payload.data;
+      console.log(action.payload);
+      const { cars } = state;
+      const newCars = [...cars];
+      console.log(car);
+      newCars.push(car);
+      return {
+        ...state,
+        cars: newCars,
+      };
+    }
+
     default:
       return {
         ...state,

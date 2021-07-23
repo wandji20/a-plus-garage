@@ -1,4 +1,4 @@
-import React, { useEffect, Fragment } from 'react';
+import React, { Fragment, useEffect } from 'react';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import { CircularProgressbar } from 'react-circular-progressbar';
@@ -10,23 +10,21 @@ import computeDisplayDetails from '../../helpers/computeDisplayInfo';
 
 const CarDetails = (props) => {
   const {
-
-    car, handleGetCarDetails, loggedIn, carId,
+    car, handleGetCarDetails, loggedIn, id,
   } = props;
-  console.log(carId);
   const {
-    make, power, fuel, id,
+    make, power, fuel,
   } = car;
 
   const { allPartsInfo, overall } = computeDisplayDetails(car.parts || []);
   useEffect(() => {
-    if (loggedIn) {
-      handleGetCarDetails(carId);
+    if (loggedIn && id !== 0) {
+      handleGetCarDetails(id);
     }
-  }, [carId]);
+  }, []);
 
-  useEffect(() => {
-  }, [overall]);
+  // useEffect(() => {
+  // }, [overall]);
 
   return (
     <>
@@ -93,6 +91,7 @@ const CarDetails = (props) => {
 const mapStateToProps = (state) => ({
   loggedIn: state.userReducer.loggedIn,
   car: state.carReducer.car,
+  // id: state.filterReducer.id,
 });
 
 const mapDispatchToProps = (dispatch) => ({
@@ -105,7 +104,7 @@ CarDetails.propTypes = {
   loggedIn: PropTypes.bool.isRequired,
   car: PropTypes.objectOf(PropTypes.any).isRequired,
   handleGetCarDetails: PropTypes.func.isRequired,
-  carId: PropTypes.number.isRequired,
+  id: PropTypes.number.isRequired,
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(CarDetails);

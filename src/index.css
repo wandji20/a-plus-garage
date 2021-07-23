@@ -88,3 +88,8 @@ body {
   margin-right: 10px;
   border-radius: 5px;
 }
+
+.car-navs {
+  width: 90%;
+  top: 250px;
+}

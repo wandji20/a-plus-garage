@@ -8,8 +8,10 @@ import { getToken } from '../../helpers/session';
 
 const Home = (props) => {
   const {
-    loggedIn, fetchUserInfo,
+    loggedIn, fetchUserInfo, cars,
   } = props;
+
+  const carIds = cars.map((car) => car.id);
 
   console.log(loggedIn);
 
@@ -20,11 +22,14 @@ const Home = (props) => {
     }
   }, [loggedIn]);
 
+  useEffect(() => {
+  }, [cars]);
+
   return (
     <div className="container remove-padding d-flex justify-content-center flex-wrap">
       {
-        loggedIn
-          ? <Cars />
+        (loggedIn && cars.length > 0)
+          ? <Cars carIds={carIds} />
           : <AddTrackButton />
       }
     </div>
@@ -33,6 +38,7 @@ const Home = (props) => {
 
 const mapStateToProps = (state) => ({
   loggedIn: state.userReducer.loggedIn,
+  cars: state.userReducer.cars,
 });
 
 const mapDispatchToProps = (dispatch) => ({
@@ -44,6 +50,7 @@ const mapDispatchToProps = (dispatch) => ({
 Home.propTypes = {
   loggedIn: PropTypes.bool.isRequired,
   fetchUserInfo: PropTypes.func.isRequired,
+  cars: PropTypes.arrayOf(PropTypes.objectOf(PropTypes.any)).isRequired,
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(Home);
