@@ -22,7 +22,7 @@ const partUpdateRequestFailure = (response) => ({
 
 const token = getToken();
 const userId = token.id;
-const url = `http://localhost:3001/users/${userId}/`;
+const url = `https://a-plus-garage-api.herokuapp.com/users/${userId}/`;
 
 const updatePartAction = (carId, partId, data) => async (dispatch) => {
   dispatch(partUpdateRequest());

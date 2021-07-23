@@ -23,7 +23,7 @@ const token = getToken();
 const userId = token.id;
 
 const getCarDetailsAction = (carId) => async (dispatch) => {
-  const url = `http://localhost:3001/users/${userId}/cars/${carId}`;
+  const url = `https://a-plus-garage-api.herokuapp.com/users/${userId}/cars/${carId}`;
   dispatch(getCarRequest());
   try {
     const server = await fetch(url);

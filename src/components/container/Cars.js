@@ -31,13 +31,6 @@ const Cars = (props) => {
   const prevId = carIds[index - 1] || 0;
 
   useEffect(() => {
-    // const getCarNavs = (carIds) => {
-    //   if (carIds.length > 0) {
-    //     handleSetFilterIdAction(carIds[carIds.length - 1]);
-    //   }
-    // };
-
-    // getCarNavs(carIds);
   }, [carIds]);
 
   return (
