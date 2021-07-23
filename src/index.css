@@ -45,11 +45,13 @@ body {
   text-decoration: none;
   color: black;
 }
+
 .nav-controls .btn {
   background-color: #11adcc;
   width: 100%;
   border-radius: 0;
   transition: 0.5s;
+
   /* border-bottom: 1px solid #aaaaaa; */
 }
 
