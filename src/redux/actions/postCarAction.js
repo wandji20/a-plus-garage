@@ -28,6 +28,7 @@ const updateCarList = (car) => ({
 
 const token = getToken();
 const userId = token.id;
+
 const url = `https://a-plus-garage-api.herokuapp.com/users/${userId}/cars`;
 
 const postCarAction = (data) => async (dispatch) => {

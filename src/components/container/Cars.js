@@ -35,7 +35,7 @@ const Cars = (props) => {
 
   return (
     <>
-      <div className="d-flex justify-content-between position-absolute car-navs">
+      <div className="d-flex justify-content-between position-fixed car-navs">
         <div className="span d-inline-block">
           {
             index > 0 && prevId !== 0
