@@ -1,28 +1,20 @@
-import userReducer from '../../redux/reducers/userReducer'
+import userReducer from '../../redux/reducers/userReducer';
 
 describe('authenticate User', () => {
-  // beforeEach(() => {
-  // });
-  
+  const initialState = {
+    loading: false,
+    loggedIn: false,
+    response: {},
+    cars: [],
+    error: '',
+  };
+  beforeEach(() => initialState);
+
   it('returns the initial state', () => {
-    const initialState = {
-      loading: false,
-      loggedIn: false,
-      response: {},
-      cars: [],
-      error: '',
-    };
     expect(userReducer(undefined, {})).toEqual(initialState);
   });
 
   it('handles login request', () => {
-    const initialState = {
-      loading: false,
-      loggedIn: false,
-      response: {},
-      cars: [],
-      error: '',
-    };
     expect(userReducer(initialState, { type: 'SIGN_UP_USER_REQUEST' })).toEqual({
       ...initialState,
       loading: true,
@@ -32,4 +24,4 @@ describe('authenticate User', () => {
       error: '',
     });
   });
-})
+});

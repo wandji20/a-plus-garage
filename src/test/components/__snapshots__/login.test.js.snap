@@ -1,0 +1,51 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`renders correctly 1`] = `
+<div
+  className="container w-75 d-flex flex-column justify-content-center align-items-start"
+>
+  <form
+    className=" d-flex flex-column align-items-start col-sm-8 col-md-6"
+    onSubmit={[Function]}
+  >
+    <div
+      className="form-group my-3"
+    >
+      <label
+        htmlFor="formGroupExampleInput2"
+      >
+        UserID
+        <input
+          className="form-control"
+          onChange={[Function]}
+          placeholder="@username"
+          type="text"
+          value=""
+        />
+      </label>
+    </div>
+    <button
+      className="btn btn-info mb-2"
+      type="submit"
+    >
+      log in
+    </button>
+  </form>
+  <p
+    className="align-self-start"
+  >
+    <a
+      href="/sign_up"
+      onClick={[Function]}
+      style={
+        Object {
+          "color": "black",
+          "textDecoration": "none",
+        }
+      }
+    >
+      Create Account
+    </a>
+  </p>
+</div>
+`;

@@ -18,7 +18,6 @@ const LogInForm = (props) => {
   const handleFormSubmit = (e) => {
     e.preventDefault();
     const details = { userID };
-    console.log(details);
     setUserID('');
     // props.history.push('/');
     handleLogIn(details);

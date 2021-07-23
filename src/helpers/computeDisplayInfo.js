@@ -78,7 +78,6 @@ const computeDisplayDetails = (parts) => {
     return newPart;
   });
   overall = (Math.round((overall / 6) * 10)) / 10;
-  console.log(overall);
   return { allPartsInfo, overall };
 };
 

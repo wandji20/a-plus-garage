@@ -12,9 +12,6 @@ const Cars = (props) => {
     carIds, loggedIn, index, handleSetFilterAction,
   } = props;
 
-  // const [filterIndex, setFilterIndex] = useState(0);
-
-  console.log(index);
   const handleNextIdChange = () => {
     if (index < carIds.length - 1) {
       const newIndex = index + 1;
@@ -32,7 +29,6 @@ const Cars = (props) => {
   const nextId = carIds[index + 1] || 0;
   const id = carIds[index];
   const prevId = carIds[index - 1] || 0;
-  console.log('In cars', id);
 
   useEffect(() => {
     // const getCarNavs = (carIds) => {

@@ -1,14 +1,12 @@
 import React from 'react';
-import PropTypes from 'prop-types';
-import { connect } from 'react-redux';
+// import PropTypes from 'prop-types';
+// import { connect } from 'react-redux';
 import { NavLink } from 'react-router-dom';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faEllipsisH, faCar, faPlus } from '@fortawesome/free-solid-svg-icons';
 // import Button from '../presentation/Button';
 
-const Footer = (props) => {
-  const { loggedIn } = props;
-  console.log(loggedIn);
+const Footer = () => {
   const linkStyle = {
     color: 'black',
     textDecoration: 'none',
@@ -66,12 +64,13 @@ const Footer = (props) => {
   );
 };
 
-const mapStateToProps = (state) => ({
-  loggedIn: state.userReducer.loggedIn,
-});
+// const mapStateToProps = (state) => ({
+//   loggedIn: state.userReducer.loggedIn,
+// });
 
-Footer.propTypes = {
-  loggedIn: PropTypes.bool.isRequired,
-};
+// Footer.propTypes = {
+//   loggedIn: PropTypes.bool.isRequired,
+// };
 
-export default connect(mapStateToProps)(Footer);
+// export default connect(mapStateToProps)(Footer);
+export default Footer;

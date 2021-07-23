@@ -13,8 +13,6 @@ const Home = (props) => {
 
   const carIds = cars.map((car) => car.id);
 
-  console.log(loggedIn);
-
   useEffect(() => {
     const token = getToken('TOKEN');
     if (!loggedIn && token !== '') {

@@ -9,7 +9,6 @@ const Button = (props) => {
   const { handleDeleteCarACtion, id } = props;
   const handleDeleteCar = () => {
     handleDeleteCarACtion(id);
-    console.log('in handleDelete');
   };
   return (
     <button

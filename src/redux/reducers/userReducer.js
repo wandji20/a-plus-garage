@@ -121,7 +121,6 @@ const userReducer = (state = initialState, action) => {
       };
     }
     case DELETE_CAR: {
-      console.log('In start');
       return {
         loading: true,
         ...state,
@@ -130,7 +129,6 @@ const userReducer = (state = initialState, action) => {
     case DELETE_CAR_SUCCESS: {
       const { cars } = state;
       const newCars = cars.filter((car) => (car.id !== action.payload));
-      console.log(cars, newCars);
       return {
         ...state,
         cars: newCars,
@@ -138,7 +136,6 @@ const userReducer = (state = initialState, action) => {
       };
     }
     case DELETE_CAR_FAILURE: {
-      console.log('In fail');
       return {
         ...state,
         loading: false,
@@ -146,10 +143,8 @@ const userReducer = (state = initialState, action) => {
     }
     case UPDATE_CARS_LIST: {
       const { car } = action.payload.data;
-      console.log(action.payload);
       const { cars } = state;
       const newCars = [...cars];
-      console.log(car);
       newCars.push(car);
       return {
         ...state,

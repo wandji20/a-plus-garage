@@ -1,0 +1,21 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`renders correctly 1`] = `
+<a
+  href="/new_car"
+  onClick={[Function]}
+  style={
+    Object {
+      "display": "block",
+      "marginTop": "200px",
+    }
+  }
+>
+  <button
+    className="btn btn-info"
+    type="button"
+  >
+    Track Car
+  </button>
+</a>
+`;
