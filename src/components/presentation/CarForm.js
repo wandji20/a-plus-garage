@@ -29,7 +29,7 @@ const CarForm = (props) => {
     e.preventDefault();
     const data = { make, fuelRate, horsePower };
     const carDetails = getPartsData(data);
-
+    console.log(carDetails);
     setHorsePower(0);
     setMake('');
     setFuelRate(0);
@@ -59,11 +59,6 @@ const CarForm = (props) => {
                     required
                   />
                 </label>
-                {/* {
-                (!response.success && response.errors && response.errors.name)
-
-                && <FormError column="User name" errors={response.errors.name} />
-              } */}
               </div>
               <fieldset
                 className="form-group my-3 container remove-padding d-flex flex-wrap"

@@ -1,12 +1,14 @@
 import React, { useState } from 'react';
 import PropTypes from 'prop-types';
-import { withRouter, Link } from 'react-router-dom';
+// import { withRouter, Link } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
+import FormError from './FormError';
 
 import getLogInDetails from '../../redux/actions/logInAction';
 
 const LogInForm = (props) => {
-  const { handleLogIn } = props;
+  const { handleLogIn, response } = props;
   const [userID, setUserID] = useState('');
 
   const handleUserIDChange = (e) => {
@@ -18,7 +20,7 @@ const LogInForm = (props) => {
     const details = { userID };
     console.log(details);
     setUserID('');
-    props.history.push('/');
+    // props.history.push('/');
     handleLogIn(details);
   };
   return (
@@ -39,10 +41,10 @@ const LogInForm = (props) => {
               onChange={handleUserIDChange}
             />
           </label>
-          {/* {
-            (!response.status && response.errors && response.errors.userID) &&
-            <FormError column="UserID" errors={response.errors.userID} />
-          } */}
+          {
+            (!response.success && response.errors)
+            && <FormError errors={response.errors} />
+          }
         </div>
         <button type="submit" className="btn btn-info mb-2">log in</button>
       </form>
@@ -61,9 +63,15 @@ const mapDispatchToProps = (dispatch) => ({
   },
 });
 
+const mapStateToProps = (state) => ({
+  response: state.userReducer.response,
+});
+
 LogInForm.propTypes = {
-  history: PropTypes.objectOf(PropTypes.any).isRequired,
+  response: PropTypes.objectOf(PropTypes.any).isRequired,
+  // history: PropTypes.objectOf(PropTypes.any).isRequired,
   handleLogIn: PropTypes.func.isRequired,
 };
 
-export default connect(null, mapDispatchToProps)(withRouter(LogInForm));
+// export default connect(null, mapDispatchToProps)(withRouter(LogInForm));
+export default connect(mapStateToProps, mapDispatchToProps)(LogInForm);

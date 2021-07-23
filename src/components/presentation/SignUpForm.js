@@ -1,11 +1,11 @@
 /* eslint-disable */
 import React, { useState } from 'react';
 import PropTypes from 'prop-types';
-import { withRouter } from 'react-router-dom';
+// import { withRouter } from 'react-router-dom';
 import { connect } from 'react-redux';
-import signUpUserAction from '../../redux/actions/signUpAction';
 import { Link } from 'react-router-dom';
-import FormError from './FormError';
+import FormError from './FormError.js';
+import signUpUserAction from '../../redux/actions/signUpAction';
 
 const SignUpForm = (props) => {
   const { handleSignUpUser, response } = props;
@@ -28,7 +28,7 @@ const SignUpForm = (props) => {
     console.log(data);
     setName('');
     setUserID('');
-    props.history.push('/');
+    // props.history.push('/');
     handleSignUpUser(data);
   };
 
@@ -51,7 +51,8 @@ const SignUpForm = (props) => {
             />
           </label>
           {
-            (!response.success && response.errors && response.errors.name) && <FormError column="User name" errors={response.errors.name} />
+            (!response.success && response.errors && response.errors.name) 
+              && <FormError column="User name" errors={response.errors.name} />
           }
 
         </div>
@@ -92,7 +93,7 @@ const mapDispatchToProps = (dispatch) => ({
 });
 
 SignUpForm.propTypes = {
-  history: PropTypes.objectOf(PropTypes.any).isRequired,
+  // history: PropTypes.objectOf(PropTypes.any).isRequired,
   handleSignUpUser: PropTypes.func,
 };
 
@@ -100,4 +101,5 @@ SignUpForm.defaultProps = {
   handleSignUpUser: () => {},
 };
 
-export default connect(mapStateToProps, mapDispatchToProps)(withRouter(SignUpForm));
+// export default connect(mapStateToProps, mapDispatchToProps)(withRouter(SignUpForm));
+export default connect(mapStateToProps, mapDispatchToProps)(SignUpForm);
