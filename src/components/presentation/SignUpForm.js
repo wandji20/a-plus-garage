@@ -1,6 +1,5 @@
 import React, { useState } from 'react';
 import PropTypes from 'prop-types';
-// import { withRouter } from 'react-router-dom';
 import { connect } from 'react-redux';
 import { Link, Redirect } from 'react-router-dom';
 import FormError from './FormError';
@@ -8,7 +7,6 @@ import signUpUserAction from '../../redux/actions/signUpAction';
 
 const SignUpForm = (props) => {
   const { handleSignUpUser, response } = props;
-  console.log(response);
   const [name, setName] = useState('');
   const [userID, setUserID] = useState('');
 

@@ -14,6 +14,7 @@ const initialState = {
   loading: false,
   car: {},
   error: '',
+  response: {},
 };
 
 const carReducer = (state = initialState, action) => {
@@ -36,11 +37,13 @@ const carReducer = (state = initialState, action) => {
           loading: false,
           error: '',
           car,
+          response,
         };
       }
       return {
         ...state,
         loading: false,
+        response,
       };
     }
     case POST_CAR_FAILURE: {

@@ -47,7 +47,9 @@ const postCarAction = (data) => async (dispatch) => {
     );
     const response = await server.json();
     dispatch(postCarRequestSuccess(response));
-    dispatch(updateCarList(response));
+    if (response.success) {
+      dispatch(updateCarList(response));
+    }
   } catch (error) {
     dispatch(postCarRequestFailure(error));
   }
