@@ -52,7 +52,7 @@ const Cars = (props) => {
         </div>
         <div className="span d-inline-block">
           {
-              (index < carIds.length - 1) // prevId !== 0
+              (index < carIds.length - 1)
               && (
                 <button
                   type="button"

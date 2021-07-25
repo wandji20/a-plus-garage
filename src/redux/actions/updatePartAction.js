@@ -1,5 +1,6 @@
 import axios from 'axios';
 import { getToken } from '../../helpers/session';
+
 import {
   PART_UPDATE,
   PART_UPDATE_SUCCESS,
@@ -22,7 +23,8 @@ const partUpdateRequestFailure = (response) => ({
 
 const token = getToken();
 const userId = token.id;
-const url = `https://a-plus-garage-api.herokuapp.com/users/${userId}/`;
+const url = `http://localhost:3001/users/${userId}/`;
+// const url = `https://a-plus-garage-api.herokuapp.com/users/${userId}/`;
 
 const updatePartAction = (carId, partId, data) => async (dispatch) => {
   dispatch(partUpdateRequest());

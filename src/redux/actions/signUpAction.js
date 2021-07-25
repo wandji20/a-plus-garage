@@ -18,7 +18,9 @@ const signUpUserRequestFailure = (status) => ({
   payload: status,
 });
 
-const url = 'https://a-plus-garage-api.herokuapp.com/users';
+const url = 'http://localhost:3001/users/';
+
+// const url = 'https://a-plus-garage-api.herokuapp.com/users';
 
 const signUpUserAction = (data) => async (dispatch) => {
   dispatch(signUpUserRequest());

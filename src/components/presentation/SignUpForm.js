@@ -1,15 +1,14 @@
-/* eslint-disable */
 import React, { useState } from 'react';
 import PropTypes from 'prop-types';
 // import { withRouter } from 'react-router-dom';
 import { connect } from 'react-redux';
-import { Link } from 'react-router-dom';
-import FormError from './FormError.js';
+import { Link, Redirect } from 'react-router-dom';
+import FormError from './FormError';
 import signUpUserAction from '../../redux/actions/signUpAction';
 
 const SignUpForm = (props) => {
   const { handleSignUpUser, response } = props;
-  // console.log(response);
+  console.log(response);
   const [name, setName] = useState('');
   const [userID, setUserID] = useState('');
 
@@ -24,60 +23,65 @@ const SignUpForm = (props) => {
   const handleFormSubmit = (e) => {
     const data = { name, userID };
     e.preventDefault();
-    console.log(handleSignUpUser);
-    console.log(data);
     setName('');
     setUserID('');
-    // props.history.push('/');
     handleSignUpUser(data);
   };
 
   return (
     <div className="container w-75 d-flex flex-column justify-content-center align-items-left">
-      <form
-        className=" d-flex flex-column align-items-start col-sm-8 col-md-6"
-        onSubmit={handleFormSubmit}
-      >
-        <div className="form-group my-3">
-          <label htmlFor="name">
-            User Name
-            <input
-              type="text"
-              id="name"
-              value={name}
-              className="form-control"
-              placeholder="...name"
-              onChange={handleNameChange}
-            />
-          </label>
-          {
-            (!response.success && response.errors && response.errors.name) 
-              && <FormError column="User name" errors={response.errors.name} />
-          }
+      {
+      response.success
+        ? <Redirect to="/" />
+        : (
+          <>
+            <form
+              className=" d-flex flex-column align-items-start col-sm-8 col-md-6"
+              onSubmit={handleFormSubmit}
+            >
+              <div className="form-group my-3">
+                <label htmlFor="name">
+                  User Name
+                  <input
+                    type="text"
+                    id="name"
+                    value={name}
+                    className="form-control"
+                    placeholder="...name"
+                    onChange={handleNameChange}
+                  />
+                </label>
+                {
+              (!response.success && response.errors && response.errors.name)
+                && <FormError column="User name" errors={response.errors.name} />
+            }
 
-        </div>
-        <div className="form-group my-3">
-          <label htmlFor="formGroupExampleInput2">
-            UserID
-            <input
-              type="text"
-              value={userID}
-              className="form-control"
-              placeholder="@username"
-              onChange={handleUserIDChange}
-            />
-          </label>
-          {
-            (!response.success && response.errors && response.errors.userID) && <FormError column="UserID" errors={response.errors.userID} />
-          }
-        </div>
-        <button type="submit" className="btn btn-primary mb-2">Sign Up</button>
-      </form>
-      <p className="">
-        <Link to="/log_in" style={{ color: 'black', textDecoration: 'none' }}>
-          Already have an account
-        </Link>
-      </p>
+              </div>
+              <div className="form-group my-3">
+                <label htmlFor="formGroupExampleInput2">
+                  UserID
+                  <input
+                    type="text"
+                    value={userID}
+                    className="form-control"
+                    placeholder="@username"
+                    onChange={handleUserIDChange}
+                  />
+                </label>
+                {
+              (!response.success && response.errors && response.errors.userID) && <FormError column="UserID" errors={response.errors.userID} />
+            }
+              </div>
+              <button type="submit" className="btn btn-primary mb-2">Sign Up</button>
+            </form>
+            <p className="">
+              <Link to="/log_in" style={{ color: 'black', textDecoration: 'none' }}>
+                Already have an account ? Login
+              </Link>
+            </p>
+          </>
+        )
+    }
     </div>
   );
 };
@@ -94,6 +98,7 @@ const mapDispatchToProps = (dispatch) => ({
 
 SignUpForm.propTypes = {
   // history: PropTypes.objectOf(PropTypes.any).isRequired,
+  response: PropTypes.objectOf(PropTypes.any).isRequired,
   handleSignUpUser: PropTypes.func,
 };
 

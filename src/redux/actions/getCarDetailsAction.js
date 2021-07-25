@@ -21,12 +21,14 @@ const getCarRequestFailure = (response) => ({
 
 const token = getToken();
 const userId = token.id;
+const url = `http://localhost:3001/users/${userId}/`;
+// const url = `https://a-plus-garage-api.herokuapp.com/users/${userId}/`;
 
 const getCarDetailsAction = (carId) => async (dispatch) => {
-  const url = `https://a-plus-garage-api.herokuapp.com/users/${userId}/cars/${carId}`;
+  // const url = `https://a-plus-garage-api.herokuapp.com/users/${userId}/cars/${carId}`;
   dispatch(getCarRequest());
   try {
-    const server = await fetch(url);
+    const server = await fetch(`${url}/cars/${carId}`);
     const response = await server.json();
     dispatch(getCarRequestSuccess(response));
   } catch (error) {
