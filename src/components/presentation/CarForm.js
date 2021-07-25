@@ -4,7 +4,7 @@ import { connect } from 'react-redux';
 import { Redirect } from 'react-router-dom';
 import getPartsData from '../../helpers/carFormHelper';
 import postCarAction from '../../redux/actions/postCarAction';
-// import LogInForm from './LogInForm';
+import FormError from './FormError';
 
 const CarForm = (props) => {
   const { handlePostCarAction, loggedIn, response } = props;
@@ -54,6 +54,10 @@ const CarForm = (props) => {
             required
           />
         </label>
+        {
+          (!response.success && response.errors && response.errors.make)
+            && <FormError column="make" errors={response.errors.make} />
+        }
       </div>
       <fieldset
         className="form-group my-3 container remove-padding d-flex flex-wrap"
