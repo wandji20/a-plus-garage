@@ -5,6 +5,7 @@ import {
   POST_CAR_FAILURE,
   UPDATE_CARS_LIST,
 } from '../constants';
+import setFilterAction from './setFilterAction';
 
 const postCarRequest = (data) => ({
   type: POST_CAR,
@@ -49,6 +50,7 @@ const postCarAction = (data) => async (dispatch) => {
     dispatch(postCarRequestSuccess(response));
     if (response.success) {
       dispatch(updateCarList(response));
+      dispatch(setFilterAction(0));
     }
   } catch (error) {
     dispatch(postCarRequestFailure(error));

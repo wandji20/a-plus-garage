@@ -195,11 +195,10 @@ const CarForm = (props) => {
   );
 
   const display = (loggedIn, response) => {
-    if (response.errors) {
-      return form;
-    } if (loggedIn) {
-      return form;
-    } return <Redirect to="/" />;
+    if (response.success) {
+      return <Redirect to="/" />;
+    }
+    return form;
   };
 
   return (

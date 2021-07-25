@@ -86,7 +86,7 @@ const userReducer = (state = initialState, action) => {
           loading: false,
           loggedIn: true,
           response,
-          cars,
+          cars: cars.reverse(),
           error: '',
         };
       }
@@ -145,7 +145,7 @@ const userReducer = (state = initialState, action) => {
       const { car } = action.payload.data;
       const { cars } = state;
       const newCars = [...cars];
-      newCars.push(car);
+      newCars.unshift(car);
       return {
         ...state,
         cars: newCars,

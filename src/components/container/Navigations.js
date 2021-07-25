@@ -12,7 +12,7 @@ import Cars from './Cars';
 function Navigations() {
   return (
     <Switch>
-      <Route path="/" component={Home} exact />
+      <Route exact path="/" component={Home} />
       <Route exact path="/cars" component={Cars} />
       <Route exact path="/sign_up" component={SignUpForm} />
       <Route exact path="/log_in" component={LogInForm} />

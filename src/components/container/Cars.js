@@ -77,6 +77,7 @@ const Cars = (props) => {
 const mapStateToProps = (state) => ({
   loggedIn: state.userReducer.loggedIn,
   index: state.filterReducer.index,
+  // car: state.carReducer.car,
 });
 
 const mapDispatchToProps = (dispatch) => ({
@@ -90,6 +91,7 @@ Cars.propTypes = {
   loggedIn: PropTypes.bool.isRequired,
   handleSetFilterAction: PropTypes.func.isRequired,
   index: PropTypes.number.isRequired,
+  // car: PropTypes.objectOf(PropTypes.any).isRequired,
 };
 
 Cars.defaultProps = {
