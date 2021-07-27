@@ -1,4 +1,4 @@
-import React, { Fragment, useEffect } from 'react';
+import React, { Fragment } from 'react';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
@@ -9,8 +9,10 @@ import setFilterAction from '../../redux/actions/setFilterAction';
 
 const Cars = (props) => {
   const {
-    carIds, loggedIn, index, handleSetFilterAction,
+    cars, index, handleSetFilterAction,
   } = props;
+
+  const carIds = cars.map((car) => car.id);
 
   const handleNextIdChange = () => {
     if (index < carIds.length - 1) {
@@ -29,9 +31,6 @@ const Cars = (props) => {
   const nextId = carIds[index + 1] || 0;
   const id = carIds[index];
   const prevId = carIds[index - 1] || 0;
-
-  useEffect(() => {
-  }, [carIds]);
 
   return (
     <>
@@ -66,7 +65,7 @@ const Cars = (props) => {
         </div>
       </div>
       {
-        (carIds.length > 0 && loggedIn)
+        (carIds.length > 0)
           ? <CarDetails id={id} nextId={nextId} prevId={prevId} />
           : <AddTrackButton />
       }
@@ -75,9 +74,8 @@ const Cars = (props) => {
 };
 
 const mapStateToProps = (state) => ({
-  loggedIn: state.userReducer.loggedIn,
   index: state.filterReducer.index,
-  // car: state.carReducer.car,
+  cars: state.userReducer.cars,
 });
 
 const mapDispatchToProps = (dispatch) => ({
@@ -87,15 +85,9 @@ const mapDispatchToProps = (dispatch) => ({
 });
 
 Cars.propTypes = {
-  carIds: PropTypes.arrayOf(PropTypes.number),
-  loggedIn: PropTypes.bool.isRequired,
+  cars: PropTypes.arrayOf(PropTypes.objectOf(PropTypes.any)).isRequired,
   handleSetFilterAction: PropTypes.func.isRequired,
   index: PropTypes.number.isRequired,
-  // car: PropTypes.objectOf(PropTypes.any).isRequired,
-};
-
-Cars.defaultProps = {
-  carIds: [],
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(Cars);

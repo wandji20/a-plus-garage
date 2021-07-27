@@ -8,21 +8,42 @@ import signUpUserAction from '../../redux/actions/signUpAction';
 const SignUpForm = (props) => {
   const { handleSignUpUser, response } = props;
   const [name, setName] = useState('');
-  const [userID, setUserID] = useState('');
+  const [userName, setUserName] = useState('');
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
+  const [passwordConfirm, setPasswordConfirm] = useState('');
 
   const handleNameChange = (e) => {
     setName(e.target.value);
   };
 
-  const handleUserIDChange = (e) => {
-    setUserID(e.target.value);
+  const handleUserNameChange = (e) => {
+    setUserName(e.target.value);
+  };
+
+  const handleEmailChange = (e) => {
+    setEmail(e.target.value);
+  };
+
+  const handlePasswordChange = (e) => {
+    setPassword(e.target.value);
+  };
+
+  const handlePasswordConfirmChange = (e) => {
+    setPasswordConfirm(e.target.value);
   };
 
   const handleFormSubmit = (e) => {
-    const data = { name, userID };
+    const data = {
+      name, user_name: userName, email, password, password_confirmation: passwordConfirm,
+    };
     e.preventDefault();
     setName('');
-    setUserID('');
+    setUserName('');
+    setEmail('');
+    setPassword('');
+    setPasswordConfirm('');
+    console.log(data);
     handleSignUpUser(data);
   };
 
@@ -57,18 +78,56 @@ const SignUpForm = (props) => {
               </div>
               <div className="form-group my-3">
                 <label htmlFor="formGroupExampleInput2">
-                  UserID
+                  User Name
                   <input
                     type="text"
-                    value={userID}
+                    value={userName}
                     className="form-control"
                     placeholder="@username"
-                    onChange={handleUserIDChange}
+                    onChange={handleUserNameChange}
                   />
                 </label>
                 {
-              (!response.success && response.errors && response.errors.userID) && <FormError column="UserID" errors={response.errors.userID} />
+              (!response.success && response.errors && response.errors.userName) && <FormError column="UserName" errors={response.errors.userName} />
             }
+              </div>
+
+              <div className="form-group my-3">
+                <label htmlFor="formGroupExampleInput2">
+                  Email
+                  <input
+                    type="email"
+                    value={email}
+                    className="form-control"
+                    placeholder="example@email"
+                    onChange={handleEmailChange}
+                  />
+                </label>
+              </div>
+
+              <div className="form-group my-3">
+                <label htmlFor="formGroupExampleInput2">
+                  Password
+                  <input
+                    type="password"
+                    value={password}
+                    className="form-control"
+                    placeholder="password"
+                    onChange={handlePasswordChange}
+                  />
+                </label>
+              </div>
+
+              <div className="form-group my-3">
+                <label htmlFor="formGroupExampleInput2">
+                  Confirm Password
+                  <input
+                    type="password"
+                    value={passwordConfirm}
+                    className="form-control"
+                    onChange={handlePasswordConfirmChange}
+                  />
+                </label>
               </div>
               <button type="submit" className="btn btn-primary mb-2">Sign Up</button>
             </form>

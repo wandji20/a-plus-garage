@@ -18,7 +18,7 @@ const logInUserFailure = (error) => ({
   payload: error,
 });
 
-const url = 'http://localhost:3001/login';
+const url = 'http://localhost:3001/auth/login';
 // const url = 'https://a-plus-garage-api.herokuapp.com/login';
 
 const getLogInDetails = (details) => async (dispatch) => {
@@ -35,6 +35,7 @@ const getLogInDetails = (details) => async (dispatch) => {
       },
     );
     const data = await response.json();
+    console.log(data);
     dispatch(logInUserSuccess(data));
   } catch (error) {
     dispatch(logInUserFailure(error));
