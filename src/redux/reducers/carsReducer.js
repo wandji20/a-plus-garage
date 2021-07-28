@@ -48,8 +48,13 @@ const carsReducer = (state = initialState, action) => {
       };
     }
     case DELETE_CAR_SUCCESS: {
+      const id = action.payload;
+      const { cars } = state;
+      const newCars = cars.filter((car) => (car.id !== id));
+      console.log(newCars, id);
       return {
         ...state,
+        cars: newCars,
         loading: false,
         error: '',
       };
