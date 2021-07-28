@@ -39,7 +39,6 @@ const getCarAction = (id) => async (dispatch) => {
     const response = await server.json();
     dispatch(getCarRequestSuccess(response));
   } catch (error) {
-    console.log(error);
     dispatch(getCarRequestFailure(error));
   }
 };

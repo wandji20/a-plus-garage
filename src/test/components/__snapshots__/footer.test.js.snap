@@ -58,9 +58,8 @@ exports[`renders correctly 1`] = `
     className="w-50"
   >
     <a
-      aria-current="page"
-      className="current"
-      href="/"
+      aria-current={null}
+      href="/cars"
       onClick={[Function]}
       style={
         Object {

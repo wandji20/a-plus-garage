@@ -4,6 +4,9 @@ exports[`renders correctly 1`] = `
 <div
   className="container w-75 d-flex flex-column justify-content-center align-items-left"
 >
+  <p
+    className="row justify-content-center text-danger"
+  />
   <form
     className=" d-flex flex-column align-items-start col-sm-8 col-md-6"
     onSubmit={[Function]}
@@ -14,7 +17,7 @@ exports[`renders correctly 1`] = `
       <label
         htmlFor="name"
       >
-        User Name
+        Name
         <input
           className="form-control"
           id="name"
@@ -31,12 +34,43 @@ exports[`renders correctly 1`] = `
       <label
         htmlFor="formGroupExampleInput2"
       >
-        UserID
+        User Name
         <input
           className="form-control"
           onChange={[Function]}
           placeholder="@username"
           type="text"
+          value=""
+        />
+      </label>
+    </div>
+    <div
+      className="form-group my-3"
+    >
+      <label
+        htmlFor="formGroupExampleInput2"
+      >
+        Password
+        <input
+          className="form-control"
+          onChange={[Function]}
+          placeholder="password"
+          type="password"
+          value=""
+        />
+      </label>
+    </div>
+    <div
+      className="form-group my-3"
+    >
+      <label
+        htmlFor="formGroupExampleInput2"
+      >
+        Confirm Password
+        <input
+          className="form-control"
+          onChange={[Function]}
+          type="password"
           value=""
         />
       </label>
@@ -56,12 +90,11 @@ exports[`renders correctly 1`] = `
       onClick={[Function]}
       style={
         Object {
-          "color": "black",
           "textDecoration": "none",
         }
       }
     >
-      Already have an account
+      Already have an account ? Login
     </a>
   </p>
 </div>

@@ -2,7 +2,7 @@
 
 exports[`renders correctly 1`] = `
 <a
-  href="/new_car"
+  href="/log_in"
   onClick={[Function]}
   style={
     Object {

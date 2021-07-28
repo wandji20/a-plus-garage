@@ -52,6 +52,9 @@ Array [
         </button>
       </div>
     </nav>
+    <div
+      className="nav-controls bg-light position-absolute d-flex flex-column align-items-center"
+    />
   </header>,
   <section
     className="container remove-padding"
@@ -61,7 +64,7 @@ Array [
       className="container remove-padding d-flex justify-content-center flex-wrap"
     >
       <a
-        href="/new_car"
+        href="/log_in"
         onClick={[Function]}
         style={
           Object {
@@ -136,9 +139,8 @@ Array [
       className="w-50"
     >
       <a
-        aria-current="page"
-        className="current"
-        href="/"
+        aria-current={null}
+        href="/cars"
         onClick={[Function]}
         style={
           Object {

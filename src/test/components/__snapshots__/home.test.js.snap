@@ -5,7 +5,7 @@ exports[`renders correctly 1`] = `
   className="container remove-padding d-flex justify-content-center flex-wrap"
 >
   <a
-    href="/new_car"
+    href="/log_in"
     onClick={[Function]}
     style={
       Object {

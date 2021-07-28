@@ -4,7 +4,96 @@ exports[`renders correctly 1`] = `
 Array [
   <div
     className="container remove-padding d-flex flex-column justify-content-center align-items-center py-3 bg-light"
-  />,
+  >
+    <article
+      className="d-flex flex-column justify-content-center align-items-center"
+    >
+      <h3>
+        <span>
+          Make :
+        </span>
+        <span>
+           
+        </span>
+      </h3>
+      <p>
+        <span>
+          Horse Power :
+        </span>
+        <span>
+           
+        </span>
+      </p>
+      <p>
+        <span>
+          Average Weekly consumption per gallon :
+        </span>
+        <span>
+           
+        </span>
+      </p>
+      <figure
+        className="col-6"
+      >
+        <svg
+          className="CircularProgressbar "
+          data-test-id="CircularProgressbar"
+          style={Object {}}
+          viewBox="0 0 100 100"
+        >
+          <path
+            className="CircularProgressbar-trail"
+            d="
+      M 50,50
+      m 0,-46
+      a 46,46 0 1 1 0,92
+      a 46,46 0 1 1 0,-92
+    "
+            fillOpacity={0}
+            strokeWidth={8}
+            style={
+              Object {
+                "strokeDasharray": "289.02652413026095px 289.02652413026095px",
+                "strokeDashoffset": "0px",
+              }
+            }
+          />
+          <path
+            className="CircularProgressbar-path"
+            d="
+      M 50,50
+      m 0,-46
+      a 46,46 0 1 1 0,92
+      a 46,46 0 1 1 0,-92
+    "
+            fillOpacity={0}
+            strokeWidth={8}
+            style={
+              Object {
+                "strokeDasharray": "289.02652413026095px 289.02652413026095px",
+                "strokeDashoffset": "289.02652413026095px",
+              }
+            }
+          />
+          <text
+            className="CircularProgressbar-text"
+            style={Object {}}
+            x={50}
+            y={50}
+          >
+            0%
+          </text>
+        </svg>
+      </figure>
+      <h3>
+        <span />
+        <span>
+           
+          Working Condition
+        </span>
+      </h3>
+    </article>
+  </div>,
   <div
     className="bg-light container-fluid d-flex-column align-items-start all-parts"
   />,

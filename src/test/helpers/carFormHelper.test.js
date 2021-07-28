@@ -4,7 +4,7 @@ describe('get Parts Date', () => {
   test('Creates parts objects from car inputs', () => {
     const input = { make: 'Lexus', fuelRate: 8, horsePower: 6 };
     const response = getPartsData(input);
-    expect(response.parts.length).toBe(6);
+    expect(response.parts_attributes.length).toBe(6);
   });
 
   test('returns empty object id fuel rate is 0', () => {

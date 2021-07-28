@@ -1,7 +1,7 @@
 import configureMockStore from 'redux-mock-store';
 import thunk from 'redux-thunk';
 import deleteCarAction from '../../redux/actions/deleteCarAction';
-import getCarDetailsAction from '../../redux/actions/getCarDetailsAction';
+import getCarAction from '../../redux/actions/getCarAction';
 import postCarAction from '../../redux/actions/postCarAction';
 import updatePartAction from '../../redux/actions/updatePartAction';
 
@@ -48,7 +48,7 @@ describe('when user updates a car part', () => {
 describe('when user load a car', () => {
   it('fires get car details action', async () => {
     const store = mockStore({});
-    return store.dispatch(getCarDetailsAction({}))
+    return store.dispatch(getCarAction({}))
       .then(() => {
         const actions = store.getActions();
         expect(actions[0]).toEqual({ type: 'GET_CAR' });

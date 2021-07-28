@@ -4,9 +4,8 @@ describe('authenticate User', () => {
   const initialState = {
     loading: false,
     loggedIn: false,
-    response: {},
-    cars: [],
     error: '',
+    credentialError: '',
   };
   beforeEach(() => initialState);
 
@@ -18,10 +17,9 @@ describe('authenticate User', () => {
     expect(userReducer(initialState, { type: 'SIGN_UP_USER_REQUEST' })).toEqual({
       ...initialState,
       loading: true,
-      response: {},
       loggedIn: false,
-      cars: [],
       error: '',
+      credentialError: '',
     });
   });
 });

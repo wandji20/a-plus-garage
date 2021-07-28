@@ -51,5 +51,8 @@ exports[`renders correctly 1`] = `
       </button>
     </div>
   </nav>
+  <div
+    className="nav-controls bg-light position-absolute d-flex flex-column align-items-center"
+  />
 </header>
 `;

@@ -13,7 +13,7 @@ Array [
     />
   </div>,
   <a
-    href="/new_car"
+    href="/log_in"
     onClick={[Function]}
     style={
       Object {
