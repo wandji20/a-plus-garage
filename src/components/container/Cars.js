@@ -12,6 +12,8 @@ const Cars = (props) => {
     cars, index, handleSetFilterAction,
   } = props;
 
+  console.log('In Cars');
+
   const carIds = cars.map((car) => car.id);
 
   const handleNextIdChange = () => {
@@ -75,7 +77,7 @@ const Cars = (props) => {
 
 const mapStateToProps = (state) => ({
   index: state.filterReducer.index,
-  cars: state.userReducer.cars,
+  cars: state.carsReducer.cars,
 });
 
 const mapDispatchToProps = (dispatch) => ({

@@ -3,9 +3,9 @@ import {
   POST_CAR,
   POST_CAR_SUCCESS,
   POST_CAR_FAILURE,
-  UPDATE_CARS_LIST,
+  // ADD_CAR_TO_LIST,
 } from '../constants';
-import setFilterAction from './setFilterAction';
+// import setFilterAction from './setFilterAction';
 
 const postCarRequest = (data) => ({
   type: POST_CAR,
@@ -22,18 +22,16 @@ const postCarRequestFailure = (error) => ({
   payload: error,
 });
 
-const updateCarList = (car) => ({
-  type: UPDATE_CARS_LIST,
-  payload: car,
-});
+// const addCarToList = (car) => ({
+//   type: ADD_CAR_TO_LIST,
+//   payload: car,
+// });
 
-const token = getToken();
-const userId = token.id;
-
-const url = `http://localhost:3001/users/${userId}/cars`;
+const url = 'http://localhost:3001/cars';
 // const url = `https://a-plus-garage-api.herokuapp.com/users/${userId}/cars`;
 
 const postCarAction = (data) => async (dispatch) => {
+  const authToken = getToken().auth_token;
   dispatch(postCarRequest());
   try {
     const server = await fetch(
@@ -42,16 +40,15 @@ const postCarAction = (data) => async (dispatch) => {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
+          Authorization: authToken,
         },
         body: JSON.stringify(data),
       },
     );
     const response = await server.json();
     dispatch(postCarRequestSuccess(response));
-    if (response.success) {
-      dispatch(updateCarList(response));
-      dispatch(setFilterAction(0));
-    }
+    // dispatch(addCarToList(response));
+    // dispatch(setFilterAction(0));
   } catch (error) {
     dispatch(postCarRequestFailure(error));
   }

@@ -4,10 +4,9 @@ import { connect } from 'react-redux';
 import { Redirect } from 'react-router-dom';
 import getPartsData from '../../helpers/carFormHelper';
 import postCarAction from '../../redux/actions/postCarAction';
-import FormError from './FormError';
 
 const CarForm = (props) => {
-  const { handlePostCarAction, loggedIn, response } = props;
+  const { handlePostCarAction, loggedIn, error } = props;
 
   const [make, setMake] = useState('');
   const [fuelRate, setFuelRate] = useState(0);
@@ -33,12 +32,11 @@ const CarForm = (props) => {
     setMake('');
     setFuelRate(0);
     handlePostCarAction(carDetails);
-    // console.log(loggedIn, response);
   };
 
   const form = (
     <form
-      className="d-flex flex-column align-items-start col-sm-8 col-md-6 px-3"
+      className="d-flex container remove-padding flex-column align-items-start col-sm-8 col-md-6 px-3"
       onSubmit={handleFormSubmit}
     >
       <div className="form-group my-3">
@@ -54,10 +52,6 @@ const CarForm = (props) => {
             required
           />
         </label>
-        {
-          (!response.success && response.errors && response.errors.make)
-            && <FormError column="make" errors={response.errors.make} />
-        }
       </div>
       <fieldset
         className="form-group my-3 container remove-padding d-flex flex-wrap"
@@ -194,8 +188,8 @@ const CarForm = (props) => {
     </form>
   );
 
-  const display = (loggedIn, response) => {
-    if (response.success) {
+  const display = () => {
+    if (!loggedIn) {
       return <Redirect to="/" />;
     }
     return form;
@@ -203,7 +197,13 @@ const CarForm = (props) => {
 
   return (
     <div className="container d-flex justify-content-center align-items-center">
-      {display(loggedIn, response)}
+      {display()}
+      <p className="row justify-content-center">
+        {
+          error !== ''
+          && <span className="d-block m-auto">{error}</span>
+        }
+      </p>
     </div>
   );
 };
@@ -216,14 +216,13 @@ const mapDispatchToProps = (dispatch) => ({
 
 const mapStateToProps = (state) => ({
   loggedIn: state.userReducer.loggedIn,
-  response: state.carReducer.response,
+  error: state.carReducer.error,
 });
 
 CarForm.propTypes = {
-  response: PropTypes.objectOf(PropTypes.any).isRequired,
+  error: PropTypes.string.isRequired,
   handlePostCarAction: PropTypes.func.isRequired,
   loggedIn: PropTypes.bool.isRequired,
 };
 
-// export default connect(mapStateToProps, mapDispatchToProps)(withRouter(CarForm));
 export default connect(mapStateToProps, mapDispatchToProps)(CarForm);

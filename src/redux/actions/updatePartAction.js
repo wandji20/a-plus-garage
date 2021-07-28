@@ -1,4 +1,4 @@
-import axios from 'axios';
+// import axios from 'axios';
 import { getToken } from '../../helpers/session';
 
 import {
@@ -21,16 +21,39 @@ const partUpdateRequestFailure = (response) => ({
   payload: response,
 });
 
-const token = getToken();
-const userId = token.id;
-const url = `http://localhost:3001/users/${userId}/`;
+const authToken = getToken().auth_token;
+const url = 'http://localhost:3001/';
 // const url = `https://a-plus-garage-api.herokuapp.com/users/${userId}/`;
 
 const updatePartAction = (carId, partId, data) => async (dispatch) => {
+  const part = { ...data };
   dispatch(partUpdateRequest());
+  console.log(part);
   try {
-    const server = await axios.put(`${url}cars/${carId}/parts/${partId}`, data);
-    dispatch(partUpdateRequestSuccess(server.data));
+    const server = await fetch(
+      `${url}cars/${carId}/parts/${partId}`,
+      {
+        method: 'PUT',
+        headers: {
+          'Content-Type': 'application/json',
+          Authorization: authToken,
+        },
+        body: JSON.stringify({ ...part }),
+      },
+    );
+    // const server = await axios.put(
+    //   `${url}cars/${carId}/parts/${partId}`,
+    //   {
+    //     headers: {
+    //       'Content-Type': 'application/json',
+    //       Authorization: authToken,
+    //     },
+    //   },
+    //   part,
+    // );
+    const response = await server.json();
+
+    dispatch(partUpdateRequestSuccess(response));
   } catch (error) {
     dispatch(partUpdateRequestFailure(error));
   }

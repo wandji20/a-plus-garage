@@ -8,7 +8,7 @@ const getToken = () => {
   if (token) {
     token = JSON.parse(token);
   }
-  return token || '';
+  return token || {};
 };
 
 export {

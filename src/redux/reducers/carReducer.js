@@ -12,9 +12,9 @@ import {
 
 const initialState = {
   loading: false,
+  parts: [],
   car: {},
   error: '',
-  response: {},
 };
 
 const carReducer = (state = initialState, action) => {
@@ -23,27 +23,21 @@ const carReducer = (state = initialState, action) => {
       return {
         ...state,
         loading: true,
-        car: {},
+        parts: [],
         error: '',
-        response: {},
+        car: {},
       };
     }
     case POST_CAR_SUCCESS: {
       const response = action.payload;
-      if (response.success && response.car) {
-        const { car } = response;
-        return {
-          ...state,
-          loading: false,
-          error: '',
-          car,
-          response,
-        };
-      }
+
+      const { car } = response;
       return {
         ...state,
         loading: false,
-        response,
+        error: '',
+        parts: car.parts,
+        car,
       };
     }
     case POST_CAR_FAILURE: {
@@ -51,32 +45,29 @@ const carReducer = (state = initialState, action) => {
         ...state,
         loading: false,
         error: action.payload,
-        response: {},
+        parts: [],
+        car: {},
       };
     }
     case GET_CAR: {
       return {
         ...state,
         loading: true,
-        car: {},
+        parts: [],
         error: '',
       };
     }
     case GET_CAR_SUCCESS: {
       const response = action.payload;
-      if (response.success) {
-        const { car } = response.data;
-        return {
-          ...state,
-          loading: false,
-          error: '',
-          car,
-        };
-      }
+      const { car } = response;
+
+      const { make, power, fuel } = response.car;
       return {
         ...state,
         loading: false,
-        car: {},
+        error: '',
+        parts: car.parts,
+        car: { make, power, fuel },
       };
     }
     case GET_CAR_FAILURE: {
@@ -84,6 +75,7 @@ const carReducer = (state = initialState, action) => {
         ...state,
         loading: false,
         error: action.payload,
+        parts: [],
         car: {},
       };
     }
@@ -98,26 +90,22 @@ const carReducer = (state = initialState, action) => {
 
     case PART_UPDATE_SUCCESS: {
       const response = action.payload;
-      if (response.success) {
-        const { part } = response;
-        const { id } = part;
-        const newCar = state.car;
-        const parts = newCar.parts.map((part) => {
-          if (part.id === id) {
-            return response.part;
-          }
-          return part;
-        });
-        newCar.parts = parts;
-        return {
-          ...state,
-          loading: false,
-          error: '',
-          car: newCar,
-        };
-      }
+      const { part } = response;
+      const { id } = part;
+      const newParts = state.parts;
+
+      const updatedParts = newParts.map((part) => {
+        if (part.id === id) {
+          return response.part;
+        }
+        return part;
+      });
+
       return {
         ...state,
+        loading: false,
+        error: '',
+        parts: updatedParts,
       };
     }
     case PART_UPDATE_FAILURE: {

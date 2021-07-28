@@ -40,7 +40,7 @@ const getPartsData = (data) => {
     make,
     power: horsePower,
     fuel: fuelRate,
-    parts,
+    parts_attributes: parts,
   };
 };
 

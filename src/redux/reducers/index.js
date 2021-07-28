@@ -1,13 +1,15 @@
 import { combineReducers } from 'redux';
 import userReducer from './userReducer';
-import carReducer from './carReducer';
+import carsReducer from './carsReducer';
 import filterReducer from './filterReducer';
+import carReducer from './carReducer';
 
 const rootReducer = combineReducers(
   {
     userReducer,
-    carReducer,
+    carsReducer,
     filterReducer,
+    carReducer,
   },
 );
 export default rootReducer;

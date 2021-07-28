@@ -1,17 +1,22 @@
+// /* eslint-disable */
 import React, { useEffect } from 'react';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import AddTrackButton from '../presentation/AddTrackButton';
 import Cars from './Cars';
-import getLogInDetails from '../../redux/actions/logInAction';
+import getCarsAction from '../../redux/actions/getCarsAction';
 import { getToken } from '../../helpers/session';
+import loginUserSession from '../../redux/actions/loginUsersession';
 
 const Home = (props) => {
-  const { loggedIn, fetchUserInfo } = props;
-
+  const { loggedIn, fetchUserInfo, loginSession } = props;
+  const token = getToken('TOKEN');
+  console.log('In home', props);
   useEffect(() => {
-    const token = getToken('TOKEN');
-    if (!loggedIn && token !== '') {
+    if (token.auth_token) {
+      loginSession();
+    }
+    if (loggedIn && token.auth_token) {
       fetchUserInfo(token);
     }
   }, [loggedIn]);
@@ -33,13 +38,17 @@ const mapStateToProps = (state) => ({
 
 const mapDispatchToProps = (dispatch) => ({
   fetchUserInfo: (data) => {
-    dispatch(getLogInDetails(data));
+    dispatch(getCarsAction(data));
+  },
+  loginSession: () => {
+    dispatch(loginUserSession());
   },
 });
 
 Home.propTypes = {
   loggedIn: PropTypes.bool.isRequired,
   fetchUserInfo: PropTypes.func.isRequired,
+  loginSession: PropTypes.func.isRequired,
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(Home);
