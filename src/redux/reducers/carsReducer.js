@@ -51,7 +51,6 @@ const carsReducer = (state = initialState, action) => {
       const id = action.payload;
       const { cars } = state;
       const newCars = cars.filter((car) => (car.id !== id));
-      console.log(newCars, id);
       return {
         ...state,
         cars: newCars,

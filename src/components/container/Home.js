@@ -11,7 +11,7 @@ import loginUserSession from '../../redux/actions/loginUsersession';
 const Home = (props) => {
   const { loggedIn, fetchUserInfo, loginSession } = props;
   const token = getToken('TOKEN');
-  console.log('In home', props);
+
   useEffect(() => {
     if (token.auth_token) {
       loginSession();

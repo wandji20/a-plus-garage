@@ -19,8 +19,8 @@ const getCarRequestFailure = (response) => ({
   payload: response,
 });
 
-const url = 'http://localhost:3001/cars/';
-// const url = `https://a-plus-garage-api.herokuapp.com/users/${userId}/`;
+// const url = 'http://localhost:3001/cars/';
+const url = 'https://a-plus-garage-api.herokuapp.com/cars/';
 
 const getCarAction = (id) => async (dispatch) => {
   // const url = `https://a-plus-garage-api.herokuapp.com/users/${userId}/cars/${carId}`;

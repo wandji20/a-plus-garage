@@ -12,8 +12,6 @@ const Cars = (props) => {
     cars, index, handleSetFilterAction,
   } = props;
 
-  console.log('In Cars');
-
   const carIds = cars.map((car) => car.id);
 
   const handleNextIdChange = () => {

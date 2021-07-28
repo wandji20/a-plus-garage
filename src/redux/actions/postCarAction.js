@@ -3,9 +3,7 @@ import {
   POST_CAR,
   POST_CAR_SUCCESS,
   POST_CAR_FAILURE,
-  // ADD_CAR_TO_LIST,
 } from '../constants';
-// import setFilterAction from './setFilterAction';
 
 const postCarRequest = (data) => ({
   type: POST_CAR,
@@ -22,13 +20,8 @@ const postCarRequestFailure = (error) => ({
   payload: error,
 });
 
-// const addCarToList = (car) => ({
-//   type: ADD_CAR_TO_LIST,
-//   payload: car,
-// });
-
-const url = 'http://localhost:3001/cars';
-// const url = `https://a-plus-garage-api.herokuapp.com/users/${userId}/cars`;
+// const url = 'http://localhost:3001/cars';
+const url = 'https://a-plus-garage-api.herokuapp.com/cars';
 
 const postCarAction = (data) => async (dispatch) => {
   const authToken = getToken().auth_token;

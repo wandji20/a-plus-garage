@@ -20,8 +20,8 @@ const deleteCarRequestFailure = (error) => ({
   payload: error,
 });
 
-const url = 'http://localhost:3001/cars/';
-// const url = `https://a-plus-garage-api.herokuapp.com/users/${userId}/`;
+// const url = 'http://localhost:3001/cars/';
+const url = 'https://a-plus-garage-api.herokuapp.com/cars/';
 
 const deleteCarAction = (id) => async (dispatch) => {
   dispatch(deleteCarRequest());

@@ -1,4 +1,3 @@
-// import axios from 'axios';
 import { getToken } from '../../helpers/session';
 
 import {
@@ -22,13 +21,12 @@ const partUpdateRequestFailure = (response) => ({
 });
 
 const authToken = getToken().auth_token;
-const url = 'http://localhost:3001/';
-// const url = `https://a-plus-garage-api.herokuapp.com/users/${userId}/`;
+// const url = 'http://localhost:3001/';
+const url = 'https://a-plus-garage-api.herokuapp.com/';
 
 const updatePartAction = (carId, partId, data) => async (dispatch) => {
   const part = { ...data };
   dispatch(partUpdateRequest());
-  console.log(part);
   try {
     const server = await fetch(
       `${url}cars/${carId}/parts/${partId}`,
@@ -41,16 +39,7 @@ const updatePartAction = (carId, partId, data) => async (dispatch) => {
         body: JSON.stringify({ ...part }),
       },
     );
-    // const server = await axios.put(
-    //   `${url}cars/${carId}/parts/${partId}`,
-    //   {
-    //     headers: {
-    //       'Content-Type': 'application/json',
-    //       Authorization: authToken,
-    //     },
-    //   },
-    //   part,
-    // );
+
     const response = await server.json();
 
     dispatch(partUpdateRequestSuccess(response));

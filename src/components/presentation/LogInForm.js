@@ -22,7 +22,6 @@ const LogInForm = (props) => {
   const handleFormSubmit = (e) => {
     e.preventDefault();
     const details = { user_name: userName, password };
-    console.log(details);
     setUserName('');
     setPassword('');
     handleLogIn(details);

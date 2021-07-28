@@ -19,13 +19,11 @@ const getCarsRequestFailure = (response) => ({
   payload: response,
 });
 
-const url = 'http://localhost:3001/cars/';
-// const url = `https://a-plus-garage-api.herokuapp.com/users/${userId}/`;
+// const url = 'http://localhost:3001/cars/';
+const url = 'https://a-plus-garage-api.herokuapp.com/cars/';
 
 const getCarsAction = () => async (dispatch) => {
-  // const url = `https://a-plus-garage-api.herokuapp.com/users/${userId}/cars/${carId}`;
   const authToken = getToken().auth_token;
-  console.log(authToken);
   dispatch(getCarsRequest());
   try {
     const server = await fetch(
@@ -39,7 +37,6 @@ const getCarsAction = () => async (dispatch) => {
     );
     const response = await server.json();
     dispatch(getCarsRequestSuccess(response));
-    console.log(response);
   } catch (error) {
     dispatch(getCarsRequestFailure(error));
   }
