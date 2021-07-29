@@ -5,7 +5,7 @@ exports[`renders correctly 1`] = `
   className="part my-3 align-items-center row bg-white mx-1 py-2 "
 >
   <figure
-    className=" col-4 d-flex flex-column"
+    className=" col-4 d-flex flex-column m-auto"
   >
     <h3>
       
@@ -26,19 +26,18 @@ exports[`renders correctly 1`] = `
         className=""
       >
         <span
-          className="d-block"
+          className="d-inline-block"
         >
-           
-          days left!
+          left!
         </span>
-        <button
-          className="btn btn-info"
-          onClick={[Function]}
-          type="submit"
-        >
-          Track
-        </button>
       </p>
+      <button
+        className="btn btn-info"
+        onClick={[Function]}
+        type="submit"
+      >
+        Track
+      </button>
     </div>
     <div
       className="d-flex col-4 flex-column justify-content-end align-items-start"

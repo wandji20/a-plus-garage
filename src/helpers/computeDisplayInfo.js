@@ -20,49 +20,63 @@ const getPartDetails = (part) => {
   const date1 = new Date(part.updated_at);
   const daysPassed = Math.ceil((date2.getTime() - date1.getTime()) / (1000 * 3600 * 24));
   const daysLeft = (life * 30) - daysPassed;
-  const percentage = Math.round((daysLeft * 1000) / (life * 30)) / 10;
+  const months = Math.floor(daysLeft / 30);
+  const days = daysLeft - (months * 30);
+  const percentage = Math.ceil((daysLeft * 1000) / (life * 30)) / 10;
 
   switch (true) {
     case percentage > 95: {
       return {
         status: 'Excellent',
-        color: '',
+        color: '#0d8f11',
         percentage,
+        days,
+        months,
       };
     }
     case percentage > 70: {
       return {
         status: 'Good',
-        color: '',
+        color: '#56d65a',
         percentage,
+        days,
+        months,
       };
     }
     case percentage > 50: {
       return {
         status: 'Average',
-        color: '',
+        color: '#565ed6',
         percentage,
+        days,
+        months,
       };
     }
     case percentage > 30: {
       return {
         status: 'Poor',
-        color: '',
+        color: '#e8313d',
         percentage,
+        days,
+        months,
       };
     }
     case (percentage > 0 && percentage <= 30): {
       return {
         status: 'Poor',
-        color: '',
+        color: '#e31724',
         percentage,
+        days,
+        months,
       };
     }
     default:
       return {
         status: 'Untracked',
-        color: '',
-        percentage,
+        color: '#212529',
+        percentage: 0,
+        days,
+        months: 0,
       };
   }
 };
@@ -77,7 +91,7 @@ const computeDisplayDetails = (parts) => {
     overall += stats.percentage;
     return newPart;
   });
-  overall = (Math.round((overall / 6) * 10)) / 10;
+  overall = (Math.ceil((overall / 6) * 10)) / 10;
   return { allPartsInfo, overall };
 };
 

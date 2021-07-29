@@ -15,7 +15,7 @@ const Part = (props) => {
   const { name, url, stats } = part;
   return (
     <article className="part my-3 align-items-center row bg-white mx-1 py-2 ">
-      <figure className=" col-4 d-flex flex-column">
+      <figure className=" col-4 d-flex flex-column m-auto">
         <h3>
           {name}
         </h3>
@@ -29,19 +29,38 @@ const Part = (props) => {
             Condition */}
           </h6>
           <p className="">
-            <span className="d-block">
-              {stats.daysLeft}
-              {' '}
-              days left!
+            {
+              stats.months > 0
+                && (
+                <span className="d-inline-block">
+                  {
+                  `${stats.months} months  `
+                }
+                </span>
+                )
+            }
+            {
+              stats.days > 0
+               && (
+               <span className="d-inline-block mx-1">
+                 {
+                  `${stats.days} days `
+                }
+               </span>
+               )
+            }
+            <span className="d-inline-block">
+              left!
             </span>
-            <button
-              type="submit"
-              className="btn btn-info"
-              onClick={handleUpdatePart}
-            >
-              Track
-            </button>
+
           </p>
+          <button
+            type="submit"
+            className="btn btn-info"
+            onClick={handleUpdatePart}
+          >
+            Track
+          </button>
 
         </div>
         <div

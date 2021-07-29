@@ -18,6 +18,7 @@ const CarDetails = (props) => {
   } = car;
 
   const { allPartsInfo, overall } = computeDisplayDetails(parts);
+
   useEffect(() => {
     if (loggedIn && id !== 0) {
       handleGetCarDetails(id);
