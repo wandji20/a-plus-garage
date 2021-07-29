@@ -1,4 +1,5 @@
-import React, { useState } from 'react';
+/* eslint-disable */
+import React, { useState, useRef } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { Redirect } from 'react-router-dom';
@@ -7,6 +8,17 @@ import postCarAction from '../../redux/actions/postCarAction';
 
 const CarForm = (props) => {
   const { handlePostCarAction, loggedIn, error } = props;
+
+  const rate1 = useRef(null);
+  const rate2 = useRef(null);
+  const rate3 = useRef(null);
+  const rate4 = useRef(null);
+  const rate5 = useRef(null);
+  const rate6 = useRef(null);
+  const power1 = useRef(null);
+  const power2 = useRef(null);
+  const power3 = useRef(null);
+  
 
   const [make, setMake] = useState('');
   const [fuelRate, setFuelRate] = useState(0);
@@ -31,7 +43,11 @@ const CarForm = (props) => {
     setHorsePower(0);
     setMake('');
     setFuelRate(0);
+    const radioButtons = [rate1, rate2, rate3, rate4, power1, power2, power3];
+    radioButtons.forEach((button)=>(button.current.checked = false));
+
     handlePostCarAction(carDetails);
+    
   };
 
   const form = (
@@ -65,6 +81,7 @@ const CarForm = (props) => {
               type="radio"
               value={3}
               id="rate1"
+              ref={rate1}
               required
               name="fuel-rate"
             />
@@ -78,7 +95,7 @@ const CarForm = (props) => {
               type="radio"
               value={8}
               id="rate2"
-              required
+              ref={rate2}
               name="fuel-rate"
             />
             6 - 10
@@ -91,7 +108,7 @@ const CarForm = (props) => {
               type="radio"
               value={13}
               id="rate3"
-              required
+              ref={rate3}
               name="fuel-rate"
             />
             11 - 15
@@ -104,7 +121,7 @@ const CarForm = (props) => {
               type="radio"
               value={18}
               id="rate4"
-              required
+              ref={rate4}
               name="fuel-rate"
             />
             16 - 20
@@ -117,7 +134,7 @@ const CarForm = (props) => {
               type="radio"
               value={25}
               id="rate5"
-              required
+              ref={rate5}
               name="fuel-rate"
             />
             20 - 30
@@ -130,6 +147,7 @@ const CarForm = (props) => {
               type="radio"
               value={40}
               id="rate6"
+              ref={rate6}
               required
               name="fuel-rate"
             />
@@ -151,6 +169,7 @@ const CarForm = (props) => {
               value={3}
               id="power1"
               required
+              ref={power1}
               name="horse-power"
             />
             1 - 5
@@ -162,8 +181,8 @@ const CarForm = (props) => {
               className="form-check-input"
               type="radio"
               value={7}
-              id="power1"
-              required
+              id="power2"
+              ref={power2}
               name="horse-power"
             />
             6 - 8
@@ -176,7 +195,7 @@ const CarForm = (props) => {
               type="radio"
               value={10}
               id="power3"
-              required
+              ref={power3}
               name="horse-power"
             />
             Above 8

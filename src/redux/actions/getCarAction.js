@@ -23,7 +23,6 @@ const getCarRequestFailure = (response) => ({
 const url = 'https://a-plus-garage-api.herokuapp.com/cars/';
 
 const getCarAction = (id) => async (dispatch) => {
-  // const url = `https://a-plus-garage-api.herokuapp.com/users/${userId}/cars/${carId}`;
   const authToken = getToken().auth_token;
   dispatch(getCarRequest());
   try {

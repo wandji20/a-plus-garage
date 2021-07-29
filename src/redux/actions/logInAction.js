@@ -27,6 +27,7 @@ const getLogInDetails = (details) => async (dispatch) => {
     const response = await fetch(
       url,
       {
+        mode: 'cors',
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',

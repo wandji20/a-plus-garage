@@ -6,9 +6,9 @@ import { faTrashAlt } from '@fortawesome/free-solid-svg-icons';
 import deleteCarAction from '../../redux/actions/deleteCarAction';
 
 const Button = (props) => {
-  const { handleDeleteCarACtion, id } = props;
+  const { handleDeleteCarACtion, id, index } = props;
   const handleDeleteCar = () => {
-    handleDeleteCarACtion(id);
+    handleDeleteCarACtion(id, index);
   };
   return (
     <button
@@ -26,13 +26,18 @@ const Button = (props) => {
 };
 
 const mapDispatchToProps = (dispatch) => ({
-  handleDeleteCarACtion: (id) => {
-    dispatch(deleteCarAction(id));
+  handleDeleteCarACtion: (id, index) => {
+    dispatch(deleteCarAction(id, index));
   },
+});
+
+const mapStateToProps = (state) => ({
+  index: state.filterReducer.index,
 });
 
 Button.propTypes = {
   id: PropTypes.number,
+  index: PropTypes.number.isRequired,
   handleDeleteCarACtion: PropTypes.func.isRequired,
 };
 
@@ -40,4 +45,4 @@ Button.defaultProps = {
   id: 0,
 };
 
-export default connect(null, mapDispatchToProps)(Button);
+export default connect(mapStateToProps, mapDispatchToProps)(Button);

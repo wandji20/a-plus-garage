@@ -85,9 +85,13 @@ const mapDispatchToProps = (dispatch) => ({
 });
 
 Cars.propTypes = {
-  cars: PropTypes.arrayOf(PropTypes.objectOf(PropTypes.any)).isRequired,
+  cars: PropTypes.arrayOf(PropTypes.objectOf(PropTypes.any)),
   handleSetFilterAction: PropTypes.func.isRequired,
   index: PropTypes.number.isRequired,
+};
+
+Cars.defaultProps = {
+  cars: [],
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(Cars);

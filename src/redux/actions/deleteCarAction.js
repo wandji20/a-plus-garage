@@ -1,5 +1,6 @@
 import axios from 'axios';
 import { getToken } from '../../helpers/session';
+import setFilterAction from './setFilterAction';
 import {
   DELETE_CAR,
   DELETE_CAR_SUCCESS,
@@ -23,7 +24,7 @@ const deleteCarRequestFailure = (error) => ({
 // const url = 'http://localhost:3001/cars/';
 const url = 'https://a-plus-garage-api.herokuapp.com/cars/';
 
-const deleteCarAction = (id) => async (dispatch) => {
+const deleteCarAction = (id, index) => async (dispatch) => {
   dispatch(deleteCarRequest());
   const authToken = getToken().auth_token;
   try {
@@ -37,6 +38,7 @@ const deleteCarAction = (id) => async (dispatch) => {
       },
     );
     dispatch(deleteCarRequestSuccess(id));
+    dispatch(setFilterAction(index - 1));
   } catch (error) {
     dispatch(deleteCarRequestFailure(error));
   }

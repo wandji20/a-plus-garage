@@ -13,13 +13,15 @@ const Home = (props) => {
   const token = getToken('TOKEN');
 
   useEffect(() => {
-    if (token.auth_token) {
-      loginSession();
-    }
     if (loggedIn && token.auth_token) {
       fetchUserInfo(token);
     }
   }, [loggedIn]);
+  useEffect(() => {
+    if (token.auth_token && !loggedIn) {
+      loginSession();
+    }
+  }, []);
 
   return (
     <div className="container remove-padding d-flex justify-content-center flex-wrap">

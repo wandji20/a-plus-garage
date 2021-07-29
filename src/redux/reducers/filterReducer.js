@@ -15,6 +15,7 @@ const filterReducer = (state = initialState, action) => {
       }
       return {
         ...state,
+        index: 0,
       };
     }
     default:

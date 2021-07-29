@@ -78,7 +78,11 @@ const CarDetails = (props) => {
         }
       </div>
       <div className="row py-2 justify-content-center">
-        <Button id={id} />
+        {
+        (id !== 0 && parts.length > 0)
+        && <Button id={id} />
+      }
+
       </div>
     </>
   );

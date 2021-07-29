@@ -55,6 +55,7 @@ const carReducer = (state = initialState, action) => {
         loading: true,
         parts: [],
         error: '',
+        car: {},
       };
     }
     case GET_CAR_SUCCESS: {

@@ -1,3 +1,4 @@
+// import axios from 'axios';
 import { getToken } from '../../helpers/session';
 import {
   GET_CARS,
@@ -20,7 +21,7 @@ const getCarsRequestFailure = (response) => ({
 });
 
 // const url = 'http://localhost:3001/cars/';
-const url = 'https://a-plus-garage-api.herokuapp.com/cars/';
+const url = 'http://a-plus-garage-api.herokuapp.com/cars/';
 
 const getCarsAction = () => async (dispatch) => {
   const authToken = getToken().auth_token;
@@ -36,6 +37,7 @@ const getCarsAction = () => async (dispatch) => {
       },
     );
     const response = await server.json();
+
     dispatch(getCarsRequestSuccess(response));
   } catch (error) {
     dispatch(getCarsRequestFailure(error));
