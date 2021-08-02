@@ -64,7 +64,7 @@ const LogInForm = (props) => {
                   <label htmlFor="formGroupExampleInput2">
                     Password
                     <input
-                      type="text"
+                      type="password"
                       value={password}
                       className="form-control"
                       onChange={handlePasswordChange}
