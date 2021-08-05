@@ -1,14 +1,12 @@
 import {
   GET_CARS,
-  GET_CARS_SUCCESS,
-  GET_CARS_FAILURE,
   DELETE_CAR,
-  DELETE_CAR_SUCCESS,
-  DELETE_CAR_FAILURE,
+  POST_CAR,
+  UPDATE_PART,
+  CAR_REQUEST_FAILURE,
 } from '../constants';
 
 const initialState = {
-  loading: false,
   cars: [],
   error: '',
 };
@@ -16,53 +14,60 @@ const initialState = {
 const carsReducer = (state = initialState, action) => {
   switch (action.type) {
     case GET_CARS: {
-      return {
-        ...state,
-        loading: true,
-        cars: [],
-        error: '',
-      };
-    }
-    case GET_CARS_SUCCESS: {
       const response = action.payload;
       return {
         ...state,
-        loading: false,
-        cars: response.cars,
-      };
-    }
-    case GET_CARS_FAILURE: {
-      return {
-        ...state,
-        loading: false,
-        cars: [],
-        error: action.payload,
+        cars: response.cars.reverse(),
+        error: '',
       };
     }
 
     case DELETE_CAR: {
-      return {
-        ...state,
-        loading: true,
-        error: '',
-      };
-    }
-    case DELETE_CAR_SUCCESS: {
       const id = action.payload;
       const { cars } = state;
       const newCars = cars.filter((car) => (car.id !== id));
       return {
         ...state,
         cars: newCars,
-        loading: false,
         error: '',
       };
     }
-    case DELETE_CAR_FAILURE: {
+
+    case POST_CAR: {
+      const response = action.payload;
+      const { cars } = state;
+      const { car } = response;
       return {
         ...state,
-        loading: false,
-        cars: [],
+        error: '',
+        cars: [...cars].unshift(car),
+      };
+    }
+
+    case UPDATE_PART: {
+      const response = action.payload;
+      const { part } = response;
+      const { id } = part;
+      const carId = part.car_id;
+      const newCar = state.cars.find((car) => (car.id === carId));
+      console.log(part);
+
+      const updatedParts = newCar.parts.map((part) => (part.id === id ? response.part : part));
+
+      newCar.parts = updatedParts;
+
+      const newCars = state.cars.map((car) => (car.id === carId ? newCar : car));
+
+      return {
+        ...state,
+        error: '',
+        cars: newCars,
+      };
+    }
+
+    case CAR_REQUEST_FAILURE: {
+      return {
+        ...state,
         error: action.payload,
       };
     }
