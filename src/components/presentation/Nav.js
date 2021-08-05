@@ -5,7 +5,7 @@ import { connect } from 'react-redux';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faCaretUp, faCaretDown } from '@fortawesome/free-solid-svg-icons';
 import logo from '../../assets/logo.png';
-import logOutUser from '../../redux/actions/logOutAction';
+import { logOutUser } from '../../redux/actions/userAction';
 
 const Nav = (props) => {
   const { logOutUser, loggedIn } = props;

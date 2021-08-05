@@ -1,13 +1,14 @@
-/* eslint-disable */
 import React, { useState, useRef } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
-import { Redirect } from 'react-router-dom';
 import getPartsData from '../../helpers/carFormHelper';
-import postCarAction from '../../redux/actions/postCarAction';
+import { postCar } from '../../redux/actions/carsAction';
+import LogInForm from './LogInForm';
 
 const CarForm = (props) => {
-  const { handlePostCarAction, loggedIn, error } = props;
+  const {
+    handlePostCar, loggedIn, error, history,
+  } = props;
 
   const rate1 = useRef(null);
   const rate2 = useRef(null);
@@ -18,7 +19,6 @@ const CarForm = (props) => {
   const power1 = useRef(null);
   const power2 = useRef(null);
   const power3 = useRef(null);
-  
 
   const [make, setMake] = useState('');
   const [fuelRate, setFuelRate] = useState(0);
@@ -36,6 +36,8 @@ const CarForm = (props) => {
     setHorsePower(e.target.value);
   };
 
+  console.log(history);
+
   const handleFormSubmit = (e) => {
     e.preventDefault();
     const data = { make, fuelRate, horsePower };
@@ -44,10 +46,12 @@ const CarForm = (props) => {
     setMake('');
     setFuelRate(0);
     const radioButtons = [rate1, rate2, rate3, rate4, power1, power2, power3];
-    radioButtons.forEach((button)=>(button.current.checked = false));
+    radioButtons.forEach((button) => {
+      const newButton = button;
+      newButton.current.checked = false;
+    });
 
-    handlePostCarAction(carDetails);
-    
+    handlePostCar(carDetails, history);
   };
 
   const form = (
@@ -207,16 +211,13 @@ const CarForm = (props) => {
     </form>
   );
 
-  const display = () => {
-    if (!loggedIn) {
-      return <Redirect to="/" />;
-    }
-    return form;
-  };
-
   return (
     <div className="container d-flex justify-content-center align-items-center">
-      {display()}
+      {
+        loggedIn
+          ? form
+          : <LogInForm />
+      }
       <p className="row justify-content-center">
         {
           error !== ''
@@ -228,20 +229,21 @@ const CarForm = (props) => {
 };
 
 const mapDispatchToProps = (dispatch) => ({
-  handlePostCarAction: (data) => {
-    dispatch(postCarAction(data));
+  handlePostCar: (data, history) => {
+    dispatch(postCar(data, history));
   },
 });
 
 const mapStateToProps = (state) => ({
   loggedIn: state.userReducer.loggedIn,
-  error: state.carReducer.error,
+  error: state.carsReducer.error,
 });
 
 CarForm.propTypes = {
   error: PropTypes.string.isRequired,
-  handlePostCarAction: PropTypes.func.isRequired,
+  handlePostCar: PropTypes.func.isRequired,
   loggedIn: PropTypes.bool.isRequired,
+  history: PropTypes.objectOf(PropTypes.any).isRequired,
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(CarForm);

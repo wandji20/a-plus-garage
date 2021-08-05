@@ -2,12 +2,18 @@ import React, { useState } from 'react';
 import PropTypes from 'prop-types';
 import { Link, Redirect } from 'react-router-dom';
 import { connect } from 'react-redux';
-import getLogInDetails from '../../redux/actions/logInAction';
+import { logInUser } from '../../redux/actions/userAction';
 
 const LogInForm = (props) => {
   const {
-    handleLogIn, error, credentialError, loggedIn,
+    handleLogIn, error, loggedIn,
   } = props;
+  console.log(loggedIn);
+
+  if (loggedIn) {
+    return <Redirect to="/" />;
+  }
+
   const [userName, setUserName] = useState('');
   const [password, setPassword] = useState('');
 
@@ -33,76 +39,64 @@ const LogInForm = (props) => {
           error !== ''
           && <span className="d-block m-auto">{error}</span>
         }
-        {
-          credentialError !== ''
-          && <span className="d-block m-auto">{credentialError}</span>
-        }
       </p>
-      {
-        loggedIn
-          ? <Redirect to="/" />
-          : (
-            <>
-              <form
-                className=" d-flex flex-column align-items-start col-sm-8 col-md-6"
-                onSubmit={handleFormSubmit}
-              >
 
-                <div className="form-group my-3">
-                  <label htmlFor="formGroupExampleInput2">
-                    UserName
-                    <input
-                      type="text"
-                      value={userName}
-                      className="form-control"
-                      placeholder="@username"
-                      onChange={handleUserNameChange}
-                    />
-                  </label>
-                </div>
-                <div className="form-group my-3">
-                  <label htmlFor="formGroupExampleInput2">
-                    Password
-                    <input
-                      type="password"
-                      value={password}
-                      className="form-control"
-                      onChange={handlePasswordChange}
-                    />
-                  </label>
-                </div>
+      <form
+        className=" d-flex flex-column align-items-start col-sm-8 col-md-6"
+        onSubmit={handleFormSubmit}
+      >
+        <div className="form-group my-3">
+          <label htmlFor="formGroupExampleInput2">
+            UserName
+            <input
+              type="text"
+              value={userName}
+              className="form-control"
+              placeholder="@username"
+              onChange={handleUserNameChange}
+            />
+          </label>
+        </div>
+        <div className="form-group my-3">
+          <label htmlFor="formGroupExampleInput2">
+            Password
+            <input
+              type="password"
+              value={password}
+              className="form-control"
+              onChange={handlePasswordChange}
+            />
+          </label>
+        </div>
 
-                <button type="submit" className="btn btn-info mb-2">log in</button>
-              </form>
-              <p className="align-self-start">
-                <Link to="/sign_up" style={{ textDecoration: 'none' }}>
-                  Create Account
-                </Link>
-              </p>
-            </>
-          )
-    }
+        <button type="submit" className="btn btn-info mb-2">log in</button>
+      </form>
+      <p className="align-self-start">
+        <Link to="/sign_up" style={{ textDecoration: 'none' }}>
+          Create Account
+        </Link>
+      </p>
     </div>
   );
 };
 
 const mapDispatchToProps = (dispatch) => ({
   handleLogIn: (details) => {
-    dispatch(getLogInDetails(details));
+    dispatch(logInUser(details));
   },
 });
 
 const mapStateToProps = (state) => ({
-  credentialError: state.userReducer.credentialError,
-  error: state.userReducer.error,
   loggedIn: state.userReducer.loggedIn,
+  error: state.userReducer.error,
+  // errorMessage: state.userReducer.errorMessage,
 });
 
 LogInForm.propTypes = {
-  credentialError: PropTypes.string.isRequired,
+  // errorMessage: PropTypes.string.isRequired,
+  loggedIn: PropTypes.bool.isRequired,
   error: PropTypes.string.isRequired,
   handleLogIn: PropTypes.func.isRequired,
-  loggedIn: PropTypes.bool.isRequired,
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(LogInForm);

@@ -1,48 +1,71 @@
-import React, { Fragment } from 'react';
+import React, { Fragment, useEffect } from 'react';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faCaretLeft, faCaretRight } from '@fortawesome/free-solid-svg-icons';
-import CarDetails from '../presentation/CarDetails';
+import Car from '../presentation/Car';
 import AddTrackButton from '../presentation/AddTrackButton';
 import setFilterAction from '../../redux/actions/setFilterAction';
+import { getToken } from '../../helpers/session';
+import { logInUserSession } from '../../redux/actions/userAction';
+import { getCars } from '../../redux/actions/carsAction';
 
 const Cars = (props) => {
   const {
-    cars, index, handleSetFilterAction,
+    cars, index, handleSetFilterAction, loggedIn, handleGetCars, handleLogInSession,
   } = props;
 
-  const carIds = cars.map((car) => car.id);
+  const token = getToken('TOKEN');
 
-  const handleNextIdChange = () => {
-    if (index < carIds.length - 1) {
+  useEffect(() => {
+    if (token.auth_token && !loggedIn) {
+      handleLogInSession();
+    }
+  }, []);
+
+  useEffect(() => {
+    if (loggedIn && token.auth_token) {
+      handleGetCars(token);
+    }
+  }, [loggedIn]);
+
+  const handleNextChange = () => {
+    if (index < cars.length - 1) {
       const newIndex = index + 1;
       handleSetFilterAction(newIndex);
     }
   };
 
-  const handlePrevIdChange = () => {
+  const handlePrevChange = () => {
     if (index > 0) {
       const newIndex = index - 1;
       handleSetFilterAction(newIndex);
     }
   };
 
-  const nextId = carIds[index + 1] || 0;
-  const id = carIds[index];
-  const prevId = carIds[index - 1] || 0;
+  const car = cars[index];
+  console.log('index', index);
+  console.log(car);
 
   return (
     <>
-      <div className="d-flex justify-content-between position-fixed car-navs">
+      <div
+        className={
+            `${
+              (cars.length < 1)
+                ? 'd-none'
+                : 'd-flex justify-content-between position-fixed car-navs'
+            }`
+          }
+      >
         <div className="span d-inline-block">
           {
-            index > 0 && prevId !== 0
+            (index > 0 && loggedIn)
               && (
                 <button
                   type="button"
                   className="btn"
-                  onClick={handlePrevIdChange}
+                  onClick={handlePrevChange}
                 >
                   <FontAwesomeIcon icon={faCaretLeft} />
                 </button>
@@ -51,12 +74,12 @@ const Cars = (props) => {
         </div>
         <div className="span d-inline-block">
           {
-              (index < carIds.length - 1)
+              (index < cars.length - 1 && loggedIn)
               && (
                 <button
                   type="button"
                   className="btn"
-                  onClick={handleNextIdChange}
+                  onClick={handleNextChange}
                 >
                   <FontAwesomeIcon icon={faCaretRight} />
                 </button>
@@ -64,11 +87,13 @@ const Cars = (props) => {
             }
         </div>
       </div>
-      {
-        (carIds.length > 0)
-          ? <CarDetails id={id} nextId={nextId} prevId={prevId} />
-          : <AddTrackButton />
-      }
+      <div className="container remove-padding flex-column align-items-center d-flex justify-content-center">
+        {
+          (cars.length > 0 && loggedIn)
+            ? <Car car={car} />
+            : <AddTrackButton />
+        }
+      </div>
     </>
   );
 };
@@ -76,22 +101,28 @@ const Cars = (props) => {
 const mapStateToProps = (state) => ({
   index: state.filterReducer.index,
   cars: state.carsReducer.cars,
+  loggedIn: state.userReducer.loggedIn,
 });
 
 const mapDispatchToProps = (dispatch) => ({
   handleSetFilterAction: (index) => {
     dispatch(setFilterAction(index));
   },
+  handleGetCars: () => {
+    dispatch(getCars());
+  },
+  handleLogInSession: () => {
+    dispatch(logInUserSession());
+  },
 });
 
 Cars.propTypes = {
-  cars: PropTypes.arrayOf(PropTypes.objectOf(PropTypes.any)),
-  handleSetFilterAction: PropTypes.func.isRequired,
+  cars: PropTypes.arrayOf(PropTypes.objectOf(PropTypes.any)).isRequired,
   index: PropTypes.number.isRequired,
-};
-
-Cars.defaultProps = {
-  cars: [],
+  loggedIn: PropTypes.bool.isRequired,
+  handleSetFilterAction: PropTypes.func.isRequired,
+  handleLogInSession: PropTypes.func.isRequired,
+  handleGetCars: PropTypes.func.isRequired,
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(Cars);

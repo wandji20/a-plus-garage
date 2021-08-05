@@ -1,32 +1,25 @@
 import React, { Fragment, useEffect } from 'react';
-import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import { CircularProgressbar } from 'react-circular-progressbar';
 import 'react-circular-progressbar/dist/styles.css';
-import getCarAction from '../../redux/actions/getCarAction';
 import Part from './Part';
 import Button from './Button';
 import computeDisplayDetails from '../../helpers/computeDisplayInfo';
 
-const CarDetails = (props) => {
+const Car = (props) => {
   const {
-    car, handleGetCarDetails, loggedIn, id, parts,
+    car,
   } = props;
 
   const {
-    make, power, fuel,
+    id, make, power, fuel, parts,
   } = car;
 
-  const { allPartsInfo, overall } = computeDisplayDetails(parts);
-
-  useEffect(() => {
-    if (loggedIn && id !== 0) {
-      handleGetCarDetails(id);
-    }
-  }, [id]);
   useEffect(() => {
 
   }, [parts]);
+
+  const { allPartsInfo, overall } = computeDisplayDetails(parts);
 
   return (
     <>
@@ -80,7 +73,7 @@ const CarDetails = (props) => {
       </div>
       <div className="row py-2 justify-content-center">
         {
-        (id !== 0 && parts.length > 0)
+        (parts && parts.length > 0)
         && <Button id={id} />
       }
 
@@ -89,24 +82,8 @@ const CarDetails = (props) => {
   );
 };
 
-const mapStateToProps = (state) => ({
-  loggedIn: state.userReducer.loggedIn,
-  car: state.carReducer.car,
-  parts: state.carReducer.parts,
-});
-
-const mapDispatchToProps = (dispatch) => ({
-  handleGetCarDetails: (carId) => {
-    dispatch(getCarAction(carId));
-  },
-});
-
-CarDetails.propTypes = {
-  loggedIn: PropTypes.bool.isRequired,
+Car.propTypes = {
   car: PropTypes.objectOf(PropTypes.any).isRequired,
-  handleGetCarDetails: PropTypes.func.isRequired,
-  id: PropTypes.number.isRequired,
-  parts: PropTypes.arrayOf(PropTypes.any).isRequired,
 };
 
-export default connect(mapStateToProps, mapDispatchToProps)(CarDetails);
+export default Car;

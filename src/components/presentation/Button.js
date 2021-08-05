@@ -3,12 +3,12 @@ import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faTrashAlt } from '@fortawesome/free-solid-svg-icons';
-import deleteCarAction from '../../redux/actions/deleteCarAction';
+import { deleteCar } from '../../redux/actions/carsAction';
 
 const Button = (props) => {
-  const { handleDeleteCarACtion, id, index } = props;
+  const { handleDeleteCarAction, id, index } = props;
   const handleDeleteCar = () => {
-    handleDeleteCarACtion(id, index);
+    handleDeleteCarAction(id, index);
   };
   return (
     <button
@@ -26,8 +26,8 @@ const Button = (props) => {
 };
 
 const mapDispatchToProps = (dispatch) => ({
-  handleDeleteCarACtion: (id, index) => {
-    dispatch(deleteCarAction(id, index));
+  handleDeleteCarAction: (id, index) => {
+    dispatch(deleteCar(id, index));
   },
 });
 
@@ -36,13 +36,9 @@ const mapStateToProps = (state) => ({
 });
 
 Button.propTypes = {
-  id: PropTypes.number,
+  id: PropTypes.number.isRequired,
   index: PropTypes.number.isRequired,
-  handleDeleteCarACtion: PropTypes.func.isRequired,
-};
-
-Button.defaultProps = {
-  id: 0,
+  handleDeleteCarAction: PropTypes.func.isRequired,
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(Button);

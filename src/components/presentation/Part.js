@@ -3,14 +3,14 @@ import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { CircularProgressbar } from 'react-circular-progressbar';
 import 'react-circular-progressbar/dist/styles.css';
-import updatePartAction from '../../redux/actions/updatePartAction';
+import { updatePart } from '../../redux/actions/carsAction';
 
 const Part = (props) => {
-  const { part, handleUpdateAction } = props;
+  const { part, handleUpdate } = props;
 
   const handleUpdatePart = () => {
     const { id, count } = part;
-    handleUpdateAction(part.car_id, id, { count: count + 1 });
+    handleUpdate(part.car_id, id, { count: count + 1 });
   };
   const { name, url, stats } = part;
   return (
@@ -78,14 +78,14 @@ const Part = (props) => {
 };
 
 const mapDispatchToProps = (dispatch) => ({
-  handleUpdateAction: (carId, id, data) => {
-    dispatch(updatePartAction(carId, id, data));
+  handleUpdate: (carId, id, data) => {
+    dispatch(updatePart(carId, id, data));
   },
 });
 
 Part.propTypes = {
   part: PropTypes.objectOf(PropTypes.any).isRequired,
-  handleUpdateAction: PropTypes.func.isRequired,
+  handleUpdate: PropTypes.func.isRequired,
 };
 
 export default connect(null, mapDispatchToProps)(Part);

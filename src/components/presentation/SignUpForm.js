@@ -2,12 +2,17 @@ import React, { useState } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { Link, Redirect } from 'react-router-dom';
-import signUpUserAction from '../../redux/actions/signUpAction';
+import { signUpUser } from '../../redux/actions/userAction';
 
 const SignUpForm = (props) => {
   const {
-    handleSignUpUser, error, credentialError, loggedIn,
+    handleSignUpUser, error, errorMessage, loggedIn,
   } = props;
+
+  if (loggedIn) {
+    return <Redirect to="/" />;
+  }
+
   const [name, setName] = useState('');
   const [userName, setUserName] = useState('');
   const [password, setPassword] = useState('');
@@ -49,80 +54,79 @@ const SignUpForm = (props) => {
           && <span className="d-block m-auto">{error}</span>
         }
         {
-          credentialError !== ''
-          && <span className="d-block m-auto">{credentialError}</span>
+          errorMessage !== ''
+          && <span className="d-block m-auto">{errorMessage}</span>
         }
       </p>
-      {
-      loggedIn
-        ? <Redirect to="/" />
-        : (
-          <>
-            <form
-              className=" d-flex flex-column align-items-start col-sm-8 col-md-6"
-              onSubmit={handleFormSubmit}
-            >
-              <div className="form-group my-3">
-                <label htmlFor="name">
-                  Name
-                  <input
-                    type="text"
-                    id="name"
-                    value={name}
-                    className="form-control"
-                    placeholder="...name"
-                    onChange={handleNameChange}
-                  />
-                </label>
 
-              </div>
-              <div className="form-group my-3">
-                <label htmlFor="formGroupExampleInput2">
-                  User Name
-                  <input
-                    type="text"
-                    value={userName}
-                    className="form-control"
-                    placeholder="@username"
-                    onChange={handleUserNameChange}
-                  />
-                </label>
-              </div>
+      <form
+        className=" d-flex flex-column align-items-start col-sm-8 col-md-6"
+        onSubmit={handleFormSubmit}
+      >
+        <div className="form-group my-3">
+          <label htmlFor="name">
+            Name
+            <input
+              type="text"
+              id="name"
+              value={name}
+              className="form-control"
+              placeholder="...name"
+              onChange={handleNameChange}
+              required
+            />
+          </label>
+        </div>
+        <div className="form-group my-3">
+          <label htmlFor="formGroupExampleInput2">
+            User Name
+            <input
+              type="text"
+              value={userName}
+              className="form-control"
+              placeholder="@username"
+              onChange={handleUserNameChange}
+              required
+            />
+          </label>
+        </div>
 
-              <div className="form-group my-3">
-                <label htmlFor="formGroupExampleInput2">
-                  Password
-                  <input
-                    type="password"
-                    value={password}
-                    className="form-control"
-                    placeholder="password"
-                    onChange={handlePasswordChange}
-                  />
-                </label>
-              </div>
+        <div className="form-group my-3">
+          <label htmlFor="formGroupExampleInput2">
+            Password
+            <input
+              type="password"
+              value={password}
+              className="form-control"
+              placeholder="password"
+              onChange={handlePasswordChange}
+              required
+            />
+          </label>
+        </div>
 
-              <div className="form-group my-3">
-                <label htmlFor="formGroupExampleInput2">
-                  Confirm Password
-                  <input
-                    type="password"
-                    value={passwordConfirm}
-                    className="form-control"
-                    onChange={handlePasswordConfirmChange}
-                  />
-                </label>
-              </div>
-              <button type="submit" className="btn btn-primary mb-2">Sign Up</button>
-            </form>
-            <p className="">
-              <Link to="/log_in" style={{ textDecoration: 'none' }}>
-                Already have an account ? Login
-              </Link>
-            </p>
-          </>
-        )
-    }
+        <div className="form-group my-3">
+          <label htmlFor="formGroupExampleInput2">
+            Confirm Password
+            <input
+              type="password"
+              value={passwordConfirm}
+              className="form-control"
+              onChange={handlePasswordConfirmChange}
+              required
+            />
+          </label>
+        </div>
+        <button type="submit" className="btn btn-primary mb-2">Sign Up</button>
+      </form>
+      <p className="">
+        <span className="inline-block">Already have an account ? </span>
+        <span className="inline-block">
+          <Link to="/log_in" style={{ textDecoration: 'none' }}>
+            log in
+          </Link>
+        </span>
+      </p>
     </div>
   );
 };
@@ -130,24 +134,20 @@ const SignUpForm = (props) => {
 const mapStateToProps = (state) => ({
   loggedIn: state.userReducer.loggedIn,
   error: state.userReducer.error,
-  credentialError: state.userReducer.credentialError,
+  errorMessage: state.userReducer.errorMessage,
 });
 
 const mapDispatchToProps = (dispatch) => ({
   handleSignUpUser: (data) => {
-    dispatch(signUpUserAction(data));
+    dispatch(signUpUser(data));
   },
 });
 
 SignUpForm.propTypes = {
-  credentialError: PropTypes.string.isRequired,
-  error: PropTypes.string.isRequired,
-  handleSignUpUser: PropTypes.func.isRequired,
   loggedIn: PropTypes.bool.isRequired,
+  error: PropTypes.string.isRequired,
+  errorMessage: PropTypes.string.isRequired,
+  handleSignUpUser: PropTypes.func.isRequired,
 };
-
-// SignUpForm.defaultProps = {
-//   handleSignUpUser: () => {},
-// };
 
 export default connect(mapStateToProps, mapDispatchToProps)(SignUpForm);
