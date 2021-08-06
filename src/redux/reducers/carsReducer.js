@@ -1,3 +1,4 @@
+import processCarsResponse from '../../helpers/processCars';
 import {
   GET_CARS,
   DELETE_CAR,
@@ -8,6 +9,7 @@ import {
 
 const initialState = {
   cars: [],
+  parts: [],
   error: '',
 };
 
@@ -15,9 +17,11 @@ const carsReducer = (state = initialState, action) => {
   switch (action.type) {
     case GET_CARS: {
       const response = action.payload;
+      const { cars, parts } = processCarsResponse(response.cars);
       return {
         ...state,
-        cars: response.cars.reverse(),
+        cars: cars.reverse(),
+        parts,
         error: '',
       };
     }
@@ -50,7 +54,6 @@ const carsReducer = (state = initialState, action) => {
       const { id } = part;
       const carId = part.car_id;
       const newCar = state.cars.find((car) => (car.id === carId));
-      console.log(part);
 
       const updatedParts = newCar.parts.map((part) => (part.id === id ? response.part : part));
 

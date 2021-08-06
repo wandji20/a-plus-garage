@@ -14,6 +14,46 @@ const partsURL = {
   Brakes: brake,
 };
 
+const evaluateCondition = (value) => {
+  switch (true) {
+    case value > 95: {
+      return {
+        status: 'Excellent',
+        color: '#0d8f11',
+      };
+    }
+    case value > 70: {
+      return {
+        status: 'Good',
+        color: '#56d65a',
+      };
+    }
+    case value > 50: {
+      return {
+        status: 'Average',
+        color: '#565ed6',
+      };
+    }
+    case value > 30: {
+      return {
+        status: 'Poor',
+        color: '#e8313d',
+      };
+    }
+    case (value > 0 && value <= 30): {
+      return {
+        status: 'Very Poor',
+        color: '#e31724',
+      };
+    }
+    default:
+      return {
+        status: '',
+        color: '#212529',
+      };
+  }
+};
+
 const getPartDetails = (part) => {
   const { life } = part;
   const date2 = new Date();
@@ -24,61 +64,13 @@ const getPartDetails = (part) => {
   const days = daysLeft - (months * 30);
   const percentage = Math.ceil((daysLeft * 1000) / (life * 30)) / 10;
 
-  switch (true) {
-    case percentage > 95: {
-      return {
-        status: 'Excellent',
-        color: '#0d8f11',
-        percentage,
-        days,
-        months,
-      };
-    }
-    case percentage > 70: {
-      return {
-        status: 'Good',
-        color: '#56d65a',
-        percentage,
-        days,
-        months,
-      };
-    }
-    case percentage > 50: {
-      return {
-        status: 'Average',
-        color: '#565ed6',
-        percentage,
-        days,
-        months,
-      };
-    }
-    case percentage > 30: {
-      return {
-        status: 'Poor',
-        color: '#e8313d',
-        percentage,
-        days,
-        months,
-      };
-    }
-    case (percentage > 0 && percentage <= 30): {
-      return {
-        status: 'Poor',
-        color: '#e31724',
-        percentage,
-        days,
-        months,
-      };
-    }
-    default:
-      return {
-        status: 'Untracked',
-        color: '#212529',
-        percentage: 0,
-        days,
-        months: 0,
-      };
-  }
+  const condition = evaluateCondition(percentage);
+  return {
+    ...condition,
+    days,
+    months,
+    percentage,
+  };
 };
 
 const computeDisplayDetails = (parts) => {
@@ -92,7 +84,8 @@ const computeDisplayDetails = (parts) => {
     return newPart;
   });
   overall = (Math.ceil((overall / 6) * 10)) / 10;
-  return { allPartsInfo, overall };
+  const condition = evaluateCondition(overall);
+  return { allPartsInfo, overall, condition };
 };
 
 export default computeDisplayDetails;

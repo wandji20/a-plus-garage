@@ -1,5 +1,6 @@
 import React, { Fragment, useEffect } from 'react';
 import PropTypes from 'prop-types';
+import { connect } from 'react-redux';
 import { CircularProgressbar } from 'react-circular-progressbar';
 import 'react-circular-progressbar/dist/styles.css';
 import Part from './Part';
@@ -8,18 +9,20 @@ import computeDisplayDetails from '../../helpers/computeDisplayInfo';
 
 const Car = (props) => {
   const {
-    car,
+    car, parts,
   } = props;
 
   const {
-    id, make, power, fuel, parts,
+    id, make, power, fuel,
   } = car;
+
+  const carParts = parts.filter((part) => (part.car_id === id));
 
   useEffect(() => {
 
-  }, [parts]);
+  }, [carParts]);
 
-  const { allPartsInfo, overall } = computeDisplayDetails(parts);
+  const { allPartsInfo, overall, condition } = computeDisplayDetails(carParts);
 
   return (
     <>
@@ -54,8 +57,8 @@ const Car = (props) => {
               text={`${overall}%`}
             />
           </figure>
-          <h3>
-            <span>{}</span>
+          <h3 className="d-flex flex-column align-items-center">
+            <span>{condition.status}</span>
             <span>
               {' '}
               Working Condition
@@ -73,7 +76,7 @@ const Car = (props) => {
       </div>
       <div className="row py-2 justify-content-center">
         {
-        (parts && parts.length > 0)
+        (carParts && carParts.length > 0)
         && <Button id={id} />
       }
 
@@ -82,8 +85,13 @@ const Car = (props) => {
   );
 };
 
+const mapStateToProps = (state) => ({
+  parts: state.carsReducer.parts,
+});
+
 Car.propTypes = {
   car: PropTypes.objectOf(PropTypes.any).isRequired,
+  parts: PropTypes.arrayOf(PropTypes.any).isRequired,
 };
 
-export default Car;
+export default connect(mapStateToProps)(Car);

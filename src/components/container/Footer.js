@@ -20,6 +20,7 @@ const Footer = () => {
         className="w-25 "
       >
         <NavLink
+          exact
           to="/new_car"
           style={linkStyle}
           activeClassName="current"
@@ -36,7 +37,7 @@ const Footer = () => {
       </div>
       <div className="w-50">
 
-        <NavLink to="/" style={linkStyle} activeClassName="current">
+        <NavLink exact to="/" style={linkStyle} activeClassName="current">
           <div className="d-flex justify-content-between align-items-center h-100">
             <div className="w-50 d-flex flex-column justify-content-around align-items-center">
               <FontAwesomeIcon icon={faCar} />
@@ -49,7 +50,7 @@ const Footer = () => {
         </NavLink>
       </div>
       <div className="w-25 ">
-        <NavLink to="/about" style={linkStyle} activeClassName="current">
+        <NavLink exact to="/about" style={linkStyle} activeClassName="current">
           <div className="d-flex justify-content-center align-self-center h-100">
             <span className="m-auto d-inline-block fs-1">
               <FontAwesomeIcon icon={faEllipsisH} />

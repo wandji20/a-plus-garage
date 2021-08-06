@@ -18,7 +18,6 @@ const userReducer = (state = initialState, action) => {
   switch (action.type) {
     case SIGN_UP_USER: {
       const response = action.payload;
-      console.log(response);
       if (response.auth_token) {
         setToken(response);
         return {
@@ -44,7 +43,6 @@ const userReducer = (state = initialState, action) => {
 
     case LOGIN_USER: {
       const response = action.payload;
-      console.log(response);
       if (response.auth_token) {
         setToken(response);
         return {

@@ -44,8 +44,6 @@ const Cars = (props) => {
   };
 
   const car = cars[index];
-  console.log('index', index);
-  console.log(car);
 
   return (
     <>
@@ -54,7 +52,7 @@ const Cars = (props) => {
             `${
               (cars.length < 1)
                 ? 'd-none'
-                : 'd-flex justify-content-between position-fixed car-navs'
+                : 'd-flex w-100 justify-content-between position-fixed car-navs'
             }`
           }
       >
@@ -89,7 +87,7 @@ const Cars = (props) => {
       </div>
       <div className="container remove-padding flex-column align-items-center d-flex justify-content-center">
         {
-          (cars.length > 0 && loggedIn)
+          (cars.length > 0 && loggedIn && car)
             ? <Car car={car} />
             : <AddTrackButton />
         }

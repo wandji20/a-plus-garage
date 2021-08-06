@@ -36,8 +36,8 @@ const carRequestFailure = (error) => ({
 });
 
 const getCars = () => async (dispatch) => {
-  const url = 'http://localhost:3001/cars/';
-  // const url = 'https://a-plus-garage-api.herokuapp.com/cars/';
+  // const url = 'http://localhost:3001/cars/';
+  const url = 'https://a-plus-garage-api.herokuapp.com/cars/';
   const authToken = getToken().auth_token;
   try {
     const server = await fetch(
@@ -51,15 +51,14 @@ const getCars = () => async (dispatch) => {
     );
     const response = await server.json();
     dispatch(getCarsRequest(response));
-    console.log(response);
   } catch (error) {
     dispatch(carRequestFailure(error));
   }
 };
 
 const deleteCar = (id, index) => async (dispatch) => {
-  const url = 'http://localhost:3001/cars/';
-  // const url = 'https://a-plus-garage-api.herokuapp.com/cars/';
+  // const url = 'http://localhost:3001/cars/';
+  const url = 'https://a-plus-garage-api.herokuapp.com/cars/';
   const authToken = getToken().auth_token;
   try {
     await axios.delete(
@@ -79,8 +78,8 @@ const deleteCar = (id, index) => async (dispatch) => {
 };
 
 const postCar = (data, history) => async (dispatch) => {
-  const url = 'http://localhost:3001/cars';
-  // const url = 'https://a-plus-garage-api.herokuapp.com/cars';
+  // const url = 'http://localhost:3001/cars';
+  const url = 'https://a-plus-garage-api.herokuapp.com/cars';
   const authToken = getToken().auth_token;
   try {
     const server = await fetch(
@@ -105,8 +104,8 @@ const postCar = (data, history) => async (dispatch) => {
 
 const updatePart = (carId, partId, data) => async (dispatch) => {
   const authToken = getToken().auth_token;
-  const url = 'http://localhost:3001/';
-  // const url = 'https://a-plus-garage-api.herokuapp.com/';
+  // const url = 'http://localhost:3001/';
+  const url = 'https://a-plus-garage-api.herokuapp.com/';
 
   const part = { ...data };
   try {
@@ -123,10 +122,8 @@ const updatePart = (carId, partId, data) => async (dispatch) => {
     );
 
     const response = await server.json();
-    console.log(response);
     dispatch(updatePartRequest(response));
   } catch (error) {
-    console.log(error);
     dispatch(carRequestFailure(error));
   }
 };

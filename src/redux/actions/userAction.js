@@ -26,9 +26,9 @@ const userRequestFailure = (error) => ({
 });
 
 const signUpUser = (data) => async (dispatch) => {
-  const url = 'http://localhost:3001/signup/';
+  // const url = 'http://localhost:3001/signup/';
 
-  // const url = 'https://a-plus-garage-api.herokuapp.com/signup/';
+  const url = 'https://a-plus-garage-api.herokuapp.com/signup/';
   try {
     const request = await fetch(
       url,
@@ -48,8 +48,8 @@ const signUpUser = (data) => async (dispatch) => {
 };
 
 const logInUser = (details) => async (dispatch) => {
-  const url = 'http://localhost:3001/auth/login';
-  // const url = 'https://a-plus-garage-api.herokuapp.com/auth/login';
+  // const url = 'http://localhost:3001/auth/login';
+  const url = 'https://a-plus-garage-api.herokuapp.com/auth/login';
   try {
     const response = await fetch(
       url,
