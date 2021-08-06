@@ -5,7 +5,7 @@ describe('authenticate User', () => {
     loading: false,
     loggedIn: false,
     error: '',
-    credentialError: '',
+    errorMessage: '',
   };
   beforeEach(() => initialState);
 
@@ -14,12 +14,11 @@ describe('authenticate User', () => {
   });
 
   it('handles login request', () => {
-    expect(userReducer(initialState, { type: 'SIGN_UP_USER_REQUEST' })).toEqual({
+    expect(userReducer(initialState, { type: 'SIGN_UP_USER', payload: { auth_token: 'kkkkk' } })).toEqual({
       ...initialState,
-      loading: true,
-      loggedIn: false,
+      loggedIn: true,
       error: '',
-      credentialError: '',
+      errorMessage: '',
     });
   });
 });

@@ -85,8 +85,12 @@ Array [
           </text>
         </svg>
       </figure>
-      <h3>
-        <span />
+      <h3
+        className="d-flex flex-column align-items-center"
+      >
+        <span>
+          
+        </span>
         <span>
            
           Working Condition

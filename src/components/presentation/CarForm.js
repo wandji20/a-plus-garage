@@ -36,8 +36,6 @@ const CarForm = (props) => {
     setHorsePower(e.target.value);
   };
 
-  console.log(history);
-
   const handleFormSubmit = (e) => {
     e.preventDefault();
     const data = { make, fuelRate, horsePower };
@@ -243,7 +241,11 @@ CarForm.propTypes = {
   error: PropTypes.string.isRequired,
   handlePostCar: PropTypes.func.isRequired,
   loggedIn: PropTypes.bool.isRequired,
-  history: PropTypes.objectOf(PropTypes.any).isRequired,
+  history: PropTypes.objectOf(PropTypes.any),
+};
+
+CarForm.defaultProps = {
+  history: {},
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(CarForm);

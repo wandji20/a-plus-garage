@@ -8,7 +8,6 @@ const LogInForm = (props) => {
   const {
     handleLogIn, error, loggedIn,
   } = props;
-  console.log(loggedIn);
 
   if (loggedIn) {
     return <Redirect to="/" />;

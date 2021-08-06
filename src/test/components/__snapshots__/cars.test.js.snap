@@ -3,7 +3,7 @@
 exports[`renders correctly 1`] = `
 Array [
   <div
-    className="d-flex justify-content-between position-fixed car-navs"
+    className="d-none"
   >
     <div
       className="span d-inline-block"
@@ -12,22 +12,26 @@ Array [
       className="span d-inline-block"
     />
   </div>,
-  <a
-    href="/log_in"
-    onClick={[Function]}
-    style={
-      Object {
-        "display": "block",
-        "marginTop": "200px",
-      }
-    }
+  <div
+    className="container remove-padding flex-column align-items-center d-flex justify-content-center"
   >
-    <button
-      className="btn btn-info"
-      type="button"
+    <a
+      href="/new_car"
+      onClick={[Function]}
+      style={
+        Object {
+          "display": "block",
+          "marginTop": "200px",
+        }
+      }
     >
-      Track Car
-    </button>
-  </a>,
+      <button
+        className="btn btn-info"
+        type="button"
+      >
+        Track Car
+      </button>
+    </a>
+  </div>,
 ]
 `;

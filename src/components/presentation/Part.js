@@ -7,7 +7,6 @@ import { updatePart } from '../../redux/actions/carsAction';
 
 const Part = (props) => {
   const { part, handleUpdate } = props;
-  console.log(part);
 
   const handleUpdatePart = () => {
     const { id, count } = part;

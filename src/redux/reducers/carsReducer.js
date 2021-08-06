@@ -28,43 +28,51 @@ const carsReducer = (state = initialState, action) => {
 
     case DELETE_CAR: {
       const id = action.payload;
-      const { cars } = state;
+      const { cars, parts } = state;
       const newCars = cars.filter((car) => (car.id !== id));
+      const newParts = parts.filter((part) => (part.car_id !== id));
       return {
         ...state,
         cars: newCars,
+        parts: newParts,
         error: '',
       };
     }
 
     case POST_CAR: {
       const response = action.payload;
-      const { cars } = state;
+      const { cars, parts } = state;
       const { car } = response;
+      const {
+        id, make, fuel, rate,
+      } = response.car;
+      const newCar = {
+        id, make, fuel, rate,
+      };
+      const newParts = car.parts;
+
       return {
         ...state,
         error: '',
-        cars: [...cars].unshift(car),
+        cars: [...cars].unshift(newCar),
+        parts: [...parts].push(...newParts),
       };
     }
 
     case UPDATE_PART: {
       const response = action.payload;
       const { part } = response;
+      const { parts } = state;
       const { id } = part;
-      const carId = part.car_id;
-      const newCar = state.cars.find((car) => (car.id === carId));
+      // const carId = part.car_id;
+      // const newCar = state.cars.find((car) => (car.id === carId));
 
-      const updatedParts = newCar.parts.map((part) => (part.id === id ? response.part : part));
-
-      newCar.parts = updatedParts;
-
-      const newCars = state.cars.map((car) => (car.id === carId ? newCar : car));
+      const newParts = parts.map((part) => (part.id === id ? response.part : part));
 
       return {
         ...state,
         error: '',
-        cars: newCars,
+        parts: newParts,
       };
     }
 

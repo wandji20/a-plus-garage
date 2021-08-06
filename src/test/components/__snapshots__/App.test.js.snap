@@ -61,10 +61,20 @@ Array [
     id="content"
   >
     <div
-      className="container remove-padding d-flex justify-content-center flex-wrap"
+      className="d-none"
+    >
+      <div
+        className="span d-inline-block"
+      />
+      <div
+        className="span d-inline-block"
+      />
+    </div>
+    <div
+      className="container remove-padding flex-column align-items-center d-flex justify-content-center"
     >
       <a
-        href="/log_in"
+        href="/new_car"
         onClick={[Function]}
         style={
           Object {

@@ -76,7 +76,7 @@ const Car = (props) => {
       </div>
       <div className="row py-2 justify-content-center">
         {
-        (carParts && carParts.length > 0)
+        (id && carParts && carParts.length > 0)
         && <Button id={id} />
       }
 
@@ -90,8 +90,12 @@ const mapStateToProps = (state) => ({
 });
 
 Car.propTypes = {
-  car: PropTypes.objectOf(PropTypes.any).isRequired,
+  car: PropTypes.objectOf(PropTypes.any),
   parts: PropTypes.arrayOf(PropTypes.any).isRequired,
+};
+
+Car.defaultProps = {
+  car: {},
 };
 
 export default connect(mapStateToProps)(Car);

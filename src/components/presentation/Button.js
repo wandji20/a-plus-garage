@@ -36,9 +36,13 @@ const mapStateToProps = (state) => ({
 });
 
 Button.propTypes = {
-  id: PropTypes.number.isRequired,
+  id: PropTypes.number,
   index: PropTypes.number.isRequired,
   handleDeleteCarAction: PropTypes.func.isRequired,
+};
+
+Button.defaultProps = {
+  id: null,
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(Button);
