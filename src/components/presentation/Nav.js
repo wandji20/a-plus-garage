@@ -6,9 +6,13 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faCaretUp, faCaretDown } from '@fortawesome/free-solid-svg-icons';
 import logo from '../../assets/logo.png';
 import { logOutUser } from '../../redux/actions/userAction';
+import { getCarsRequest } from '../../redux/actions/carsAction';
+import setFilterAction from '../../redux/actions/setFilterAction';
 
 const Nav = (props) => {
-  const { logOutUser, loggedIn } = props;
+  const {
+    logOutUser, loggedIn, handleGetCarsRequest, handleSetIndex,
+  } = props;
 
   const [display, setDisplay] = useState(false);
 
@@ -22,6 +26,8 @@ const Nav = (props) => {
 
   const handleLogOutAction = () => {
     handleNavOptions();
+    handleSetIndex(0);
+    handleGetCarsRequest({ cars: [], parts: [] });
     logOutUser();
   };
 
@@ -91,11 +97,6 @@ const Nav = (props) => {
   );
 };
 
-Nav.propTypes = {
-  loggedIn: PropTypes.bool.isRequired,
-  logOutUser: PropTypes.func.isRequired,
-};
-
 const mapStateToProps = (state) => ({
   loggedIn: state.userReducer.loggedIn,
 });
@@ -104,6 +105,21 @@ const mapDispatchToProps = (dispatch) => ({
   logOutUser: () => {
     dispatch(logOutUser());
   },
+
+  handleGetCarsRequest: (response) => {
+    dispatch(getCarsRequest(response));
+  },
+
+  handleSetIndex: (index) => {
+    dispatch(setFilterAction(index));
+  },
 });
+
+Nav.propTypes = {
+  loggedIn: PropTypes.bool.isRequired,
+  logOutUser: PropTypes.func.isRequired,
+  handleGetCarsRequest: PropTypes.func.isRequired,
+  handleSetIndex: PropTypes.func.isRequired,
+};
 
 export default connect(mapStateToProps, mapDispatchToProps)(Nav);

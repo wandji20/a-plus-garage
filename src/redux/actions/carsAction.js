@@ -129,5 +129,5 @@ const updatePart = (carId, partId, data) => async (dispatch) => {
 };
 
 export {
-  getCars, deleteCar, postCar, updatePart,
+  getCars, deleteCar, postCar, updatePart, getCarsRequest,
 };
