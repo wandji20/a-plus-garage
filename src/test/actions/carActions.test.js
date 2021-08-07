@@ -8,30 +8,27 @@ import {
 const middlewares = [thunk];
 const mockStore = configureMockStore(middlewares);
 
-
 describe('when user loads all cars', () => {
-  
   jest.mock('axios');
-  
-  it('fires get cars action request', async () => {
 
+  it('fires get cars action request', async () => {
     const resp = { cars: [], parts: [] };
-    axios.get = jest.fn()
+    axios.get = jest.fn();
     axios.get.mockResolvedValue(resp);
 
     const store = mockStore([]);
     return store.dispatch(getCars())
-    .then(() => {
-      const actions = store.getActions();
+      .then(() => {
+        const actions = store.getActions();
         expect(actions[0]).toEqual({ type: 'GET_CARS' });
-      })
+      });
   });
 });
 
 describe('when user create car', () => {
   it('fires a post car action', async () => {
     const resp = { car: {} };
-    axios.post = jest.fn()
+    axios.post = jest.fn();
     axios.post.mockResolvedValue(resp);
     const store = mockStore({});
     return store.dispatch(postCar({ name: 'Matrix' }))
@@ -46,7 +43,7 @@ describe('when user create car', () => {
 describe('when user deletes car', () => {
   it('fires a delete car action', async () => {
     const store = mockStore({});
-    axios.delete = jest.fn()
+    axios.delete = jest.fn();
     return store.dispatch(deleteCar(1, 4))
       .then(() => {
         const actions = store.getActions();
@@ -59,10 +56,10 @@ describe('when user deletes car', () => {
 describe('when user updates a car part', () => {
   it('fires update part action', async () => {
     const resp = { part: {} };
-    axios.put = jest.fn()
+    axios.put = jest.fn();
     axios.put.mockResolvedValue(resp);
     const store = mockStore({});
-    return store.dispatch(updatePart(1, 2, {part: {}}))
+    return store.dispatch(updatePart(1, 2, { part: {} }))
       .then(() => {
         const actions = store.getActions();
         expect(actions[0]).toEqual({ type: 'UPDATE_PART' });

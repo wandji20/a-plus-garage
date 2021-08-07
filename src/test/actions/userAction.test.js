@@ -8,10 +8,9 @@ const mockStore = configureMockStore(middlewares);
 
 jest.mock('axios');
 describe('when a user signs up', () => {
-
   it('fires a sign up request action', async () => {
     const resp = { auth_token: 'nnnnnnnn' };
-    axios.post = jest.fn()
+    axios.post = jest.fn();
     axios.post.mockResolvedValue(resp);
     const store = mockStore({});
     return store.dispatch(signUpUser({ name: 'Wandji', userID: '@wandji' }))
@@ -25,7 +24,7 @@ describe('when a user signs up', () => {
 describe('when a user logs in', () => {
   it('fires a log in request action', async () => {
     const resp = { auth_token: 'nnnnnnnn' };
-    axios.post = jest.fn()
+    axios.post = jest.fn();
     axios.post.mockResolvedValue(resp);
     const store = mockStore({});
     return store.dispatch(logInUser({ userID: '@wandji', password: 'kkkkkkkkkkk' }))
@@ -35,5 +34,3 @@ describe('when a user logs in', () => {
       });
   });
 });
-
-
