@@ -1,3 +1,4 @@
+import axios from 'axios';
 import {
   LOGIN_USER,
   SIGN_UP_USER,
@@ -25,23 +26,13 @@ const userRequestFailure = (error) => ({
   payload: error,
 });
 
-const signUpUser = (data) => async (dispatch) => {
+const signUpUser = (user) => async (dispatch) => {
   // const url = 'http://localhost:3001/signup/';
 
   const url = 'https://a-plus-garage-api.herokuapp.com/signup/';
   try {
-    const request = await fetch(
-      url,
-      {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify(data),
-      },
-    );
-    const response = await request.json();
-    dispatch(signUpUserRequest(response));
+    const response = await axios.post(url, user);
+    dispatch(signUpUserRequest(response.data));
   } catch (error) {
     dispatch(userRequestFailure(error.message));
   }
@@ -51,19 +42,8 @@ const logInUser = (details) => async (dispatch) => {
   // const url = 'http://localhost:3001/auth/login';
   const url = 'https://a-plus-garage-api.herokuapp.com/auth/login';
   try {
-    const response = await fetch(
-      url,
-      {
-        mode: 'cors',
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify(details),
-      },
-    );
-    const data = await response.json();
-    dispatch(logInUserRequest(data));
+    const response = await axios.post(url, details);
+    dispatch(logInUserRequest(response.data));
   } catch (error) {
     dispatch(userRequestFailure(error.message));
   }

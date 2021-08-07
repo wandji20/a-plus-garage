@@ -40,7 +40,7 @@ const getCars = () => async (dispatch) => {
   const url = 'https://a-plus-garage-api.herokuapp.com/cars/';
   const authToken = getToken().auth_token;
   try {
-    const server = await fetch(
+    const response = await axios.get(
       url,
       {
         headers: {
@@ -49,8 +49,8 @@ const getCars = () => async (dispatch) => {
         },
       },
     );
-    const response = await server.json();
-    dispatch(getCarsRequest(response));
+
+    dispatch(getCarsRequest(response.data));
   } catch (error) {
     dispatch(carRequestFailure(error));
   }
@@ -77,25 +77,20 @@ const deleteCar = (id, index) => async (dispatch) => {
   }
 };
 
-const postCar = (data, history) => async (dispatch) => {
+const postCar = (car, history) => async (dispatch) => {
   // const url = 'http://localhost:3001/cars';
   const url = 'https://a-plus-garage-api.herokuapp.com/cars';
   const authToken = getToken().auth_token;
   try {
-    const server = await fetch(
-      url,
+    const response = await axios.post(url, car,
       {
-        method: 'POST',
         headers: {
           'Content-Type': 'application/json',
           Authorization: authToken,
         },
-        body: JSON.stringify(data),
-      },
-    );
-    const response = await server.json();
+      });
     dispatch(setFilterAction(0));
-    dispatch(postCarRequest(response));
+    dispatch(postCarRequest(response.data));
     history.push('/');
   } catch (error) {
     dispatch(carRequestFailure(error));
@@ -109,20 +104,14 @@ const updatePart = (carId, partId, data) => async (dispatch) => {
 
   const part = { ...data };
   try {
-    const server = await fetch(
-      `${url}cars/${carId}/parts/${partId}`,
+    const response = await axios.put(`${url}cars/${carId}/parts/${partId}`, part,
       {
-        method: 'PUT',
         headers: {
           'Content-Type': 'application/json',
           Authorization: authToken,
         },
-        body: JSON.stringify({ ...part }),
-      },
-    );
-
-    const response = await server.json();
-    dispatch(updatePartRequest(response));
+      });
+    dispatch(updatePartRequest(response.data));
   } catch (error) {
     dispatch(carRequestFailure(error));
   }
