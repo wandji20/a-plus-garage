@@ -211,17 +211,17 @@ const CarForm = (props) => {
 
   return (
     <div className="container d-flex justify-content-center align-items-center">
-      {
-        loggedIn
-          ? form
-          : <LogInForm />
-      }
       <p className="row justify-content-center">
         {
           error !== ''
           && <span className="d-block m-auto">{error}</span>
         }
       </p>
+      {
+        loggedIn
+          ? form
+          : <LogInForm />
+      }
     </div>
   );
 };

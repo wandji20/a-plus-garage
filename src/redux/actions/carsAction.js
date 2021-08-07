@@ -94,9 +94,9 @@ const postCar = (data, history) => async (dispatch) => {
       },
     );
     const response = await server.json();
-    history.push('/');
     dispatch(setFilterAction(0));
     dispatch(postCarRequest(response));
+    history.push('/');
   } catch (error) {
     dispatch(carRequestFailure(error));
   }

@@ -1,4 +1,4 @@
-import React, { Fragment, useEffect } from 'react';
+import React, { Fragment } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { CircularProgressbar } from 'react-circular-progressbar';
@@ -17,10 +17,6 @@ const Car = (props) => {
   } = car;
 
   const carParts = parts.filter((part) => (part.car_id === id));
-
-  useEffect(() => {
-
-  }, [carParts]);
 
   const { allPartsInfo, overall, condition } = computeDisplayDetails(carParts);
 

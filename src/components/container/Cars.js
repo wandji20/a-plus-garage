@@ -6,28 +6,15 @@ import { faCaretLeft, faCaretRight } from '@fortawesome/free-solid-svg-icons';
 import Car from '../presentation/Car';
 import AddTrackButton from '../presentation/AddTrackButton';
 import setFilterAction from '../../redux/actions/setFilterAction';
-import { getToken } from '../../helpers/session';
-import { logInUserSession } from '../../redux/actions/userAction';
-import { getCars } from '../../redux/actions/carsAction';
 
 const Cars = (props) => {
   const {
-    cars, index, handleSetFilterAction, loggedIn, handleGetCars, handleLogInSession,
+    cars, index, handleSetFilterAction, loggedIn,
   } = props;
 
-  const token = getToken('TOKEN');
-
   useEffect(() => {
-    if (token.auth_token && !loggedIn) {
-      handleLogInSession();
-    }
-  }, []);
 
-  useEffect(() => {
-    if (loggedIn && token.auth_token) {
-      handleGetCars(token);
-    }
-  }, [loggedIn]);
+  }, [cars]);
 
   const handleNextChange = () => {
     if (index < cars.length - 1) {
@@ -106,12 +93,6 @@ const mapDispatchToProps = (dispatch) => ({
   handleSetFilterAction: (index) => {
     dispatch(setFilterAction(index));
   },
-  handleGetCars: () => {
-    dispatch(getCars());
-  },
-  handleLogInSession: () => {
-    dispatch(logInUserSession());
-  },
 });
 
 Cars.propTypes = {
@@ -119,8 +100,6 @@ Cars.propTypes = {
   index: PropTypes.number.isRequired,
   loggedIn: PropTypes.bool.isRequired,
   handleSetFilterAction: PropTypes.func.isRequired,
-  handleLogInSession: PropTypes.func.isRequired,
-  handleGetCars: PropTypes.func.isRequired,
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(Cars);

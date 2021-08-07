@@ -4,6 +4,9 @@ exports[`renders correctly 1`] = `
 <div
   className="container d-flex justify-content-center align-items-center"
 >
+  <p
+    className="row justify-content-center"
+  />
   <div
     className="container w-75 d-flex flex-column justify-content-center align-items-start"
   >
@@ -68,8 +71,5 @@ exports[`renders correctly 1`] = `
       </a>
     </p>
   </div>
-  <p
-    className="row justify-content-center"
-  />
 </div>
 `;

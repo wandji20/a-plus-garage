@@ -6,7 +6,7 @@ import { signUpUser } from '../../redux/actions/userAction';
 
 const SignUpForm = (props) => {
   const {
-    handleSignUpUser, error, errorMessage, loggedIn,
+    handleSignUpUser, error, loggedIn,
   } = props;
 
   if (loggedIn) {
@@ -52,10 +52,6 @@ const SignUpForm = (props) => {
         {
           error !== ''
           && <span className="d-block m-auto">{error}</span>
-        }
-        {
-          errorMessage !== ''
-          && <span className="d-block m-auto">{errorMessage}</span>
         }
       </p>
 
@@ -134,7 +130,6 @@ const SignUpForm = (props) => {
 const mapStateToProps = (state) => ({
   loggedIn: state.userReducer.loggedIn,
   error: state.userReducer.error,
-  errorMessage: state.userReducer.errorMessage,
 });
 
 const mapDispatchToProps = (dispatch) => ({
@@ -146,7 +141,6 @@ const mapDispatchToProps = (dispatch) => ({
 SignUpForm.propTypes = {
   loggedIn: PropTypes.bool.isRequired,
   error: PropTypes.string.isRequired,
-  errorMessage: PropTypes.string.isRequired,
   handleSignUpUser: PropTypes.func.isRequired,
 };
 
