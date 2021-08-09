@@ -1,0 +1,37 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`renders correctly 1`] = `
+Array [
+  <div
+    className="d-none"
+  >
+    <div
+      className="span d-inline-block"
+    />
+    <div
+      className="span d-inline-block"
+    />
+  </div>,
+  <div
+    className="container remove-padding flex-column align-items-center d-flex justify-content-center"
+  >
+    <a
+      href="/new_car"
+      onClick={[Function]}
+      style={
+        Object {
+          "display": "block",
+          "marginTop": "200px",
+        }
+      }
+    >
+      <button
+        className="btn btn-info"
+        type="button"
+      >
+        Track Car
+      </button>
+    </a>
+  </div>,
+]
+`;

@@ -1,0 +1,246 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`renders correctly 1`] = `
+Array [
+  <header
+    className="container d-flex flex-column justify-content-center bg-info remove-padding header"
+  >
+    <nav
+      className="nav justify-content-between mx-2"
+    >
+      <div
+        aria-hidden="true"
+        className=""
+        onClick={[Function]}
+        onKeyDown={[Function]}
+      >
+        <a
+          href="/"
+          onClick={[Function]}
+        >
+          <img
+            alt="logo"
+            src="logo.png"
+          />
+        </a>
+      </div>
+      <div
+        className=""
+      >
+        <button
+          className="btn"
+          onClick={[Function]}
+          type="button"
+        >
+          <svg
+            aria-hidden="true"
+            className="svg-inline--fa fa-caret-down fa-w-10 "
+            data-icon="caret-down"
+            data-prefix="fas"
+            focusable="false"
+            role="img"
+            style={Object {}}
+            viewBox="0 0 320 512"
+            xmlns="http://www.w3.org/2000/svg"
+          >
+            <path
+              d="M31.3 192h257.3c17.8 0 26.7 21.5 14.1 34.1L174.1 354.8c-7.8 7.8-20.5 7.8-28.3 0L17.2 226.1C4.6 213.5 13.5 192 31.3 192z"
+              fill="currentColor"
+              style={Object {}}
+            />
+          </svg>
+        </button>
+      </div>
+    </nav>
+    <div
+      className="nav-controls bg-light position-absolute d-flex flex-column align-items-center"
+    />
+  </header>,
+  <section
+    className="container remove-padding"
+    id="content"
+  >
+    <div
+      className="d-none"
+    >
+      <div
+        className="span d-inline-block"
+      />
+      <div
+        className="span d-inline-block"
+      />
+    </div>
+    <div
+      className="container remove-padding flex-column align-items-center d-flex justify-content-center"
+    >
+      <a
+        href="/new_car"
+        onClick={[Function]}
+        style={
+          Object {
+            "display": "block",
+            "marginTop": "200px",
+          }
+        }
+      >
+        <button
+          className="btn btn-info"
+          type="button"
+        >
+          Track Car
+        </button>
+      </a>
+    </div>
+  </section>,
+  <footer
+    className=" d-flex justify-content-center align-items-center container remove-padding footer"
+  >
+    <div
+      className="w-25 "
+    >
+      <a
+        aria-current={null}
+        href="/new_car"
+        onClick={[Function]}
+        style={
+          Object {
+            "color": "black",
+            "display": "inline-block",
+            "height": "100%",
+            "margin": "auto",
+            "textDecoration": "none",
+            "width": "100%",
+          }
+        }
+      >
+        <div
+          className="d-flex justify-content-around h-100 flex-column align-items-center"
+        >
+          <span
+            className="d-block"
+          >
+            <svg
+              aria-hidden="true"
+              className="svg-inline--fa fa-plus fa-w-14 "
+              data-icon="plus"
+              data-prefix="fas"
+              focusable="false"
+              role="img"
+              style={Object {}}
+              viewBox="0 0 448 512"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <path
+                d="M416 208H272V64c0-17.67-14.33-32-32-32h-32c-17.67 0-32 14.33-32 32v144H32c-17.67 0-32 14.33-32 32v32c0 17.67 14.33 32 32 32h144v144c0 17.67 14.33 32 32 32h32c17.67 0 32-14.33 32-32V304h144c17.67 0 32-14.33 32-32v-32c0-17.67-14.33-32-32-32z"
+                fill="currentColor"
+                style={Object {}}
+              />
+            </svg>
+          </span>
+          <span
+            className="d-block"
+          >
+            Add Car
+          </span>
+        </div>
+      </a>
+    </div>
+    <div
+      className="w-50"
+    >
+      <a
+        aria-current="page"
+        className="current"
+        href="/"
+        onClick={[Function]}
+        style={
+          Object {
+            "color": "black",
+            "display": "inline-block",
+            "height": "100%",
+            "margin": "auto",
+            "textDecoration": "none",
+            "width": "100%",
+          }
+        }
+      >
+        <div
+          className="d-flex justify-content-between align-items-center h-100"
+        >
+          <div
+            className="w-50 d-flex flex-column justify-content-around align-items-center"
+          >
+            <svg
+              aria-hidden="true"
+              className="svg-inline--fa fa-car fa-w-16 "
+              data-icon="car"
+              data-prefix="fas"
+              focusable="false"
+              role="img"
+              style={Object {}}
+              viewBox="0 0 512 512"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <path
+                d="M499.99 176h-59.87l-16.64-41.6C406.38 91.63 365.57 64 319.5 64h-127c-46.06 0-86.88 27.63-103.99 70.4L71.87 176H12.01C4.2 176-1.53 183.34.37 190.91l6 24C7.7 220.25 12.5 224 18.01 224h20.07C24.65 235.73 16 252.78 16 272v48c0 16.12 6.16 30.67 16 41.93V416c0 17.67 14.33 32 32 32h32c17.67 0 32-14.33 32-32v-32h256v32c0 17.67 14.33 32 32 32h32c17.67 0 32-14.33 32-32v-54.07c9.84-11.25 16-25.8 16-41.93v-48c0-19.22-8.65-36.27-22.07-48H494c5.51 0 10.31-3.75 11.64-9.09l6-24c1.89-7.57-3.84-14.91-11.65-14.91zm-352.06-17.83c7.29-18.22 24.94-30.17 44.57-30.17h127c19.63 0 37.28 11.95 44.57 30.17L384 208H128l19.93-49.83zM96 319.8c-19.2 0-32-12.76-32-31.9S76.8 256 96 256s48 28.71 48 47.85-28.8 15.95-48 15.95zm320 0c-19.2 0-48 3.19-48-15.95S396.8 256 416 256s32 12.76 32 31.9-12.8 31.9-32 31.9z"
+                fill="currentColor"
+                style={Object {}}
+              />
+            </svg>
+          </div>
+          <div
+            className="w-50 d-flex flex-column justify-content-around align-items-start"
+          >
+            All Cars
+          </div>
+        </div>
+      </a>
+    </div>
+    <div
+      className="w-25 "
+    >
+      <a
+        aria-current={null}
+        href="/about"
+        onClick={[Function]}
+        style={
+          Object {
+            "color": "black",
+            "display": "inline-block",
+            "height": "100%",
+            "margin": "auto",
+            "textDecoration": "none",
+            "width": "100%",
+          }
+        }
+      >
+        <div
+          className="d-flex justify-content-center align-self-center h-100"
+        >
+          <span
+            className="m-auto d-inline-block fs-1"
+          >
+            <svg
+              aria-hidden="true"
+              className="svg-inline--fa fa-ellipsis-h fa-w-16 "
+              data-icon="ellipsis-h"
+              data-prefix="fas"
+              focusable="false"
+              role="img"
+              style={Object {}}
+              viewBox="0 0 512 512"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <path
+                d="M328 256c0 39.8-32.2 72-72 72s-72-32.2-72-72 32.2-72 72-72 72 32.2 72 72zm104-72c-39.8 0-72 32.2-72 72s32.2 72 72 72 72-32.2 72-72-32.2-72-72-72zm-352 0c-39.8 0-72 32.2-72 72s32.2 72 72 72 72-32.2 72-72-32.2-72-72-72z"
+                fill="currentColor"
+                style={Object {}}
+              />
+            </svg>
+          </span>
+        </div>
+      </a>
+    </div>
+  </footer>,
+]
+`;

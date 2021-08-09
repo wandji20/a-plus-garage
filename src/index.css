@@ -1,16 +1,97 @@
 body {
-  height: 100vh;
-  border: 1px solid black;
   width: 100%;
   margin: 0;
 }
 
 #root {
   max-width: 100%;
-  height: 100%;
+}
+
+.container {
+  max-width: 100%;
 }
 
 .remove-padding {
   padding-right: 0;
   padding-left: 0;
+}
+
+#content {
+  padding-top: 10vh;
+  padding-bottom: 10vh;
+}
+
+.header {
+  position: fixed;
+  top: 0;
+  width: 100%;
+  height: 10%;
+}
+
+.footer {
+  position: fixed;
+  bottom: 0;
+  width: 100%;
+  height: 10%;
+  background-color: #67899c;
+}
+
+.nav-controls {
+  right: 0;
+  top: 5vh;
+}
+
+.nav-controls a {
+  text-decoration: none;
+  color: black;
+}
+
+.nav-controls .btn {
+  background-color: #11adcc;
+  width: 100%;
+  border-radius: 0;
+  transition: 0.5s;
+
+  /* border-bottom: 1px solid #aaaaaa; */
+}
+
+.nav-controls .btn:hover {
+  font-size: 1.2rem;
+}
+
+.footer > div {
+  height: 100%;
+  width: 100%;
+  border-right: 2px solid #1a4761;
+}
+
+#remove-car-btn {
+  border: none;
+  box-shadow: none;
+}
+
+/* article #track-part-btn:hover {
+  background-color: #addc91;
+} */
+
+#circular {
+  width: 35px;
+  height: 35px;
+}
+
+.current {
+  background-color: #62b5e5;
+  color: #1a4761;
+}
+
+.img {
+  width: 64px;
+  height: 64px;
+  margin-right: 10px;
+  border-radius: 5px;
+}
+
+.car-navs {
+  width: 90%;
+  top: 250px;
 }

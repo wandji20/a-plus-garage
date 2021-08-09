@@ -1,26 +1,56 @@
+import React, { useEffect } from 'react';
+import { connect } from 'react-redux';
+import PropTypes from 'prop-types';
 import {
   BrowserRouter as Router,
-  Switch,
-  Route,
 } from 'react-router-dom';
 import Nav from '../presentation/Nav';
-import Home from './Home';
-import SignUpForm from '../presentation/SignUpForm';
-import LogInForm from '../presentation/LogInForm';
+import Navigations from './Navigations';
 import Footer from './Footer';
+import { getToken } from '../../helpers/session';
+import { logInUserSession } from '../../redux/actions/userAction';
+import { getCars } from '../../redux/actions/carsAction';
 
-function App() {
+function App(props) {
+  const { loggedIn, handleGetCars, handleLogInSession } = props;
+
+  const token = getToken();
+  useEffect(() => {
+    if (token.auth_token && !loggedIn) {
+      handleLogInSession();
+    }
+    if (loggedIn && token.auth_token) {
+      handleGetCars(token);
+    }
+  }, [loggedIn]);
   return (
     <Router>
       <Nav />
-      <Switch>
-        <Route exact path="/" component={Home} />
-        <Route exact path="/sign_up" component={SignUpForm} />
-        <Route exact path="/log_in" component={LogInForm} />
-      </Switch>
+      <section id="content" className="container remove-padding">
+        <Navigations />
+      </section>
       <Footer />
     </Router>
   );
 }
 
-export default App;
+const mapStateToProps = (state) => ({
+  loggedIn: state.userReducer.loggedIn,
+});
+
+const mapDispatchToProps = (dispatch) => ({
+  handleGetCars: () => {
+    dispatch(getCars());
+  },
+  handleLogInSession: () => {
+    dispatch(logInUserSession());
+  },
+});
+
+App.propTypes = {
+  loggedIn: PropTypes.bool.isRequired,
+  handleGetCars: PropTypes.func.isRequired,
+  handleLogInSession: PropTypes.func.isRequired,
+};
+
+export default connect(mapStateToProps, mapDispatchToProps)(App);

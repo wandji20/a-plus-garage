@@ -1,60 +1,101 @@
 import React, { useState } from 'react';
 import PropTypes from 'prop-types';
+import { Link, Redirect } from 'react-router-dom';
 import { connect } from 'react-redux';
-import getLogInDetails from '../../redux/actions/logInAction';
+import { logInUser } from '../../redux/actions/userAction';
 
 const LogInForm = (props) => {
-  const { handleLogIn } = props;
-  const [userID, setUserID] = useState('');
+  const {
+    handleLogIn, error, loggedIn,
+  } = props;
 
-  const handleUserIDChange = (e) => {
-    setUserID(e.target.value);
+  if (loggedIn) {
+    return <Redirect to="/" />;
+  }
+
+  const [userName, setUserName] = useState('');
+  const [password, setPassword] = useState('');
+
+  const handleUserNameChange = (e) => {
+    setUserName(e.target.value);
+  };
+
+  const handlePasswordChange = (e) => {
+    setPassword(e.target.value);
   };
 
   const handleFormSubmit = (e) => {
     e.preventDefault();
-    const details = { userID };
-    console.log(details);
-    setUserID('');
+    const details = { user_name: userName, password };
+    setUserName('');
+    setPassword('');
     handleLogIn(details);
   };
   return (
-    <section className="container d-flex justify-content-center align-items-center">
+    <div className="container w-75 d-flex flex-column justify-content-center align-items-start">
+      <p className="row justify-content-center text-danger">
+        {
+          error !== ''
+          && <span className="d-block m-auto">{error}</span>
+        }
+      </p>
+
       <form
-        className=" d-flex flex-column col-sm-8 col-md-6"
+        className=" d-flex flex-column align-items-start col-sm-8 col-md-6"
         onSubmit={handleFormSubmit}
       >
-
         <div className="form-group my-3">
           <label htmlFor="formGroupExampleInput2">
-            UserID
+            UserName
             <input
               type="text"
-              value={userID}
+              value={userName}
               className="form-control"
               placeholder="@username"
-              onChange={handleUserIDChange}
+              onChange={handleUserNameChange}
             />
           </label>
-          {/* {
-            (!response.status && response.errors && response.errors.userID) &&
-            <FormError column="UserID" errors={response.errors.userID} />
-          } */}
         </div>
-        <button type="submit" className="btn btn-primary mb-2 w-25">log in</button>
+        <div className="form-group my-3">
+          <label htmlFor="formGroupExampleInput2">
+            Password
+            <input
+              type="password"
+              value={password}
+              className="form-control"
+              onChange={handlePasswordChange}
+            />
+          </label>
+        </div>
+
+        <button type="submit" className="btn btn-info mb-2">log in</button>
       </form>
-    </section>
+      <p className="align-self-start">
+        <Link to="/sign_up" style={{ textDecoration: 'none' }}>
+          Create Account
+        </Link>
+      </p>
+    </div>
   );
 };
 
 const mapDispatchToProps = (dispatch) => ({
   handleLogIn: (details) => {
-    dispatch(getLogInDetails(details));
+    dispatch(logInUser(details));
   },
 });
 
+const mapStateToProps = (state) => ({
+  loggedIn: state.userReducer.loggedIn,
+  error: state.userReducer.error,
+  // errorMessage: state.userReducer.errorMessage,
+});
+
 LogInForm.propTypes = {
+  // errorMessage: PropTypes.string.isRequired,
+  loggedIn: PropTypes.bool.isRequired,
+  error: PropTypes.string.isRequired,
   handleLogIn: PropTypes.func.isRequired,
 };
 
-export default connect(null, mapDispatchToProps)(LogInForm);
+export default connect(mapStateToProps, mapDispatchToProps)(LogInForm);

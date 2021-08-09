@@ -1,0 +1,114 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`renders correctly 1`] = `
+<div
+  className="container w-75 d-flex flex-column justify-content-center align-items-left"
+>
+  <p
+    className="row justify-content-center text-danger"
+  />
+  <form
+    className=" d-flex flex-column align-items-start col-sm-8 col-md-6"
+    onSubmit={[Function]}
+  >
+    <div
+      className="form-group my-3"
+    >
+      <label
+        htmlFor="name"
+      >
+        Name
+        <input
+          className="form-control"
+          id="name"
+          onChange={[Function]}
+          placeholder="...name"
+          required={true}
+          type="text"
+          value=""
+        />
+      </label>
+    </div>
+    <div
+      className="form-group my-3"
+    >
+      <label
+        htmlFor="formGroupExampleInput2"
+      >
+        User Name
+        <input
+          className="form-control"
+          onChange={[Function]}
+          placeholder="@username"
+          required={true}
+          type="text"
+          value=""
+        />
+      </label>
+    </div>
+    <div
+      className="form-group my-3"
+    >
+      <label
+        htmlFor="formGroupExampleInput2"
+      >
+        Password
+        <input
+          className="form-control"
+          onChange={[Function]}
+          placeholder="password"
+          required={true}
+          type="password"
+          value=""
+        />
+      </label>
+    </div>
+    <div
+      className="form-group my-3"
+    >
+      <label
+        htmlFor="formGroupExampleInput2"
+      >
+        Confirm Password
+        <input
+          className="form-control"
+          onChange={[Function]}
+          required={true}
+          type="password"
+          value=""
+        />
+      </label>
+    </div>
+    <button
+      className="btn btn-primary mb-2"
+      type="submit"
+    >
+      Sign Up
+    </button>
+  </form>
+  <p
+    className=""
+  >
+    <span
+      className="inline-block"
+    >
+      Already have an account ? 
+    </span>
+    <span
+      className="inline-block"
+    >
+      <a
+        href="/log_in"
+        onClick={[Function]}
+        style={
+          Object {
+            "textDecoration": "none",
+          }
+        }
+      >
+        log in
+      </a>
+    </span>
+  </p>
+</div>
+`;
