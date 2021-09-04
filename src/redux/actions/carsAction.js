@@ -41,7 +41,7 @@ const getCars = () => async (dispatch) => {
 
   const authToken = getToken().auth_token;
   try {
-    const response = await axios.get(
+    const server = await fetch(
       url,
       {
         headers: {
@@ -50,8 +50,9 @@ const getCars = () => async (dispatch) => {
         },
       },
     );
-
-    dispatch(getCarsRequest(response.data));
+    const response = await server.json();
+    console.log(response);
+    dispatch(getCarsRequest(response));
   } catch (error) {
     dispatch(carRequestFailure(error));
   }
