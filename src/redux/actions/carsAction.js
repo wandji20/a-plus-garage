@@ -1,7 +1,6 @@
-import axios from 'axios';
-
 import { getToken } from '../../helpers/session';
 import {
+  BASE,
   GET_CARS,
   DELETE_CAR,
   POST_CAR,
@@ -36,11 +35,11 @@ const carRequestFailure = (error) => ({
 });
 
 const getCars = () => async (dispatch) => {
-  // const url = 'http://localhost:3001/cars/';
-  const url = 'https://a-plus-garage-api.herokuapp.com/cars/';
+  const url = `${BASE}cars/`;
+
   const authToken = getToken().auth_token;
   try {
-    const response = await axios.get(
+    const server = await fetch(
       url,
       {
         headers: {
@@ -49,21 +48,21 @@ const getCars = () => async (dispatch) => {
         },
       },
     );
-
-    dispatch(getCarsRequest(response.data));
+    const response = await server.json();
+    dispatch(getCarsRequest(response));
   } catch (error) {
     dispatch(carRequestFailure(error));
   }
 };
 
 const deleteCar = (id, index) => async (dispatch) => {
-  // const url = 'http://localhost:3001/cars/';
-  const url = 'https://a-plus-garage-api.herokuapp.com/cars/';
+  const url = `${BASE}cars/`;
   const authToken = getToken().auth_token;
   try {
-    await axios.delete(
+    await fetch(
       `${url}${id}`,
       {
+        method: 'DELETE',
         headers: {
           'Content-Type': 'application/json',
           Authorization: authToken,
@@ -78,19 +77,21 @@ const deleteCar = (id, index) => async (dispatch) => {
 };
 
 const postCar = (car, history) => async (dispatch) => {
-  // const url = 'http://localhost:3001/cars';
-  const url = 'https://a-plus-garage-api.herokuapp.com/cars';
+  const url = `${BASE}cars/`;
   const authToken = getToken().auth_token;
   try {
-    const response = await axios.post(url, car,
+    const server = await fetch(url,
       {
+        method: 'POST',
         headers: {
           'Content-Type': 'application/json',
           Authorization: authToken,
         },
+        body: JSON.stringify(car),
       });
+    const response = await server.json();
     dispatch(setFilterAction(0));
-    dispatch(postCarRequest(response.data));
+    dispatch(postCarRequest(response));
     history.push('/');
   } catch (error) {
     dispatch(carRequestFailure(error));
@@ -99,19 +100,20 @@ const postCar = (car, history) => async (dispatch) => {
 
 const updatePart = (carId, partId, data) => async (dispatch) => {
   const authToken = getToken().auth_token;
-  // const url = 'http://localhost:3001/';
-  const url = 'https://a-plus-garage-api.herokuapp.com/';
 
   const part = { ...data };
   try {
-    const response = await axios.put(`${url}cars/${carId}/parts/${partId}`, part,
+    const server = await fetch(`${BASE}cars/${carId}/parts/${partId}`,
       {
+        method: 'PUT',
         headers: {
           'Content-Type': 'application/json',
           Authorization: authToken,
         },
+        body: JSON.stringify(part),
       });
-    dispatch(updatePartRequest(response.data));
+    const response = await server.json();
+    dispatch(updatePartRequest(response));
   } catch (error) {
     dispatch(carRequestFailure(error));
   }

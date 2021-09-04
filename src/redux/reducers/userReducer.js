@@ -2,7 +2,8 @@ import { setToken } from '../../helpers/session';
 import {
   SIGN_UP_USER,
   LOGIN_USER,
-  USER_REQUEST_FAILURE,
+  LOGIN_USER_FAILURE,
+  SIGNUP_USER_FAILURE,
   LOGOUT_USER,
   LOGIN_USER_SESSION,
 } from '../constants';
@@ -10,8 +11,8 @@ import {
 const initialState = {
   loading: false,
   loggedIn: false,
-  errorMessage: '',
-  error: '',
+  loginError: '',
+  signupError: '',
 };
 
 const userReducer = (state = initialState, action) => {
@@ -19,25 +20,35 @@ const userReducer = (state = initialState, action) => {
     case SIGN_UP_USER: {
       const response = action.payload;
       if (response.auth_token) {
-        setToken(response);
+        setToken(response.auth_token);
         return {
           ...state,
           loggedIn: true,
-          errorMessage: '',
-          error: '',
+          signupError: '',
+        };
+      }
+      if (response.message) {
+        const errorMessage = response.message.split(':')[1];
+        return {
+          ...state,
+          signupError: errorMessage,
         };
       }
       return {
         ...state,
-        errorMessage: response.message,
-        error: '',
       };
     }
-    case USER_REQUEST_FAILURE: {
+    case SIGNUP_USER_FAILURE: {
       return {
         ...state,
-        error: action.payload,
-        errorMessage: '',
+        signupError: action.payload,
+      };
+    }
+
+    case LOGIN_USER_FAILURE: {
+      return {
+        ...state,
+        loginError: action.payload,
       };
     }
 
@@ -48,16 +59,13 @@ const userReducer = (state = initialState, action) => {
         return {
           ...state,
           loggedIn: true,
-          error: '',
-          errorMessage: '',
+          loginError: '',
         };
       }
       return {
         ...state,
-        loading: false,
         loggedIn: false,
-        error: '',
-        errorMessage: response.message,
+        loginError: response.message,
       };
     }
 
@@ -66,7 +74,8 @@ const userReducer = (state = initialState, action) => {
       return {
         ...state,
         loggedIn: false,
-        error: '',
+        loginError: '',
+        signupError: '',
       };
     }
 
@@ -74,7 +83,6 @@ const userReducer = (state = initialState, action) => {
       return {
         ...state,
         loggedIn: true,
-        error: '',
       };
     }
 

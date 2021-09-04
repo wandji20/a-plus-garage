@@ -6,7 +6,7 @@ import { signUpUser } from '../../redux/actions/userAction';
 
 const SignUpForm = (props) => {
   const {
-    handleSignUpUser, error, loggedIn,
+    handleSignUpUser, signupError, loggedIn,
   } = props;
 
   if (loggedIn) {
@@ -39,19 +39,19 @@ const SignUpForm = (props) => {
       name, user_name: userName, password, password_confirmation: passwordConfirm,
     };
     e.preventDefault();
+    handleSignUpUser(data);
     setName('');
     setUserName('');
     setPassword('');
     setPasswordConfirm('');
-    handleSignUpUser(data);
   };
 
   return (
     <div className="container w-75 d-flex flex-column justify-content-center align-items-left">
-      <p className="row justify-content-center text-danger">
+      <p className="row justify-content-center text-danger pt-3">
         {
-          error !== ''
-          && <span className="d-block m-auto">{error}</span>
+          signupError !== ''
+          && <span className="d-block m-auto">{signupError}</span>
         }
       </p>
 
@@ -129,7 +129,7 @@ const SignUpForm = (props) => {
 
 const mapStateToProps = (state) => ({
   loggedIn: state.userReducer.loggedIn,
-  error: state.userReducer.error,
+  signupError: state.userReducer.signupError,
 });
 
 const mapDispatchToProps = (dispatch) => ({
@@ -140,7 +140,7 @@ const mapDispatchToProps = (dispatch) => ({
 
 SignUpForm.propTypes = {
   loggedIn: PropTypes.bool.isRequired,
-  error: PropTypes.string.isRequired,
+  signupError: PropTypes.string.isRequired,
   handleSignUpUser: PropTypes.func.isRequired,
 };
 
