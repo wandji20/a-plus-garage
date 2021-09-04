@@ -205,7 +205,7 @@ const CarForm = (props) => {
         </div>
       </fieldset>
 
-      <button type="submit" className="btn btn-info mb-2">Track Car</button>
+      <button type="submit" className="btn btn-info mb-2">Add Car</button>
     </form>
   );
 
