@@ -58,7 +58,7 @@ const Part = (props) => {
             className="btn btn-info"
             onClick={handleUpdatePart}
           >
-            Track
+            Repair
           </button>
 
         </div>

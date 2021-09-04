@@ -18,7 +18,7 @@ const Button = (props) => {
       onClick={handleDeleteCar}
     >
       <span className="d-inline-block mx-1">
-        Untrack
+        Delete Car
       </span>
       <FontAwesomeIcon icon={faTrashAlt} />
     </button>

@@ -10,7 +10,7 @@ const AddTrackButton = () => {
   return (
     <Link to="/new_car" style={style}>
       <button type="button" className="btn btn-info">
-        Track Car
+        Add Car
       </button>
     </Link>
   );
