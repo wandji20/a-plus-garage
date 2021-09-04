@@ -40,10 +40,10 @@ const CarForm = (props) => {
     e.preventDefault();
     const data = { make, fuelRate, horsePower };
     const carDetails = getPartsData(data);
+    const radioButtons = [rate1, rate2, rate3, rate4, power1, power2, power3];
     setHorsePower(0);
     setMake('');
     setFuelRate(0);
-    const radioButtons = [rate1, rate2, rate3, rate4, power1, power2, power3];
     radioButtons.forEach((button) => {
       const newButton = button;
       newButton.current.checked = false;

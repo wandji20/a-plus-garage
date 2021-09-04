@@ -1,5 +1,5 @@
-// const BASE = 'https://a-plus-garage-api.herokuapp.com/';
-const BASE = 'http://localhost:3001/';
+const BASE = 'https://a-plus-garage-api.herokuapp.com/';
+// const BASE = 'http://localhost:3001/';
 const SIGN_UP_USER = 'SIGN_UP_USER';
 const LOGIN_USER = 'LOGIN_USER';
 const LOGOUT_USER = 'LOGOUT_USER';

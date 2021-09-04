@@ -39,11 +39,11 @@ const SignUpForm = (props) => {
       name, user_name: userName, password, password_confirmation: passwordConfirm,
     };
     e.preventDefault();
+    handleSignUpUser(data);
     setName('');
     setUserName('');
     setPassword('');
     setPasswordConfirm('');
-    handleSignUpUser(data);
   };
 
   return (
