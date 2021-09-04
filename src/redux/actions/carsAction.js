@@ -51,7 +51,6 @@ const getCars = () => async (dispatch) => {
       },
     );
     const response = await server.json();
-    console.log(response);
     dispatch(getCarsRequest(response));
   } catch (error) {
     dispatch(carRequestFailure(error));
@@ -62,9 +61,10 @@ const deleteCar = (id, index) => async (dispatch) => {
   const url = `${BASE}cars/`;
   const authToken = getToken().auth_token;
   try {
-    await axios.delete(
+    await fetch(
       `${url}${id}`,
       {
+        method: 'DELETE',
         headers: {
           'Content-Type': 'application/json',
           Authorization: authToken,
@@ -82,15 +82,18 @@ const postCar = (car, history) => async (dispatch) => {
   const url = `${BASE}cars/`;
   const authToken = getToken().auth_token;
   try {
-    const response = await axios.post(url, car,
+    const server = await fetch(url,
       {
+        method: 'POST',
         headers: {
           'Content-Type': 'application/json',
           Authorization: authToken,
         },
+        body: JSON.stringify(car),
       });
+    const response = await server.json();
     dispatch(setFilterAction(0));
-    dispatch(postCarRequest(response.data));
+    dispatch(postCarRequest(response));
     history.push('/');
   } catch (error) {
     dispatch(carRequestFailure(error));
