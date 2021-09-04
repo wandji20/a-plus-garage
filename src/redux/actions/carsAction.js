@@ -2,6 +2,7 @@ import axios from 'axios';
 
 import { getToken } from '../../helpers/session';
 import {
+  BASE,
   GET_CARS,
   DELETE_CAR,
   POST_CAR,
@@ -36,8 +37,8 @@ const carRequestFailure = (error) => ({
 });
 
 const getCars = () => async (dispatch) => {
-  // const url = 'http://localhost:3001/cars/';
-  const url = 'https://a-plus-garage-api.herokuapp.com/cars/';
+  const url = `${BASE}cars/`;
+
   const authToken = getToken().auth_token;
   try {
     const response = await axios.get(
@@ -57,8 +58,7 @@ const getCars = () => async (dispatch) => {
 };
 
 const deleteCar = (id, index) => async (dispatch) => {
-  // const url = 'http://localhost:3001/cars/';
-  const url = 'https://a-plus-garage-api.herokuapp.com/cars/';
+  const url = `${BASE}cars/`;
   const authToken = getToken().auth_token;
   try {
     await axios.delete(
@@ -78,8 +78,7 @@ const deleteCar = (id, index) => async (dispatch) => {
 };
 
 const postCar = (car, history) => async (dispatch) => {
-  // const url = 'http://localhost:3001/cars';
-  const url = 'https://a-plus-garage-api.herokuapp.com/cars';
+  const url = `${BASE}cars/`;
   const authToken = getToken().auth_token;
   try {
     const response = await axios.post(url, car,
@@ -99,12 +98,10 @@ const postCar = (car, history) => async (dispatch) => {
 
 const updatePart = (carId, partId, data) => async (dispatch) => {
   const authToken = getToken().auth_token;
-  // const url = 'http://localhost:3001/';
-  const url = 'https://a-plus-garage-api.herokuapp.com/';
 
   const part = { ...data };
   try {
-    const response = await axios.put(`${url}cars/${carId}/parts/${partId}`, part,
+    const response = await axios.put(`${BASE}cars/${carId}/parts/${partId}`, part,
       {
         headers: {
           'Content-Type': 'application/json',

@@ -6,7 +6,7 @@ import { logInUser } from '../../redux/actions/userAction';
 
 const LogInForm = (props) => {
   const {
-    handleLogIn, error, loggedIn,
+    handleLogIn, loginError, loggedIn,
   } = props;
 
   if (loggedIn) {
@@ -33,10 +33,10 @@ const LogInForm = (props) => {
   };
   return (
     <div className="container w-75 d-flex flex-column justify-content-center align-items-start">
-      <p className="row justify-content-center text-danger">
+      <p className="row justify-content-center text-danger pt-3">
         {
-          error !== ''
-          && <span className="d-block m-auto">{error}</span>
+          loginError !== ''
+          && <span className="d-block m-auto">{loginError}</span>
         }
       </p>
 
@@ -87,14 +87,14 @@ const mapDispatchToProps = (dispatch) => ({
 
 const mapStateToProps = (state) => ({
   loggedIn: state.userReducer.loggedIn,
-  error: state.userReducer.error,
-  // errorMessage: state.userReducer.errorMessage,
+  loginError: state.userReducer.loginError,
+  // loginErrorMessage: state.userReducer.loginErrorMessage,
 });
 
 LogInForm.propTypes = {
-  // errorMessage: PropTypes.string.isRequired,
+  // loginErrorMessage: PropTypes.string.isRequired,
   loggedIn: PropTypes.bool.isRequired,
-  error: PropTypes.string.isRequired,
+  loginError: PropTypes.string.isRequired,
   handleLogIn: PropTypes.func.isRequired,
 };
 
