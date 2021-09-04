@@ -1,5 +1,3 @@
-import axios from 'axios';
-
 import { getToken } from '../../helpers/session';
 import {
   BASE,
@@ -105,14 +103,17 @@ const updatePart = (carId, partId, data) => async (dispatch) => {
 
   const part = { ...data };
   try {
-    const response = await axios.put(`${BASE}cars/${carId}/parts/${partId}`, part,
+    const server = await fetch(`${BASE}cars/${carId}/parts/${partId}`,
       {
+        method: 'PUT',
         headers: {
           'Content-Type': 'application/json',
           Authorization: authToken,
         },
+        body: JSON.stringify(part),
       });
-    dispatch(updatePartRequest(response.data));
+    const response = await server.json();
+    dispatch(updatePartRequest(response));
   } catch (error) {
     dispatch(carRequestFailure(error));
   }
