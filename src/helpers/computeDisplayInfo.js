@@ -40,7 +40,8 @@ const evaluateCondition = (value) => {
         color: '#e8313d',
       };
     }
-    case (value > 0 && value <= 30): {
+    // case (value > 0 && value <= 30): {
+    case (value <= 30): {
       return {
         status: 'Very Poor',
         color: '#e31724',
@@ -62,7 +63,8 @@ const getPartDetails = (part) => {
   const daysLeft = (life * 30) - daysPassed;
   const months = Math.floor(daysLeft / 30);
   const days = daysLeft - (months * 30);
-  const percentage = Math.ceil((daysLeft * 1000) / (life * 30)) / 10;
+  const percentageValue = Math.ceil((daysLeft * 1000) / (life * 30)) / 10;
+  const percentage = percentageValue >= 0 ? percentageValue : 0;
 
   const condition = evaluateCondition(percentage);
   return {
