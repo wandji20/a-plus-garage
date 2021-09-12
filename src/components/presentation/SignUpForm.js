@@ -1,17 +1,25 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { Link, Redirect } from 'react-router-dom';
-import { signUpUser } from '../../redux/actions/userAction';
+import { signUpUser, signUpUserFailure } from '../../redux/actions/userAction';
 
 const SignUpForm = (props) => {
   const {
-    handleSignUpUser, signupError, loggedIn,
+    handleSignUpUser, signupError, loggedIn, resetError,
   } = props;
 
   if (loggedIn) {
     return <Redirect to="/" />;
   }
+
+  useEffect(() => {
+    if (signupError !== '') {
+      setTimeout(() => {
+        resetError('');
+      }, 5000);
+    }
+  }, [signupError]);
 
   const [name, setName] = useState('');
   const [userName, setUserName] = useState('');
@@ -136,12 +144,16 @@ const mapDispatchToProps = (dispatch) => ({
   handleSignUpUser: (data) => {
     dispatch(signUpUser(data));
   },
+  resetError: () => {
+    dispatch(signUpUserFailure(''));
+  },
 });
 
 SignUpForm.propTypes = {
   loggedIn: PropTypes.bool.isRequired,
   signupError: PropTypes.string.isRequired,
   handleSignUpUser: PropTypes.func.isRequired,
+  resetError: PropTypes.func.isRequired,
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(SignUpForm);

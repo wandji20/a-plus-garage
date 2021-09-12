@@ -1,12 +1,12 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import PropTypes from 'prop-types';
 import { Link, Redirect } from 'react-router-dom';
 import { connect } from 'react-redux';
-import { logInUser } from '../../redux/actions/userAction';
+import { logInUser, loginUserFailure } from '../../redux/actions/userAction';
 
 const LogInForm = (props) => {
   const {
-    handleLogIn, loginError, loggedIn,
+    handleLogIn, loginError, loggedIn, resetError,
   } = props;
 
   if (loggedIn) {
@@ -23,6 +23,14 @@ const LogInForm = (props) => {
   const handlePasswordChange = (e) => {
     setPassword(e.target.value);
   };
+
+  useEffect(() => {
+    if (loginError !== '') {
+      setTimeout(() => {
+        resetError('');
+      }, 5000);
+    }
+  }, [loginError]);
 
   const handleFormSubmit = (e) => {
     e.preventDefault();
@@ -53,6 +61,7 @@ const LogInForm = (props) => {
               className="form-control"
               placeholder="@username"
               onChange={handleUserNameChange}
+              required
             />
           </label>
         </div>
@@ -64,6 +73,7 @@ const LogInForm = (props) => {
               value={password}
               className="form-control"
               onChange={handlePasswordChange}
+              required
             />
           </label>
         </div>
@@ -83,19 +93,21 @@ const mapDispatchToProps = (dispatch) => ({
   handleLogIn: (details) => {
     dispatch(logInUser(details));
   },
+  resetError: () => {
+    dispatch(loginUserFailure(''));
+  },
 });
 
 const mapStateToProps = (state) => ({
   loggedIn: state.userReducer.loggedIn,
   loginError: state.userReducer.loginError,
-  // loginErrorMessage: state.userReducer.loginErrorMessage,
 });
 
 LogInForm.propTypes = {
-  // loginErrorMessage: PropTypes.string.isRequired,
   loggedIn: PropTypes.bool.isRequired,
   loginError: PropTypes.string.isRequired,
   handleLogIn: PropTypes.func.isRequired,
+  resetError: PropTypes.func.isRequired,
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(LogInForm);
