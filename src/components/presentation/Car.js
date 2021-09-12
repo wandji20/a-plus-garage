@@ -1,4 +1,4 @@
-import React, { Fragment } from 'react';
+import React from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { CircularProgressbar } from 'react-circular-progressbar';
@@ -21,47 +21,45 @@ const Car = (props) => {
   const { allPartsInfo, overall, condition } = computeDisplayDetails(carParts);
 
   return (
-    <>
-      <div
-        className="container remove-padding d-flex flex-column justify-content-center align-items-center py-3 bg-light"
-      >
-        <article className="d-flex flex-column justify-content-center align-items-center">
-          <h3>
-            <span>Make :</span>
-            <span>
-              {' '}
-              {make}
-            </span>
-          </h3>
-          <p>
-            <span>Horse Power :</span>
-            <span>
-              {' '}
-              {power}
-            </span>
-          </p>
-          <p>
-            <span>Average Weekly consumption per gallon :</span>
-            <span>
-              {' '}
-              {fuel}
-            </span>
-          </p>
-          <figure className="col-6">
-            <CircularProgressbar
-              value={overall}
-              text={`${overall}%`}
-            />
-          </figure>
-          <h3 className="d-flex flex-column align-items-center">
-            <span>{condition.status}</span>
-            <span>
-              {' '}
-              Working Condition
-            </span>
-          </h3>
-        </article>
-      </div>
+    <div className="car-slide container remove-padding d-flex flex-column justify-content-center align-items-center bg-light">
+
+      <article className="d-flex flex-column justify-content-center align-items-center">
+        <h3>
+          <span>Make :</span>
+          <span>
+            {' '}
+            {make}
+          </span>
+        </h3>
+        <p>
+          <span>Horse Power :</span>
+          <span>
+            {' '}
+            {power}
+          </span>
+        </p>
+        <p>
+          <span>Average Weekly consumption per gallon :</span>
+          <span>
+            {' '}
+            {fuel}
+          </span>
+        </p>
+        <figure className="col-6">
+          <CircularProgressbar
+            value={overall}
+            text={`${overall}%`}
+          />
+        </figure>
+        <h3 className="d-flex flex-column align-items-center">
+          <span>{condition.status}</span>
+          <span>
+            {' '}
+            Working Condition
+          </span>
+        </h3>
+      </article>
+
       <div className="bg-light container-fluid d-flex-column align-items-start all-parts">
         {
           allPartsInfo
@@ -77,7 +75,7 @@ const Car = (props) => {
       }
 
       </div>
-    </>
+    </div>
   );
 };
 
