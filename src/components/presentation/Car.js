@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
-import { CircularProgressbar } from 'react-circular-progressbar';
+import { CircularProgressbar, buildStyles } from 'react-circular-progressbar';
 import 'react-circular-progressbar/dist/styles.css';
 import Part from './Part';
 import Button from './Button';
@@ -19,7 +19,8 @@ const Car = (props) => {
   const carParts = parts.filter((part) => (part.car_id === id));
 
   const { allPartsInfo, overall, condition } = computeDisplayDetails(carParts);
-
+  const style = { color: condition.color };
+  console.log(condition);
   return (
     <div className="car-slide container remove-padding d-flex flex-column justify-content-center align-items-center bg-light">
 
@@ -28,7 +29,7 @@ const Car = (props) => {
           <span>Make :</span>
           <span>
             {' '}
-            {make}
+            {make[0].toUpperCase() + make.slice(1, make.length)}
           </span>
         </h3>
         <p>
@@ -49,9 +50,20 @@ const Car = (props) => {
           <CircularProgressbar
             value={overall}
             text={`${overall}%`}
+            styles={buildStyles({
+              rotation: 0.25,
+              strokeLinecap: 'butt',
+              textSize: '16px',
+              pathTransitionDuration: 1,
+              // pathTransition: 'none',
+              pathColor: `${condition.color}`,
+              textColor: `${condition.color}`,
+              trailColor: '#d6d6d6',
+              backgroundColor: '#3e98c7',
+            })}
           />
         </figure>
-        <h3 className="d-flex flex-column align-items-center">
+        <h3 className="d-flex flex-column align-items-center" style={style}>
           <span>{condition.status}</span>
           <span>
             {' '}
