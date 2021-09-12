@@ -20,7 +20,7 @@ const Car = (props) => {
 
   const { allPartsInfo, overall, condition } = computeDisplayDetails(carParts);
   const style = { color: condition.color };
-  console.log(condition);
+
   return (
     <div className="car-slide container remove-padding d-flex flex-column justify-content-center align-items-center bg-light">
 
