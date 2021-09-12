@@ -40,7 +40,6 @@ const evaluateCondition = (value) => {
         color: '#e8313d',
       };
     }
-    // case (value > 0 && value <= 30): {
     case (value <= 30): {
       return {
         status: 'Very Poor',

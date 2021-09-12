@@ -26,8 +26,6 @@ const Part = (props) => {
         <div className="d-flex col-8 flex-column justify-content-center align-items-start">
           <h6 style={style}>
             {stats.status}
-            {/* {' '}
-            Condition */}
           </h6>
           <p className="">
             {
@@ -72,22 +70,11 @@ const Part = (props) => {
             value={stats.percentage}
             text={`${stats.percentage}%`}
             styles={buildStyles({
-              // Rotation of path and trail, in number of turns (0-1)
               rotation: 0.25,
-
-              // Whether to use rounded or flat corners on the ends - can use 'butt' or 'round'
               strokeLinecap: 'butt',
-
-              // Text size
               textSize: '16px',
-
-              // How long animation takes to go from one percentage to another, in seconds
               pathTransitionDuration: 0.5,
-
-              // Can specify path transition in more detail, or remove it entirely
               // pathTransition: 'none',
-
-              // Colors
               pathColor: `${stats.color}`,
               textColor: `${stats.color}`,
               trailColor: '#d6d6d6',

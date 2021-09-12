@@ -14,7 +14,7 @@ const Button = (props) => {
     <button
       id="remove-car-btn"
       type="button"
-      className="btn bg-danger"
+      className="btn"
       onClick={handleDeleteCar}
     >
       <span className="d-inline-block mx-1">
