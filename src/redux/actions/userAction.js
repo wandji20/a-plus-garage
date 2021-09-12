@@ -73,5 +73,5 @@ const logInUser = (details) => async (dispatch) => {
 };
 
 export {
-  signUpUser, logInUser, logOutUser, logInUserSession, loginUserFailure,
+  signUpUser, logInUser, logOutUser, logInUserSession, loginUserFailure, signUpUserFailure,
 };
