@@ -61,6 +61,7 @@ const LogInForm = (props) => {
               className="form-control"
               placeholder="@username"
               onChange={handleUserNameChange}
+              required
             />
           </label>
         </div>
@@ -72,6 +73,7 @@ const LogInForm = (props) => {
               value={password}
               className="form-control"
               onChange={handlePasswordChange}
+              required
             />
           </label>
         </div>
