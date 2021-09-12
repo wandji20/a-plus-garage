@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
-import { CircularProgressbar } from 'react-circular-progressbar';
+import { CircularProgressbar, buildStyles } from 'react-circular-progressbar';
 import 'react-circular-progressbar/dist/styles.css';
 import { updatePart } from '../../redux/actions/carsAction';
 
@@ -12,8 +12,10 @@ const Part = (props) => {
     handleUpdate(part.car_id, id, { count: count + 1 });
   };
   const { name, url, stats } = part;
+  const style = { color: stats.color };
+
   return (
-    <article className="part my-3 align-items-center row bg-white mx-1 py-2 ">
+    <article className="part my-4 align-items-center row bg-white mx-1 py-2 ">
       <figure className=" col-4 d-flex flex-column m-auto">
         <h3>
           {name}
@@ -22,10 +24,8 @@ const Part = (props) => {
       </figure>
       <div className="col-8 d-flex justify-content-between align-items-center">
         <div className="d-flex col-8 flex-column justify-content-center align-items-start">
-          <h6>
+          <h6 style={style}>
             {stats.status}
-            {/* {' '}
-            Condition */}
           </h6>
           <p className="">
             {
@@ -69,6 +69,17 @@ const Part = (props) => {
           <CircularProgressbar
             value={stats.percentage}
             text={`${stats.percentage}%`}
+            styles={buildStyles({
+              rotation: 0.25,
+              strokeLinecap: 'butt',
+              textSize: '16px',
+              pathTransitionDuration: 0.5,
+              // pathTransition: 'none',
+              pathColor: `${stats.color}`,
+              textColor: `${stats.color}`,
+              trailColor: '#d6d6d6',
+              backgroundColor: '#3e98c7',
+            })}
           />
         </div>
       </div>
