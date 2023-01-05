@@ -1,4 +1,4 @@
-const BASE = 'https://a-plus-garage-api.herokuapp.com/';
+const BASE = 'https://garage-app-api.fly.dev/';
 // const BASE = 'http://localhost:3001/';
 const SIGN_UP_USER = 'SIGN_UP_USER';
 const LOGIN_USER = 'LOGIN_USER';
